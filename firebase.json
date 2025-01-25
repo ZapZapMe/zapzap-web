@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "site": "zapzap-web",
+    "site": "beta-zap-zap-me",
+    "public": "dist/zapzap-web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+
+
+
