@@ -1,59 +1,46 @@
-# ZapzapWeb
+# ZapZap tipping webapp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+Paste a tweet URL ➡️ pay the invoice ➡️ they are notified ➡️ tips are instantly sent to their wallet!
 
-## Development server
+## Running on Firebase
 
-To start a local development server, run:
+Install [Firebase CLI](https://firebase.google.com/docs/cli)
 
-```bash
-ng serve
-```
+## deployment
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-ng generate component component-name
+firebase login
+firebase deploy
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Deploys to:
+- https://beta.zap-zap.me
 
-```bash
-ng generate --help
+View the [Firebase Console](https://console.firebase.google.com/u/0/project/zapzap-me/hosting/sites/beta-zap-zap-me) for status
+
+
+### Using Docker to just run the frontend
+
+```bash 
+docker build -t zapzap-web -f Dockerfile
+docker run -p 4200:4200  -v .:/src zapzap-web # live editing
 ```
 
-## Building
 
-To build the project run:
+# License
 
-```bash
-ng build
-```
+    Copyright 2025 ZapZap Heavy Industries
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-## Running unit tests
+       http://www.apache.org/licenses/LICENSE-2.0
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
