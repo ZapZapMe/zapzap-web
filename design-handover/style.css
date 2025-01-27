@@ -1,0 +1,233 @@
+:root {
+	--black: #111111;
+	--white: #F7F7F7;
+	--blue: #1DA1F2;
+	--red: #EF2525;
+	--grey: #AAAAAA;
+	--lightGrey: #DDDDDD;
+	--darkGrey: #333333;
+	--lightYellow: #F7CF52;
+	--darkYellow: #CCA119;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--black);
+	font-family: "Inter", serif;
+	font-optical-sizing: auto;
+}
+
+.hide {
+	display: none;
+}
+
+.content {
+	padding: 48px 24px;
+	width: 375px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+h1.tagline {
+	color: var(--white);
+	font-family: "Poppins", serif;
+	font-size: 32px;
+	line-height: 120%;
+	text-align: center;
+}
+
+h1 span.highlight {
+	color: var(--lightYellow);
+}
+
+.tipCard {
+	background: var(--white);
+	border-radius: 24px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	align-items: center;
+}
+
+.tipCard h3 {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.tipCard h3 span.tipTweetUser {
+	background: var(--blue);
+	color: var(--white);
+	font-size: 12px;
+	padding: 6px 8px;
+	border-radius: 8px;
+}
+
+.tipCard .tipTweetForm {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.tipCard .tipTweetForm label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+}
+
+.tipCard .tipTweetForm label input[type="checkbox"] {
+	width: 24px;
+	height: 24px;
+	border-radius: 6px;
+	border: 1px solid var(--darkGrey);
+}
+
+.tipCard input.tipTweetURLInput {
+	background: none;
+	font-family: "Inter", serif;
+	font-size: 14px;
+	font-weight: 400;
+	border: none;
+	padding: 6px 0;
+}
+
+.tipCard span.tipTweetURLErrorMsg {
+	color: var(--red);
+	font-size: 12px;
+}
+
+.tipCard input.tipTweetURLInput:placeholder-shown {
+	color: var(--grey);
+	border-bottom: 1px solid var(--grey);
+}
+
+.tipCard input.tipTweetURLInput:not(:placeholder-shown) {
+	color: var(--black);
+	border-bottom: 1px solid var(--black);
+}
+
+.tipCard input.tipTweetURLInput:focus {
+	outline: none;
+}
+
+.tipCard input.tipTweetURLInput.invalid {
+	color: var(--red);
+	border-bottom: 1px solid var(--red);
+}
+
+.tipCard textarea.tipTweetMessageInput {
+	background: none;
+	color: var(--grey);
+	font-family: "Inter", serif;
+	font-size: 14px;
+	font-weight: 400;
+	border: 1px solid var(--grey);
+	border-radius: 8px;
+	padding: 12px;
+	resize: vertical;
+}
+
+.tipCard textarea.tipTweetMessageInput:not(:placeholder-shown) {
+	color: var(--black);
+}
+
+.tipCard > *:not(h3) {
+	width: 100%;
+}
+
+.tipCard .tipTweetFormButtonGroup {
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+}
+
+.tipCard .tipTweetFormButtonGroup button svg {
+	width: 16px;
+}
+
+.tipCard div.tipTweetMessage {
+	color: var(--darkGrey);
+	font-size: 14px;
+	padding: 8px 12px;
+	border: 1px solid var(--lightGrey);
+	border-radius: 8px;
+}
+
+
+button {
+	padding: 12px 20px;
+	border-radius: 40px;
+	font-family: "Poppins", serif;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+button.primary {
+	color: var(--black);
+	background: var(--lightYellow);
+	border: 1px solid var(--lightYellow);
+}
+
+button.black {
+	color: var(--white);
+	background: var(--black);
+	border: 1px solid var(--black);
+	stroke: var(--black);
+}
+
+button.black.stroke {
+	color: var(--black);
+}
+
+button.darkYellow {
+	color: var(--darkYellow);
+	background: var(--darkYellow);
+	border: 1px solid var(--darkYellow);
+	stroke: var(--darkYellow);
+}
+
+button.darkYellow.stroke {
+	color: var(--darkYellow);
+}
+
+button.filled {
+	border: none !important;
+}
+
+button.stroke {
+	background: none !important;
+}
+
+button.stretch {
+	flex: 1;
+}
+
+button:not(:disabled):hover, button:not(button[disabled]):hover {
+	opacity: 0.8;
+}
+
+button:disabled, button[disabled] {
+	background: var(--lightGrey);
+	color: var(--grey);
+	cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
