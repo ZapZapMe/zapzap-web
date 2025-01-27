@@ -1,233 +1,516 @@
 :root {
-	--black: #111111;
-	--white: #F7F7F7;
-	--blue: #1DA1F2;
-	--red: #EF2525;
-	--grey: #AAAAAA;
-	--lightGrey: #DDDDDD;
-	--darkGrey: #333333;
-	--lightYellow: #F7CF52;
-	--darkYellow: #CCA119;
+  --red: #EF2525;
+  --green: #4DBC1A;
+  --blue: #1DA1F2;
+  --black: #111111;
+  --white: #F7F7F7;
+  --grey: #AAAAAA;
+  --lightGrey: #DDDDDD;
+  --darkGrey: #333333;
+  --lightYellow: #F7CF52;
+  --darkYellow: #CCA119;
+  --blackYellow: #242119;
+}
+
+[contenteditable]:empty:before {
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block;
+  /* For Firefox */
 }
 
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	background: var(--black);
-	font-family: "Inter", serif;
-	font-optical-sizing: auto;
+  background: var(--black);
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
 }
 
-.hide {
-	display: none;
+a:hover {
+  opacity: 0.8;
 }
-
-.content {
-	padding: 48px 24px;
-	width: 375px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-}
-
-h1.tagline {
-	color: var(--white);
-	font-family: "Poppins", serif;
-	font-size: 32px;
-	line-height: 120%;
-	text-align: center;
-}
-
-h1 span.highlight {
-	color: var(--lightYellow);
-}
-
-.tipCard {
-	background: var(--white);
-	border-radius: 24px;
-	padding: 16px;
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-	align-items: center;
-}
-
-.tipCard h3 {
-	font-size: 14px;
-	font-weight: 600;
-}
-
-.tipCard h3 span.tipTweetUser {
-	background: var(--blue);
-	color: var(--white);
-	font-size: 12px;
-	padding: 6px 8px;
-	border-radius: 8px;
-}
-
-.tipCard .tipTweetForm {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-.tipCard .tipTweetForm label {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 8px;
-	font-size: 14px;
-}
-
-.tipCard .tipTweetForm label input[type="checkbox"] {
-	width: 24px;
-	height: 24px;
-	border-radius: 6px;
-	border: 1px solid var(--darkGrey);
-}
-
-.tipCard input.tipTweetURLInput {
-	background: none;
-	font-family: "Inter", serif;
-	font-size: 14px;
-	font-weight: 400;
-	border: none;
-	padding: 6px 0;
-}
-
-.tipCard span.tipTweetURLErrorMsg {
-	color: var(--red);
-	font-size: 12px;
-}
-
-.tipCard input.tipTweetURLInput:placeholder-shown {
-	color: var(--grey);
-	border-bottom: 1px solid var(--grey);
-}
-
-.tipCard input.tipTweetURLInput:not(:placeholder-shown) {
-	color: var(--black);
-	border-bottom: 1px solid var(--black);
-}
-
-.tipCard input.tipTweetURLInput:focus {
-	outline: none;
-}
-
-.tipCard input.tipTweetURLInput.invalid {
-	color: var(--red);
-	border-bottom: 1px solid var(--red);
-}
-
-.tipCard textarea.tipTweetMessageInput {
-	background: none;
-	color: var(--grey);
-	font-family: "Inter", serif;
-	font-size: 14px;
-	font-weight: 400;
-	border: 1px solid var(--grey);
-	border-radius: 8px;
-	padding: 12px;
-	resize: vertical;
-}
-
-.tipCard textarea.tipTweetMessageInput:not(:placeholder-shown) {
-	color: var(--black);
-}
-
-.tipCard > *:not(h3) {
-	width: 100%;
-}
-
-.tipCard .tipTweetFormButtonGroup {
-	display: flex;
-	flex-direction: row;
-	gap: 8px;
-}
-
-.tipCard .tipTweetFormButtonGroup button svg {
-	width: 16px;
-}
-
-.tipCard div.tipTweetMessage {
-	color: var(--darkGrey);
-	font-size: 14px;
-	padding: 8px 12px;
-	border: 1px solid var(--lightGrey);
-	border-radius: 8px;
-}
-
 
 button {
-	padding: 12px 20px;
-	border-radius: 40px;
-	font-family: "Poppins", serif;
-	font-size: 16px;
-	font-weight: 600;
-	cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 40px;
+  font-family: "Poppins", serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 button.primary {
-	color: var(--black);
-	background: var(--lightYellow);
-	border: 1px solid var(--lightYellow);
+  color: var(--black);
+  background: var(--lightYellow);
+  border: 1px solid var(--lightYellow);
 }
 
 button.black {
-	color: var(--white);
-	background: var(--black);
-	border: 1px solid var(--black);
-	stroke: var(--black);
+  color: var(--white);
+  background: var(--black);
+  border: 1px solid var(--black);
+  stroke: var(--black);
 }
 
 button.black.stroke {
-	color: var(--black);
+  color: var(--black);
 }
 
 button.darkYellow {
-	color: var(--darkYellow);
-	background: var(--darkYellow);
-	border: 1px solid var(--darkYellow);
-	stroke: var(--darkYellow);
+  color: var(--darkYellow);
+  background: var(--darkYellow);
+  border: 1px solid var(--darkYellow);
+  stroke: var(--darkYellow);
 }
 
 button.darkYellow.stroke {
-	color: var(--darkYellow);
+  color: var(--darkYellow);
+}
+
+button.blue {
+  color: var(--white);
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  stroke: var(--blue);
+}
+
+button.blue.stroke {
+  color: var(--blue);
 }
 
 button.filled {
-	border: none !important;
+  border: none !important;
 }
 
 button.stroke {
-	background: none !important;
+  background: none !important;
 }
 
 button.stretch {
-	flex: 1;
+  flex: 1;
 }
 
-button:not(:disabled):hover, button:not(button[disabled]):hover {
-	opacity: 0.8;
+button:not(:disabled):hover,
+button:not(button[disabled]):hover {
+  opacity: 0.8;
 }
 
-button:disabled, button[disabled] {
-	background: var(--lightGrey);
-	color: var(--grey);
-	cursor: default;
+button:disabled,
+button[disabled] {
+  background: var(--lightGrey);
+  color: var(--grey);
+  cursor: default;
 }
 
+.hide {
+  display: none;
+}
 
+.content {
+  padding: 48px 24px;
+  width: 375px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
+h1.tagline {
+  color: var(--white);
+  font-family: "Poppins", serif;
+  font-size: 32px;
+  line-height: 120%;
+  text-align: center;
+}
 
+h1 span.highlight {
+  color: var(--lightYellow);
+}
 
+.tipCard {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
 
+.tipCard h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
 
+.tipCard h3 a {
+  cursor: pointer;
+  text-decoration: none;
+}
 
+.tipCard h3 a.tipTweetUser {
+  background: var(--blue);
+  color: var(--white);
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
 
+.tipCard h3 a.tipTweetSat {
+  background: var(--lightYellow);
+  color: var(--black);
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+}
 
+.tipCard .tipTweetForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
+.tipCard .tipTweetForm label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.tipCard .tipTweetForm label input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--darkGrey);
+}
+
+.tipCard input.tipTweetURLInput {
+  background: none;
+  font-family: "Inter", serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--grey);
+}
+
+.tipCard span.tipTweetURLErrorMsg {
+  color: var(--red);
+  font-size: 12px;
+}
+
+.tipCard input.tipTweetURLInput::placeholder,
+.tipCard input.tipTweetURLInput:placeholder-shown {
+  color: var(--grey);
+}
+
+.tipCard input.tipTweetURLInput:not(:placeholder-shown) {
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.tipCard input:focus {
+  outline: none;
+}
+
+.tipCard input.tipTweetURLInput.invalid {
+  color: var(--red);
+  border-bottom: 1px solid var(--red);
+}
+
+.tipCard textarea.tipTweetMessageInput {
+  background: none;
+  font-family: "Inter", serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid var(--grey);
+  border-radius: 8px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.tipCard textarea.tipTweetMessageInput::placeholder {
+  color: var(--grey);
+}
+
+.tipCard textarea.tipTweetMessageInput:not(:placeholder-shown) {
+  color: var(--black);
+}
+
+.tipCard>*:not(h3) {
+  width: 100%;
+}
+
+.tipCard .tipTweetFormButtonGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.tipCard .tipTweetFormButtonGroup button svg {
+  width: 16px;
+}
+
+.tipCard div.tipTweetUserMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.tipCard div.tipTweetMessage {
+  color: var(--darkGrey);
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid var(--lightGrey);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.tipCard div.tipSatForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tipSatForm div.tipQuickSat {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tipSatForm div.tipQuickSat>span {
+  background: var(--green);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.tipSatForm div.tipQuickSat>span:hover {
+  opacity: 0.8;
+}
+
+.tipCard div.tipSatInputRow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  font-family: "Poppins", serif;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.tipCard div.tipSatInput {
+  color: var(--lightGrey);
+  font-family: "Poppins", serif;
+  font-size: 48px;
+  font-weight: 700;
+  width: auto;
+  text-align: right;
+  line-height: 100%;
+}
+
+.tipCard div.edited {
+  color: var(--black);
+}
+
+.tipCard div.tipSatInput:focus {
+  outline: none;
+  color: var(--black);
+}
+
+.tipCard:has(.tipQR) {
+  gap: 16px;
+}
+
+.tipCard div.tipQR {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.tipCard div.tipQR p {
+  color: var(--black);
+  font-size: 14px;
+  text-align: center;
+}
+
+.tipCard div.tipQRAddress {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.tipQRAddress input.tipQRInput {
+  color: var(--grey);
+  background: none;
+  font-size: 12px;
+  padding: 8px;
+  text-overflow: ellipsis;
+  flex: 1;
+  border: none;
+}
+
+.tipQRAddress button {
+  background: var(--black);
+  color: var(--white);
+  font-family: "Inter", serif;
+  font-size: 14;
+  font-weight: 700;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 0;
+}
+
+.tipCard h1.tipSuccess {
+  color: var(--green);
+  font-size: 32px;
+  font-weight: 700;
+  /*	border: 1px solid red;*/
+  width: auto;
+}
+
+.tipCard .tipSuccessButtonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tipCard .tipSuccessButtonGroup button svg {
+  width: 16px;
+}
+
+div.profileTop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+div.profilePicRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
+div.profilePicRow img.profilePicImg {
+  width: 73px;
+}
+
+div.profileTop svg {
+  fill: var(--white);
+}
+
+div.profileUsername {
+  color: var(--white);
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+div.profileWalletRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+div.profileWalletRow div.profileWalletIcon {
+  background: var(--darkGrey);
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+div.profileWalletRow div.profileWalletAddress {
+  color: var(--white);
+  font-size: 16px;
+  flex: 1;
+}
+
+div.profileBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--white);
+  /* Setting this to show text in unstyled .profileFeedTab */
+}
+
+div.profileBottom div.profileFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 8px;
+}
+
+div.profileFeed div.feedItem {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--darkGrey);
+}
+
+div.feedItem img.feedItemProfilePic {
+  width: 48px;
+  height: 48px;
+}
+
+div.feedItem div.feedItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+div.feedItemDetails div.feedItemReceivedFromUser {
+  color: var(--white);
+}
+
+div.feedItemDetails div.feedItemReceivedFromUser a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+div.feedItemDetails div.feedItemSatTime {
+  color: var(--grey);
+  font-size: 14px;
+}
+
+div.feedItemDetails div.feedItemComment {
+  background: var(--blackYellow);
+  color: var(--white);
+  font-size: 14px;
+  line-height: 160%;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+div.feedItemDetails div.feedItemComment:before {
+  content: open-quote;
+}
+
+div.feedItemDetails div.feedItemComment:after {
+  content: close-quote;
+}

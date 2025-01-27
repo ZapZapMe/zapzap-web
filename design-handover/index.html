@@ -1,62 +1,103 @@
 <html>
 
 <head>
-	<title>ZapZap</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>ZapZap</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-	<div class="content">
+  <div class="content">
 
-		<h1 class="tagline">Reward awesome people, one <span class="highlight">Zap</span> ⚡ at a time.</h1>
-		
-		<div class="tipCard">
-			<h3>Tip a Tweet</h3>
-			<div class="tipTweetForm">
-				<input class="tipTweetURLInput" type="text" placeholder="https://x.com/user/status/123456789101112">
-				<span class="tipTweetURLErrorMsg hide">Enter a valid Tweet URL</span>
-			</div>
-			<button class="tipTweetURLButton primary filled" disabled>Tip This Tweet</button>
-		</div>
+    <h1 class="tagline">Reward awesome people, one <span class="highlight">Zap</span> ⚡ at a time.</h1>
 
-		<div class="tipCard">
-			<h3>Send a tip message to <span class="tipTweetUser">@imaginator</span></h3>
-			<div class="tipTweetForm">
-				<textarea class="tipTweetMessageInput" placeholder="Tell @imaginator something nice"></textarea>
-				<label>
-					<input type="checkbox">
-					Post Tip on X
-				</label>
-			</div>
-			<div class="tipTweetFormButtonGroup">
-				<button class="tipTweetURLButton black stroke"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 2L9 16L23 30" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-				<button class="tipTweetURLButton primary filled stretch">Next</button>
-				<button class="tipTweetURLButton darkYellow stroke">Skip</button>
-			</div>
-		</div>
+    <div class="tipCard">
+      <h3>Tip a Tweet</h3>
+      <div class="tipTweetForm">
+        <input class="tipTweetURLInput" type="text" placeholder="https://x.com/user/status/123456789101112">
+        <span class="tipTweetURLErrorMsg hide">Enter a valid Tweet URL</span>
+      </div>
+      <button class="tipTweetURLButton primary filled" disabled>Tip This Tweet</button>
+    </div>
 
-<!-- 		<div class="tipCard">
-			<h3>I want to tip <span class="tipTweetUser">@imaginator</span></h3>
-			<div class="tipTweetMessage">“Hey man, cool stuff! Here’s a little something for you.” - @self_profile</div>
-			<div class="tipTweetForm">
-				<textarea class="tipTweetMessageInput" placeholder="Tell @imaginator something nice"></textarea>
-				<label>
-					<input type="checkbox">
-					Post Tip on X
-				</label>
-			</div>
-			<div class="tipTweetFormButtonGroup">
-				<button class="tipTweetURLButton black stroke"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 2L9 16L23 30" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-				<button class="tipTweetURLButton primary filled stretch">Next</button>
-				<button class="tipTweetURLButton darkYellow stroke">Skip</button>
-			</div>
-		</div> -->
+    <div class="tipCard">
+      <h3>Send a tip message to <a href="https://x.com/imaginator" target="_blank" class="tipTweetUser">@imaginator</a>
+      </h3>
+      <div class="tipTweetForm">
+        <textarea class="tipTweetMessageInput" placeholder="Tell @imaginator something nice"></textarea>
+        <label>
+          <input type="checkbox">
+          Post Tip on X
+        </label>
+      </div>
+      <div class="tipTweetFormButtonGroup">
+        <button class="tipTweetMessageBackButton black stroke"><svg width="32" height="32" viewBox="0 0 32 32"
+            fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 2L9 16L23 30" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></button>
+        <button class="tipTweetMessageButton primary filled stretch">Next</button>
+        <button class="tipTweetMessageSkipButton darkYellow stroke">Skip</button>
+      </div>
+    </div>
 
-	</div>
+    <div class="tipCard">
+      <div class="tipTweetUserMessage">
+        <h3>I want to tip <a href="https://x.com/imaginator" target="_blank" class="tipTweetUser">@imaginator</a></h3>
+        <div class="tipTweetMessage">“Hey man, cool stuff! Here’s a little something for you.” - @self_profile</div>
+      </div>
+      <div class="tipSatForm">
+        <div class="tipSatInputRow">
+          <div class="tipSatInput" placeholder="0" contenteditable></div>
+          <div>sat</div>
+        </div>
+        <div class="tipQuickSat">
+          <span value="1000">1,000</span><span value="2000">2,000</span><span value="4000">4,000</span><span
+            value="10000">10,000</span>
+        </div>
+      </div>
+      <div class="tipTweetFormButtonGroup">
+        <button class="tipSatBackButton black stroke"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 2L9 16L23 30" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></button>
+        <button class="tipSatButton primary filled stretch" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="tipCard">
+      <div class="tipTweetUserMessage">
+        <h3>Send <a href="https://x.com/imaginator" target="_blank" class="tipTweetUser">@imaginator</a> a tip of <a
+            class="tipTweetSat">1,000 sat<img src="img/12x12-edit.svg"></a></h3>
+        <div class="tipTweetMessage">“Hey man, cool stuff! Here’s a little something for you.” - @self_profile</div>
+      </div>
+      <div class="tipQR">
+        <img src="img/qr.svg" width="100%">
+        <p>Scan with a Bitcoin Lightning wallet</p>
+        <div class="tipQRAddress">
+          <input class="tipQRInput" type="text"
+            value="lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk">
+          <button class="tipQRInputCopyButton">Copy</button>
+        </div>
+      </div>
+      <button class="tipQRButton primary filled">Open in Wallet</button>
+    </div>
+
+    <div class="tipCard">
+      <h1 class="tipSuccess">Tip Success!</h1>
+      <h3>You successfully sent <a href="https://x.com/imaginator" target="_blank" class="tipTweetUser">@imaginator</a>
+        a tip of <a class="tipTweetSat">1,000 sat</a> with ZapZap</h3>
+      <div class="tipSuccessButtonGroup">
+        <button class="tipQRViewTweetButton blue stroke">View Tip Tweet</button>
+        <button class="tipQRSendAnotherButton primary filled">Send Another Tip</button>
+      </div>
+    </div>
+
+  </div>
 </body>
 
 <script src="main.js"></script>
