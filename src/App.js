@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css"; // or index.css if you copy style definitions here
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SettingsPage from "./components/SettingsPage";
+import SettingsPage from "./pages/SettingsPage";
 
-import HomePage from "./pages/HomePage"
+import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserProfilePage";
 import { Route, Routes } from "react-router-dom";
 
