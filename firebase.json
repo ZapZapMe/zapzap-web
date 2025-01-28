@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "beta-zap-zap-me",
-    "public": "dist/zapzap-web/browser",
+    "public": "build/",
     "ignore": [
       "firebase.json",
       "**/.*",
