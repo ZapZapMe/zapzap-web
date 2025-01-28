@@ -27,6 +27,9 @@ docker build -t zapzap-web -f Dockerfile
 docker run -p 4200:4200  -v .:/src zapzap-web # live editing
 ```
 
+![Screenshots](assets/image.png)
+
+![Screenshots](assets/profile-page.png)
 
 # License
 
