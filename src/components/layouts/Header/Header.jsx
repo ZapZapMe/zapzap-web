@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
+import { API_ENDPOINT } from '../../../config';
 
 const Header = () => {
+  const [userAvatar, setUserAvatar] = useState(null);
   const { token } = useAuth();
+
+  useEffect(() => {
+    if (!token) {
+      setUserAvatar(null);
+      return;
+    }
+
+    fetch(`${API_ENDPOINT}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch /users/me. Status code ${res.status}`
+          );
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setUserAvatar(data.avatar_url || null);
+      })
+      .catch((err) => {
+        alert(`Error fetching user data: ${err.message}`);
+      });
+  }, [token]);
 
   const handleTwitterLogin = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/auth/twitter/login');
+      const response = await fetch(`${API_ENDPOINT}/auth/twitter/login`);
       const data = await response.json();
 
       if (data.authorization_url) {
         window.location.href = data.authorization_url;
       } else {
-        console.error('Error getting Twitter authorization URL:', data);
+        alert(`Error logging in with Twitter ${data}`);
       }
     } catch (error) {
-      console.error('Error logging in with Twitter:', error);
+      alert(`Error logging in with Twitter: ${error}`);
     }
   };
 
@@ -58,8 +87,8 @@ const Header = () => {
             <Link to="/profile">
               <img
                 className="navDesktopProfilePic"
-                src="/img/dp3.png"
-                alt="Profile"
+                src={userAvatar || '/default-avatar.png'}
+                alt="ProfilePicture"
               />
             </Link>
           ) : (
