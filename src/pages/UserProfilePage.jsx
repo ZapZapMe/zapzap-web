@@ -1,9 +1,17 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import ProfileTop from '../components/UserProfilePage/ProfileTop';
+import ProfileFeed from '../components/UserProfilePage/ProfileFeed';
 
-function UserPage() {
-  const { username } = useParams();
-  return <div>User Page for: {username}</div>;
+//import { userParams } from 'react-router-dom';
+
+function UserProfilePage() {
+  // const { username } = useParams();
+  return (
+    <div className="content">
+      <ProfileTop />
+      <ProfileFeed />
+    </div>
+  );
 }
 
-export default UserPage;
+export default UserProfilePage;
