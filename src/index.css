@@ -30,7 +30,6 @@ ToDo:
   content: attr(placeholder);
   pointer-events: none;
   display: block;
-  /* For Firefox */
 }
 
 * {
@@ -40,12 +39,19 @@ ToDo:
 
 body {
   background: var(--black);
-  font-family: "Inter", serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a:hover {
   opacity: 0.8;
+}
+
+
+h1, h2, h3, h4, h5, h6, button {
+  font-family: "Poppins", sans-serif;
 }
 
 button {
@@ -342,14 +348,6 @@ h1 span.highlight {
   width: 80px;
 }
 
-/* .tipCard input.tipSatInput::placeholder {
-  color: var(--lightGrey)
-}
-
-.tipCard input.tipSatInput:not(:placeholder-shown) {
-  color: var(--black)
-} */
-
 .tipCard input.edited {
   color: var(--black);
 }
@@ -382,7 +380,6 @@ h1 span.highlight {
 .tipCard div.tipQRAddress {
   display: flex;
   flex-direction: row;
-  /* gap: 0px; */
   border: 1px solid var(--black);
   border-radius: 8px;
   overflow: hidden;
@@ -415,7 +412,6 @@ h1 span.highlight {
   color: var(--green);
   font-size: 32px;
   font-weight: 700;
-  /*	border: 1px solid red;*/
   width: auto;
 }
 
@@ -484,7 +480,6 @@ div.profileBottom {
   flex-direction: column;
   gap: 24px;
   color: var(--white);
-  /* Setting this to show text in unstyled .profileFeedTab */
 }
 
 div.profileBottom div.profileFeed {
@@ -544,4 +539,118 @@ div.feedItemDetails div.feedItemComment:before {
 
 div.feedItemDetails div.feedItemComment:after {
   content: close-quote;
+}
+
+nav.navDesktop {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--lightYellow);
+}
+
+nav.navDesktop div.navDesktopContents {
+  max-width: 960px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.navDesktopContents div.navDesktopLinks {
+  display: flex;
+  gap: 40px;
+}
+
+
+div.navDesktopActions img.navDesktopProfilePic {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  border: 2px solid var(--lightYellow);
+}
+
+div.navDesktopLinks {
+  display: flex;
+  gap: 40px;
+}
+
+div.navDesktopLinks a {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: "Inter", serif;
+}
+
+div.navDesktopLinks a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+div.navDesktopActions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+div.navDesktopActions img.navDesktopProfilePic {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  border: 2px solid var(--lightYellow);
+}
+
+button.navDesktopXButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--white);
+  border: none;
+  border-radius: 40px;
+}
+
+button.navDesktopXButton.mini {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+button.navDesktopXButton svg {
+  width: 18px;
+  height: 16px;
+  fill: currentColor;
+}
+
+footer.footerDesktop {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--grey);
+  background: var(--black);
+}
+
+footer.footerDesktop div.footerDesktopLinks {
+  display: flex;
+  gap: 80px;
+}
+
+footer.footerDesktop div.footerDesktopLinks a {
+  display: flex;
+  align-items: center;
+}
+
+footer.footerDesktop div.footerDesktopLinks a svg {
+  width: 24px;
+  height: 24px;
+}
+
+footer.footerDesktop div.footerDesktopCopyright {
+  color: var(--white);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  opacity: 0.8;
 }

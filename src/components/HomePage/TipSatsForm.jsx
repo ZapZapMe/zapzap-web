@@ -35,4 +35,23 @@ function TipSatForm() {
   );
 }
 
+
+// tipSatInput.addEventListener('input', () => {
+//  if (tipSatInput.value) {
+//   tipSatInput.style.width = '${tipSatInput.value.length}ch'
+//   tipSatButton.disabled = false
+//  }
+
+//  else {
+//   tipSatInput.style.width = '1ch'
+//   tipSatButton.disabled = true
+//  }
+// })
+
+// tipQuickSatSpans.forEach( x => x.addEventListener('click', () => {
+//  tipSatInput.value = x.getAttribute('value')
+//  tipSatInput.style.width = ${tipSatInput.value.length}ch tipSatButton.disabled = false
+// }) )
+
+
 export default TipSatForm;

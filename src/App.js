@@ -1,25 +1,27 @@
 import React from 'react';
-import './App.css'; // or index.css if you copy style definitions here
-import Header from './components/Header';
-import Footer from './components/Footer';
-import SettingsPage from './pages/SettingsPage';
-
-import HomePage from './pages/HomePage';
-import UserPage from './pages/UserProfilePage';
 import { Route, Routes } from 'react-router-dom';
+import Header from './components/layouts/Header/Header';
+import Footer from './components/layouts/Footer/Footer';
+import HomePage from './pages/HomePage';
+import SettingsPage from './pages/SettingsPage';
+import UserPage from './pages/UserProfilePage';
+import './App.css';
 
 function App() {
   return (
-    <div className="app">
+    <div className="app-wrapper">
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/:username" element={<UserPage />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/:username" element={<UserPage />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );
 }
 
 export default App;
+
