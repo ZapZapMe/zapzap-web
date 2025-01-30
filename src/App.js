@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import UserPage from './pages/UserProfilePage';
 import './App.css';
+import FAQPage from './pages/FAQ';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/:username" element={<UserPage />} />
         </Routes>
       </main>
@@ -24,4 +26,3 @@ function App() {
 }
 
 export default App;
-
