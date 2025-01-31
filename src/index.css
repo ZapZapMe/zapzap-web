@@ -50,7 +50,13 @@ a:hover {
 }
 
 
-h1, h2, h3, h4, h5, h6, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
   font-family: "Poppins", sans-serif;
 }
 
@@ -653,4 +659,25 @@ footer.footerDesktop div.footerDesktopCopyright {
   font-family: "Inter", sans-serif;
   font-size: 12px;
   opacity: 0.8;
+}
+
+.suggestions-list {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  background-color: #333;
+}
+
+.suggestions-list li {
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+  overflow-y: auto;
+}
+
+.suggestions-list li:hover {
+  background-color: #555;
 }
