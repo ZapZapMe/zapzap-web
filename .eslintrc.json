@@ -27,5 +27,13 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/config.jsx"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ]
 }
