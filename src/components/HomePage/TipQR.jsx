@@ -7,14 +7,14 @@ function TipQR() {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(invoice).then(() => {
-      alert('Copied to clipboard!');
+      console.log('Copied to clipboard!');
     });
   };
 
   // ('lighting:lnbc12313123123');
   const handleOpenWallet = () => {
     // link or scheme to open wallet
-    alert('Opening wallet...');
+    console.log('Opening wallet...');
   };
 
   return (

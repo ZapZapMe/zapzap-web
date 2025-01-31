@@ -30,7 +30,7 @@ const Header = () => {
         setUserAvatar(data.avatar_url || null);
       })
       .catch((err) => {
-        alert(`Error fetching user data: ${err.message}`);
+        console.log(`Error fetching user data: ${err.message}`);
       });
   }, [token]);
 
@@ -42,10 +42,10 @@ const Header = () => {
       if (data.authorization_url) {
         window.location.href = data.authorization_url;
       } else {
-        alert(`Error logging in with Twitter ${data}`);
+        console.log(`Error logging in with Twitter ${data}`);
       }
     } catch (error) {
-      alert(`Error logging in with Twitter: ${error}`);
+      console.log(`Error logging in with Twitter: ${error}`);
     }
   };
 

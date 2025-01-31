@@ -20,7 +20,7 @@ function TipTweetCard() {
   const isButtonDisabled = !tweetURL || isInvalid;
 
   const handleTip = () => {
-    alert(`Tipping tweet: ${tweetURL}`);
+    console.log(`Tipping tweet: ${tweetURL}`);
   };
 
   return (
