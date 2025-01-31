@@ -1,53 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function TipTweetCard() {
-  const [tweetURL, setTweetURL] = useState('');
+function TipTweetCard({ onSubmit, initialTweetData = null }) {
+  const [tweetURL, setTweetURL] = useState(initialTweetData?.url || '');
   const [isInvalid, setIsInvalid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isTweetLoaded, setIsTweetLoaded] = useState(!!initialTweetData);
 
-  const tweetRegex = /^(https?:\/\/)?(www\.)?x\.com\/user\/status\/\d+$/;
+  useEffect(() => {
+    // Load Twitter widgets script
+    if (!window.twttr) {
+      const script = document.createElement('script');
+      script.src = 'https://platform.twitter.com/widgets.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    
+    // If we have initial tweet data, load the tweet
+    if (initialTweetData && window.twttr) {
+      const tweetId = initialTweetData.url.split('/').pop();
+      window.twttr.widgets.createTweetEmbed(
+        tweetId,
+        document.getElementById('tweet-embed-container'),
+        {
+          theme: 'dark',
+          align: 'center'
+        }
+      ).then(() => {
+        setIsTweetLoaded(true);
+      });
+    }
+  }, [initialTweetData]);
 
-  const handleChange = (e) => {
-    const val = e.target.value;
-    setTweetURL(val);
+  const handleTweetURLChange = async (e) => {
+    const url = e.target.value;
+    setTweetURL(url);
+    setIsTweetLoaded(false);
 
-    if (!val) {
-      setIsInvalid(false);
-    } else {
-      setIsInvalid(!tweetRegex.test(val));
+    // Clear previous tweet
+    const container = document.getElementById('tweet-embed-container');
+    if (container) {
+      container.innerHTML = '';
+    }
+
+    const tweetRegex = /^https:\/\/(?:www\.)?(?:twitter|x)\.com\/(?:#!\/)?(\w+)\/status\/(\d+)$/;
+    const match = url.match(tweetRegex);
+
+    setIsInvalid(!match && url.length > 0);
+
+    if (match && window.twttr) {
+      setIsLoading(true);
+      try {
+        await window.twttr.widgets.createTweetEmbed(
+          match[2],
+          document.getElementById('tweet-embed-container'),
+          {
+            theme: 'dark',
+            align: 'center'
+          }
+        ).then(() => {
+          setIsTweetLoaded(true);
+          setIsLoading(false);
+        });
+      } catch (error) {
+        console.error('Error embedding tweet:', error);
+        setIsLoading(false);
+      }
     }
   };
 
-  const isButtonDisabled = !tweetURL || isInvalid;
-
-  const handleTip = () => {
-    console.log(`Tipping tweet: ${tweetURL}`);
-  };
-
   return (
-    <div className="tipCard">
+    <>
       <h3>Tip a Tweet</h3>
-
       <div className="tipTweetForm">
         <input
           className={`tipTweetURLInput ${isInvalid ? 'invalid' : ''}`}
           type="text"
           placeholder="https://x.com/user/status/123456789101112"
           value={tweetURL}
-          onChange={handleChange}
+          onChange={handleTweetURLChange}
         />
-        <span className={`tipTweetURLErrorMsg ${isInvalid ? '' : 'hide'}`}>
-          Enter a valid Tweet URL
-        </span>
+        {isInvalid && (
+          <span className="tipTweetURLErrorMsg">
+            Enter a valid Tweet URL
+          </span>
+        )}
+        
+        <div 
+          id="tweet-embed-container" 
+          className={`tweet-embed-container ${isTweetLoaded ? 'loaded' : ''}`}
+        >
+          {isLoading && <div className="tweet-loader">Loading tweet...</div>}
+        </div>
       </div>
 
       <button
         className="tipTweetURLButton primary filled"
-        disabled={isButtonDisabled}
-        onClick={handleTip}
+        disabled={isInvalid || !tweetURL || !isTweetLoaded}
+        onClick={() => onSubmit(tweetURL)}
       >
         Tip This Tweet
       </button>
-    </div>
+    </>
   );
 }
 

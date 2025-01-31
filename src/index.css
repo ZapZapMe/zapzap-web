@@ -163,14 +163,105 @@ h1 span.highlight {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 16px;
   align-items: center;
+  min-height: 160px;
+}
+
+.step-content {
+  width: 100%;
+  opacity: 0;
+  transform: translateX(30px);
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+
+.step-content.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: all;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tip-steps-container {
+  width: 100%;
+  position: relative;
+}
+
+.tip-step {
+  width: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.tip-step-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.tip-step-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+.tip-step-exit {
+  opacity: 1;
+  transform: translateX(0);
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+
+.tip-step-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+
+.tip-step.active {
+  opacity: 1;
+  display: block;
+}
+
+.tip-step.previous {
+  transform: translateX(-50px);
+}
+
+.tweet-preview-container {
+  width: 100%;
+  margin: 12px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.tweet-preview-container.loaded {
+  margin: 16px 0;
 }
 
 .tipCard h3 {
   font-size: 14px;
   font-weight: 600;
   text-align: center;
+}
+
+.tipCard > *:not(h3) {
+  width: 100%;
 }
 
 .tipCard h3 a {
@@ -338,20 +429,45 @@ h1 span.highlight {
   font-weight: 700;
 }
 
-.tipCard input.tipSatInput {
-  color: var(--lightGrey);
-  font-family: "Poppins", serif;
-  font-size: 48px;
-  font-weight: 700;
-  width: auto;
+.tipSatInput {
+  color: var(--black);
+  font-family: "Poppins", sans-serif;
+  border: none;
+  outline: none;
   text-align: right;
-  line-height: 100%;
   padding: 0;
   margin: 0;
-  border: none;
+  appearance: none;
+  -moz-appearance: textfield;
   background: transparent;
-  outline: none;
-  width: 80px;
+}
+
+.tipSatInput::-webkit-outer-spin-button,
+.tipSatInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+.tipCard input.tipSatInput {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: right;
+  width: auto;
+  transition: font-size 0.2s ease;
+}
+
+.tipCard input.tipSatInput[value*="000000"] {
+  font-size: 32px;
+}
+
+.tipCard input.tipSatInput[value*="0000000"] {
+  font-size: 24px;
+}
+
+.tipCard input.tipSatInput[value*="00000000"] {
+  font-size: 20px;
 }
 
 .tipCard input.edited {
@@ -680,4 +796,84 @@ footer.footerDesktop div.footerDesktopCopyright {
 
 .suggestions-list li:hover {
   background-color: #555;
+}
+.tweetPreview {
+  background: var(--blackYellow);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  font-family: "Inter", sans-serif;
+}
+
+.tweetPreview .tweetHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tweetPreview .tweetAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.tweetPreview .tweetUserInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweetPreview .tweetDisplayName {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.tweetPreview .tweetUsername {
+  color: var(--grey);
+}
+
+.tweetPreview .tweetContent {
+  color: var(--white);
+  margin-top: 8px;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.tweetPreview .tweetMedia {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tweetPreview .tweetTimestamp {
+  color: var(--grey);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.tweet-embed-container {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.tweet-embed-container.loaded {
+  opacity: 1;
+}
+
+.tweet-embed-container:not(.loaded) {
+  opacity: 0;
+}
+
+
+.tweet-loader {
+  color: var(--grey);
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.tweet-embed-container iframe {
+  width: 100% !important;
+  margin: 0 !important;
 }
