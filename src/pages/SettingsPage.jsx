@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API_ENDPOINT from '../config';
+import { API_ENDPOINT } from '../config';
 import { useAuth } from '../contexts/AuthContext'; // if you have an AuthContext
 
 // implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
