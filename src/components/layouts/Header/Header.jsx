@@ -73,14 +73,18 @@ const Header = () => {
 
         <div className="navDesktopActions">
           {token ? (
-            <Link to="/profile">
-              <img
-                className="navDesktopProfilePic"
-                src={userAvatar || '/default-avatar.png'}
-                alt="ProfilePicture"
-              />
-            </Link>
+            <div className='flex gap-3 items-center'>
+              <Link to="/profile">
+                <img
+                  className="navDesktopProfilePic"
+                  src={userAvatar || '/default-avatar.png'}
+                  alt="ProfilePicture"
+                />
+              </Link>
+              <LogoutButton/>
+            </div>
           ) : (
+            
             <button onClick={handleTwitterLogin} className="navDesktopXButton">
               <span>Log in with</span>
               <XIcon/>
@@ -91,5 +95,39 @@ const Header = () => {
     </nav>
   );
 };
+import { LogOut } from "lucide-react"
+import { Button } from "../../../components/ui/button"
 
+export function LogoutButton() {
+  const handleLogout = () => {
+    // Clear localStorage, sessionStorage, and cookies
+    localStorage.clear();
+    sessionStorage.clear();
+    clearCookies();
+
+    // Optionally, you can clear the cache (e.g., by reloading or forcing a cache reset)
+    // If you are using service workers or caching mechanisms, you'd need to handle them accordingly.
+
+    // Redirect to the homepage
+    window.location.href = '/';  // Or use useHistory if using React Router
+    console.log("Logout clicked")
+  }
+
+
+  // Function to clear all cookies
+  const clearCookies = () => {
+    const cookies = document.cookie.split(";");
+
+    cookies.forEach((cookie) => {
+      const cookieName = cookie.split("=")[0].trim();
+      document.cookie = `${cookieName}=; Max-Age=0; path=/;`;
+    });
+  };
+  return (
+    <Button onClick={handleLogout} variant="ghost" className="text-sm text-white font-bold bg-inherit">
+      <LogOut className="h-4 w-4" />
+      Logout
+    </Button>
+  )
+}
 export default Header;
