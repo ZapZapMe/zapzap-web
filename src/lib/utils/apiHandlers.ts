@@ -20,8 +20,8 @@ type TCreateInvoice = {
 }
 export const createInvoice = async (request_body:TCreateInvoice):Promise<AxiosResponse<any, any>> =>{
   try {
-    const response = await axiosClient.post(`${API_BASE_URL}/tips`, request_body);
-    return response.data;
+    return await axiosClient.post(`${API_BASE_URL}/tips`, request_body);
+    
   } catch (error) {
     throw error;
     
