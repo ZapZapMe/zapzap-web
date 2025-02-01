@@ -11,27 +11,24 @@ const SettingsPage = () => {
   const [showInfo, setShowInfo] = useState(false)  
 
   // Pressing Enter in the input to push the address
-  // const handleKeyDown = async (e) => {
-  //   if (e.key === 'Enter') {
-  //     e.preventDefault();
-  //     setSuggestions([]);
-  //     await updateWalletAddress('d');
-  //   }
-  // };
-  // const handleSave = (e) => {
-  //   e.preventDefault()
-  //   if (!walletAddress) {
-  //     setShowError(true)
-  //     setShowInfo(true)
-  //     return
-  //   }
-  //   setShowError(false)
-  //   setShowInfo(false)
-  // }
 
+
+  
   const handleClose = () => {
     setShowInfo(false)
   }
+
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    console.log("🚀 ~ handleSave ~ formData:", formData)
+    const walletValue = formData.get('wallet_address');
+    console.log('Wallet value:', walletValue);
+    updateWalletAddress(walletValue)
+  };
+
+
   return (
     <div className={'settingsContainer'}>
       <h1 className={'settingsHeader'}>Settings</h1>
@@ -47,9 +44,9 @@ const SettingsPage = () => {
         </div>
 
 
-      {/* <form onSubmit={handleSave} className={'settingsForm'}> */}
+      <form onSubmit={handleSave}>
         <div className={'inputGroup'}>
-        <label htmlFor="wallet" className={'inputLabel'}>
+            <label htmlFor="wallet" className={'inputLabel'}>
               <img alt="wallet" loading='lazy' style={{height:"24px", width:"24px"}} src={WalletIcon}/>
             {/* <div className={'walletIcon'}>
             </div> */}
@@ -64,7 +61,7 @@ const SettingsPage = () => {
         <button type="submit" className={'saveButton'}>
           Save
         </button>
-      {/* </form> */}
+      </form>
     
     </div>
   );

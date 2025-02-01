@@ -53,34 +53,6 @@ function TipCard() {
   const handleBack = () => {
     setStep(prev => prev - 1);
   };
-
-
-  // useEffect(() => {
-  //   // Load Twitter widgets script
-  //   if (!window.twttr) {
-  //     // const script = document.createElement('script');
-  //     // script.src = 'https://platform.twitter.com/widgets.js';
-  //     // script.async = true;
-  //     // document.body.appendChild(script);
-  //   }
-  //   console.log('====================================');
-  //   console.log('in useeffect');
-  //   console.log('====================================');
-  //   // If we have initial tweet data, load the tweet
-  //   if (tweetData && window.twttr) {
-  //     const tweetId = tweetData.url.split('/').pop();
-  //     window.twttr.widgets.createTweetEmbed(
-  //       tweetId,
-  //       document.getElementById('tweet-embed-container'),
-  //       {
-  //         theme: 'dark',
-  //         align: 'center'
-  //       }
-  //     ).then(() => {
-  //       setIsTweetLoaded(true);
-  //     });
-  //   }
-  // }, [tweetData]);
   const renderCurrentStep = () => {
     switch(step) {
       case 1:

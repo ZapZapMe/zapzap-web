@@ -57,12 +57,13 @@ const Suggestions = () => {
 
             {/* -------- input for wallet address -------------- */}
             <input
-                id="wallet"
+                id="wallet_address"
                 type="text"
+                name="wallet_address"  
                 value={walletAddress}
                 onChange={(e) => handleChange(e.target.value)}
                 placeholder="satoshi@example.org"
-                className={'walletInput'}
+                className={'walletInput w-full'}
             />
             {showError && <ErrorMessage />}
 
