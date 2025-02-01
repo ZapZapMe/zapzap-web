@@ -1,8 +1,9 @@
 // TipSatsForm.jsx
 import { ChevronLeft } from 'lucide-react';
 import React, { useState } from 'react';
+import CommentBox from './CommentBox';
 
-function TipSatForm({ onSubmit, onBack}) {
+function TipSatForm({ onSubmit, onBack, tweetData}) {
   const [satValue, setSatValue] = useState('');
 
   const handleChange = (e) => {
@@ -22,7 +23,16 @@ function TipSatForm({ onSubmit, onBack}) {
 
   return (
     <>
-      <h3>Enter Amount</h3>
+      {/* <h3>Enter Amount</h3> */}
+      <div className=' w-full flex items-center gap-4 flex-col text-[#333333]'>
+        <span className="tip-comment-form__header">
+            I want to tip <span className="twitter-handle">{tweetData.accountTitle}</span>
+        </span>
+        {
+          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={'self_profile'}/>
+        }
+      </div>
+
       <div className="tipSatForm">
         <div className="tipSatInputRow">
           <input

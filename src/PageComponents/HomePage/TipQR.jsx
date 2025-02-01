@@ -1,7 +1,9 @@
 import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { Pencil } from 'lucide-react';
+import CommentBox from './CommentBox';
 
-function TipQR() {
+function TipQR({tweetData}) {
   const invoice =
     'lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk';
 
@@ -19,6 +21,20 @@ function TipQR() {
 
   return (
     <div className="tipQR">
+      <div className=' w-full flex items-center gap-4 flex-col text-[#333333]'>
+      <div className="flex items-center gap-1 text-base">
+        Send
+        <span className="twitter-handle">{'accountTitle'}</span>
+        a tip of
+        <span className="inline-flex items-center gap-1 bg-yellow-400 px-2 py-0.5 rounded text-black">
+          {'amount'} sat
+          <Pencil className="w-4 h-4" />
+        </span>
+      </div>
+        {
+          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={'self_profile'}/>
+        }
+      </div>
       <QRCodeSVG value={invoice} size={256} className="bg-white p-4" />
       <p>Scan with a Bitcoin Lightning wallet</p>
       <div className="tipQRAddress">

@@ -3,6 +3,7 @@ import TipSatForm from './TipSatsForm';
 import TipTweetCard from './TipTweetCard';
 import TipQR from './TipQR';
 import TipCommentForm from './TipCommentForm';
+import { createInvoice } from '../../lib/utils/apiHandlers';
 
 function TipCard() {
   const [step, setStep] = useState(1);
@@ -11,8 +12,10 @@ function TipCard() {
   const [isTweetLoaded, setIsTweetLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [invoiceData, setInvoiceData] = useState();
+
   function extractTwitterHandle(url) {
-    const match = url.match(/twitter\.com\/([^/]+)/);
+    const match = url.match(/(?:twitter.com|x.com)\/([^/?]+)/i);
     return match ? `@${match[1]}` : null;
   }
 
@@ -27,9 +30,22 @@ function TipCard() {
       setTweetData(prev=>({...prev, comment}))
     }
   }
-  const handleSatSubmit = (amount) => {
+  const handleSatSubmit = async(amount) => {
     setTweetData(prev=>({...prev, satAmount:amount}))
     setStep(4);
+    
+    const response = await createInvoice({
+      amount_sats:tweetData.amount,
+      comment:tweetData.comment?.text??"",
+      tip_sender:"anonymous",
+      tweet_url:tweetData?.url
+    })
+
+    if (response && response.status===200){
+      // 
+      console.log(response.data)
+    }
+    
   };
 
   const handleBack = () => {
@@ -68,9 +84,9 @@ function TipCard() {
       case 1:
         return <TipTweetCard onSubmit={handleTweetSubmit} initialTweetData={tweetData} setIsTweetLoaded={setIsTweetLoaded} isTweetLoaded={isTweetLoaded} />;
       case 2:
-        return <TipCommentForm onSubmit={handleCommentSubmit} onBack={handleBack} twitterHandle={tweetData.accountTitle??""} />;
+        return <TipCommentForm initialComment={tweetData?.comment?.text??""} onSubmit={handleCommentSubmit} onBack={handleBack} twitterHandle={tweetData?.accountTitle??""} />;
       case 3:
-        return <TipSatForm onSubmit={handleSatSubmit} onBack={handleBack}/>;
+        return <TipSatForm onSubmit={handleSatSubmit} onBack={handleBack} tweetData={tweetData}/>;
       case 4:
         return <TipQR tweetData={tweetData} satAmount={tweetData.satAmount} onBack={handleBack} />;
       default:

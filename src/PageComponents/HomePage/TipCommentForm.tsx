@@ -8,13 +8,14 @@ interface ITipCommentForm {
     onSubmit: (p:{text:string, postOnX:boolean}, shouldSkip?: boolean) => void;
     onBack: () => void;
     twitterHandle: string;
+    initialComment:string
 }
-const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, twitterHandle, onBack }) => {
+const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, twitterHandle, onBack,initialComment="" }) => {
     const { token } = useAuth()
 
-    const [comment, setComment] = useState("");
-    const [isNextDisabled, setIsNextDisabled] = useState(true)
-    const [isChecked, setIsChecked] = useState(false);
+    const [comment, setComment] = useState(initialComment);
+    const [isNextDisabled, setIsNextDisabled] = useState(initialComment?false:true)
+    const [isChecked, setIsChecked] = useState(!!initialComment);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputVal = e.target.value
@@ -40,7 +41,7 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, twitterHandle, on
             {/* --------- input --------- */}
             <div className='input_container'>
                 <input
-                    // disabled={!token}
+                    // disabled={!token} // if no user, dont allow them to input 
                     onChange={handleChange}
                     value={comment}
                     placeholder={!token ? "Log in with X to send a custom message" : "Write your tip message here"}
