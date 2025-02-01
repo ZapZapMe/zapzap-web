@@ -67,6 +67,9 @@ function TipTweetCard({ onSubmit, initialTweetData = null }) {
       }
     }
   };
+  console.log("🚀 ~ TipTweetCard ~ isTweetLoaded:", isTweetLoaded)
+  console.log("🚀 ~ TipTweetCard ~ tweetURL:", tweetURL)
+  console.log("🚀 ~ TipTweetCard ~ isInvalid:", isInvalid)
 
   return (
     <>

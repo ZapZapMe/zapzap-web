@@ -1,9 +1,8 @@
 // filepath: /src/pages/SettingsPage.jsx
 import React from 'react';
-import '../index.css';
 function FAQPage() {
   return (
-    <div className="FAQWrapper">
+    <div className="FAQWrapper gap">
       <header>
         <h1>FAQ</h1>
       </header>

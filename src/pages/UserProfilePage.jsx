@@ -1,6 +1,6 @@
 import React from 'react';
-import ProfileTop from '../components/UserProfilePage/ProfileTop';
-import ProfileFeed from '../components/UserProfilePage/ProfileFeed';
+import ProfileTop from '../PageComponents/UserProfilePage/ProfileTop';
+import ProfileFeed from '../PageComponents/UserProfilePage/ProfileFeed';
 
 //import { userParams } from 'react-router-dom';
 
