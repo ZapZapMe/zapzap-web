@@ -7,7 +7,7 @@ import SettingsPage from './pages/SettingsPage';
 import UserPage from './pages/UserProfilePage';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import "./App.css"
 function App() {
   return (
       <div className="app-wrapper">

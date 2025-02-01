@@ -199,9 +199,14 @@ button[disabled] {
 
 
 
-h1 span.highlight {
-  color: var(--lightYellow);
+h1 {
+  font-weight: 700;
+  span.highlight {
+    color: var(--lightYellow);
+    
+  }
 }
+
 
 .tipCard {
   background: var(--white);
@@ -503,6 +508,9 @@ h1 span.highlight {
   text-align: right;
   width: auto;
   transition: font-size 0.2s ease;
+  max-width: 250px;
+  overflow-x: auto;
+  text-overflow:ellipsis;
 }
 
 .tipCard input.tipSatInput[value*="000000"] {

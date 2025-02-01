@@ -55,6 +55,7 @@ const SettingsPage = () => {
             </div> */}
             Wallet address
           </label>
+          {/* -------- suggestions -------- */}
           <Suggestions/>
          
 

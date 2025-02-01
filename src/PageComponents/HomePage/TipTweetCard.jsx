@@ -1,35 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-function TipTweetCard({ onSubmit, initialTweetData = null }) {
+function TipTweetCard({ onSubmit, initialTweetData = null, setIsTweetLoaded, isTweetLoaded }) {
   const [tweetURL, setTweetURL] = useState(initialTweetData?.url || '');
   const [isInvalid, setIsInvalid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isTweetLoaded, setIsTweetLoaded] = useState(!!initialTweetData);
 
-  useEffect(() => {
-    // Load Twitter widgets script
-    if (!window.twttr) {
-      const script = document.createElement('script');
-      script.src = 'https://platform.twitter.com/widgets.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-    
-    // If we have initial tweet data, load the tweet
-    if (initialTweetData && window.twttr) {
-      const tweetId = initialTweetData.url.split('/').pop();
-      window.twttr.widgets.createTweetEmbed(
-        tweetId,
-        document.getElementById('tweet-embed-container'),
-        {
-          theme: 'dark',
-          align: 'center'
-        }
-      ).then(() => {
-        setIsTweetLoaded(true);
-      });
-    }
-  }, [initialTweetData]);
+ 
 
   const handleTweetURLChange = async (e) => {
     const url = e.target.value;
@@ -67,9 +43,6 @@ function TipTweetCard({ onSubmit, initialTweetData = null }) {
       }
     }
   };
-  console.log("🚀 ~ TipTweetCard ~ isTweetLoaded:", isTweetLoaded)
-  console.log("🚀 ~ TipTweetCard ~ tweetURL:", tweetURL)
-  console.log("🚀 ~ TipTweetCard ~ isInvalid:", isInvalid)
 
   return (
     <>
@@ -88,12 +61,12 @@ function TipTweetCard({ onSubmit, initialTweetData = null }) {
           </span>
         )}
         
-        <div 
+        {/* <div 
           id="tweet-embed-container" 
           className={`tweet-embed-container ${isTweetLoaded ? 'loaded' : ''}`}
         >
           {isLoading && <div className="tweet-loader">Loading tweet...</div>}
-        </div>
+        </div> */}
       </div>
 
       <button
