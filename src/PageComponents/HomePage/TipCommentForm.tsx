@@ -41,7 +41,7 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, twitterHandle, on
             {/* --------- input --------- */}
             <div className='input_container'>
                 <input
-                    // disabled={!token} // if no user, dont allow them to input 
+                    disabled={!token} // if no user, dont allow them to input 
                     onChange={handleChange}
                     value={comment}
                     placeholder={!token ? "Log in with X to send a custom message" : "Write your tip message here"}

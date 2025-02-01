@@ -32,10 +32,10 @@ function TipCard() {
   }
   const handleSatSubmit = async(amount) => {
     setTweetData(prev=>({...prev, satAmount:amount}))
-    setStep(4);
+    
     
     const response = await createInvoice({
-      amount_sats:tweetData.amount,
+      amount_sats:amount,
       comment:tweetData.comment?.text??"",
       tip_sender:"anonymous",
       tweet_url:tweetData?.url
@@ -44,8 +44,10 @@ function TipCard() {
     if (response && response.status===200){
       // 
       console.log(response.data)
-    }
-    
+      setInvoiceData(response.data)
+      setStep(4);
+
+    }   
   };
 
   const handleBack = () => {
@@ -88,7 +90,7 @@ function TipCard() {
       case 3:
         return <TipSatForm onSubmit={handleSatSubmit} onBack={handleBack} tweetData={tweetData}/>;
       case 4:
-        return <TipQR tweetData={tweetData} satAmount={tweetData.satAmount} onBack={handleBack} />;
+        return <TipQR tweetData={tweetData} invoiceData={invoiceData}  onBack={handleBack} />;
       default:
         return null;
     }
