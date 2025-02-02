@@ -128,7 +128,7 @@ const Header = () => {
   };
 
   const menuCloseHandler = () => setIsMenuOpen(false);
-  useClickOutside(null, menuCloseHandler, mobile_menu_id);
+  // useClickOutside(null, menuCloseHandler, mobile_menu_id);
 
   return (
     <nav className="navbar">
