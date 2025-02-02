@@ -1,49 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FeedItem from './FeedItem';
-const FEED_ITEMS = [
-    {
-      profilePic: 'img/default-avatar.png',
-      username: 'imaginator',
-      amount: '4,000',
-      timeAgo: 'Just now',
-    },
-    {
-      profilePic: 'img/default-avatar.png',
-      username: 'short',
-      amount: '5,000',
-      timeAgo: '2 hours ago',
-      comment: 'Tip 4 u',
-    },
-    {
-      profilePic: 'img/default-avatar.png',
-      username: 'very_very_looong_username',
-      amount: '1,000,000',
-      timeAgo: '4 days ago',
-      comment:
-        'Very long tip message for you just you. Looooooooong tip message for a big tip from me to you.',
-    },
-    {
-      profilePic: 'img/default-avatar.png',
-      username: 'normalguy',
-      amount: '10,000',
-      timeAgo: '2 weeks ago',
-      comment: 'Just a normal guy sending you a normal tip.',
-    },
-    {
-      profilePic: 'img/default-avatar.png',
-      username: 'elonmusk',
-      amount: '4,000',
-      timeAgo: '1 year ago',
-    },
-  ];
-const TipsSent = ({data}) => {
+import { getUsersTipSent } from '../../lib/utils/apiHandlers';
+import { useParams } from 'react-router-dom';
+
+const TipsSent = () => {
+  const {username} = useParams()  
+  const [tipsSent, setTipsSent] = useState([])
+      // useEffect for fetching feed
+  const fetchDaFeed = async () => {
+    const sent = await getUsersTipSent(username)
+
+    if (sent.status === 200) setTipsSent(sent.data)
+
+  }
+  
+  useEffect(() => {
+    fetchDaFeed() 
+  }, [])
+
+  if (tipsSent) return (
+    tipsSent?.map((item, index) => (
+      <FeedItem mode="sent" key={index} {...item} />
+    ))
+  )
+
   return (
-    data ? 
-      data?.map((item, index) => (
-        <FeedItem mode="sent" key={index} {...item} />
-      ))
-      :
-      <></>
+    <>No tips sent yet!</>
   )
 }
 
