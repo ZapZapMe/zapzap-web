@@ -25,11 +25,9 @@ function App() {
             />
             <Route path="/faq" element={<FAQPage />} />
             <Route
-              path="/:username"
+              path="/profile/:username"
               element={
-                <ProtectedRoute>
                   <UserPage />
-                </ProtectedRoute>
               }
             />
           </Routes>

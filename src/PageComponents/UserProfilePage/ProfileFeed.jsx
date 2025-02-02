@@ -1,52 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FeedItem from './FeedItem';
+import DynamicHeightContainer from '../../components/DynamicHeightContainer';
+import TipsSent from './TipsSent';
+import TipsRecieved from './TipsRecieved';
+import { useParams } from 'react-router-dom';
+import { getUsersTipReceived, getUsersTipSent } from '../../lib/utils/apiHandlers';
 
-const FEED_ITEMS = [
-  {
-    profilePic: 'img/default-avatar.png',
-    username: 'someone_else',
-    amount: '4,000',
-    timeAgo: 'Just now',
-  },
-  {
-    profilePic: 'img/default-avatar.png',
-    username: 'short',
-    amount: '5,000',
-    timeAgo: '2 hours ago',
-    comment: 'Tip 4 u',
-  },
-  {
-    profilePic: 'img/default-avatar.png',
-    username: 'very_very_looong_username',
-    amount: '1,000,000',
-    timeAgo: '4 days ago',
-    comment:
-      'Very long tip message for you just you. Looooooooong tip message for a big tip from me to you.',
-  },
-  {
-    profilePic: 'img/default-avatar.png',
-    username: 'normalguy',
-    amount: '10,000',
-    timeAgo: '2 weeks ago',
-    comment: 'Just a normal guy sending you a normal tip.',
-  },
-  {
-    profilePic: 'img/default-avatar.png',
-    username: 'elonmusk',
-    amount: '4,000',
-    timeAgo: '1 year ago',
-  },
-];
 
-const ProfileFeed = () => (
-  <div className="profileBottom">
-    <div className="profileFeedTab">Tips Received | Tips Sent</div>
-    <div className="profileFeed">
-      {FEED_ITEMS.map((item, index) => (
-        <FeedItem key={index} {...item} />
-      ))}
+
+const ProfileFeed = () => {
+  const { activeTab, setActiveTab, tipsReceived, tipsSent } = useProfileFeed()
+
+  return (
+    <div className="profileBottom">
+      {/* Tabs */}
+      <div className="flex mt-2 cursor-pointer text-sm font-bold rounded-full bg-zinc-600">
+            <div
+              onClick={() => setActiveTab("received")}
+              className={`flex-1 py-3  rounded-full text-center  ${
+                activeTab === "received" ? "bg-amber-500 text-black" : " text-white " 
+              }`}
+            >
+              Tips Received
+            </div>
+            <div
+              onClick={() => setActiveTab("sent")}
+              className={`flex-1 py-3 rounded-full text-center  ${
+                activeTab === "sent" ? "bg-amber-500 text-black" : " text-white"
+              }`}
+            >
+              Tips Sent
+            </div>
+      </div>
+
+      <DynamicHeightContainer className='profileFeed'> 
+          { 
+            activeTab === "sent" ?  
+              <TipsSent/> 
+                : 
+              <TipsRecieved/> 
+            }      
+      </DynamicHeightContainer>
     </div>
-  </div>
-);
+  )
+}
+  
+
 
 export default ProfileFeed;
+
+
+const useProfileFeed = ()=>{
+  const [activeTab, setActiveTab] = useState("received")
+  const [tipsReceived, setTipsReceived] = useState([]);
+  const [tipsSent, setTipsSent] = useState([])
+  const { username } = useParams();
+
+
+
+    // useEffect for fetching feed
+    const fetchDaFeed = async () => {
+      const [receieved, sent ] = await Promise.all ([getUsersTipReceived(username), getUsersTipSent(username)
+      ])
+      if (receieved.status === 200) setTipsReceived(receieved.data)
+      
+      if (sent.status === 200) setTipsSent(sent.data)
+    }
+    
+    useEffect(() => {
+      fetchDaFeed() 
+    }, [activeTab])
+    
+  return {
+    activeTab, setActiveTab,
+    tipsSent, tipsReceived
+  }
+}

@@ -4,7 +4,8 @@ import { useAuth } from '../../../lib/contexts/AuthContext';
 import { API_ENDPOINT } from '../../../config';
 import { HeaderZapLogo } from '../../../lib/utils/icons';
 import { XIcon } from 'lucide-react';
-
+import { LogOut } from "lucide-react"
+import { Button } from "../../../components/ui/button"
 const Header = () => {
   const [userAvatar, setUserAvatar] = useState(null);
   const { token } = useAuth();
@@ -63,7 +64,7 @@ const Header = () => {
 
           {token && (
             <>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile/imaginator">Profile</Link>
               <Link to="/settings">Settings</Link>
             </>
           )
@@ -95,8 +96,7 @@ const Header = () => {
     </nav>
   );
 };
-import { LogOut } from "lucide-react"
-import { Button } from "../../../components/ui/button"
+
 
 export function LogoutButton() {
   const handleLogout = () => {

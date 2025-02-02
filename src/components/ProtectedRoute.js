@@ -7,8 +7,8 @@ const ProtectedRoute = ({ children }) => {
   const { token } = useAuth()
 
 
-
-  return token ? children : <Navigate to="/" />;
+  return children
+  // return token ? children : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;
