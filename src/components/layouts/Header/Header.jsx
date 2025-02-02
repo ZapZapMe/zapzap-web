@@ -151,7 +151,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <NavLinks
-              username={user.twitter_username}
+              username={user?.twitter_username}
               closeMenu={menuCloseHandler}
             />
           </div>
@@ -195,7 +195,7 @@ const Header = () => {
         className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
       >
         <NavLinks
-          username={user.twitter_username}
+          username={user?.twitter_username}
           closeMenu={menuCloseHandler}
         />
       </div>
