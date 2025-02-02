@@ -9,8 +9,8 @@ import { getUsersTipReceived, getUsersTipSent } from '../../lib/utils/apiHandler
 
 
 const ProfileFeed = () => {
-  const [activeTab, setActiveTab] = useState("received")
-
+  // const [activeTab, setActiveTab] = useState("received")
+  const {activeTab, setActiveTab, tipsReceived, tipsSent} = useProfileFeed()
   return (
     <div className="profileBottom">
       {/* Tabs */}
@@ -36,9 +36,9 @@ const ProfileFeed = () => {
       <DynamicHeightContainer className='profileFeed'> 
           { 
             activeTab === "sent" ?  
-              <TipsSent /> 
+              <TipsSent data={tipsSent} /> 
                 : 
-              <TipsRecieved /> 
+              <TipsRecieved data={tipsReceived}/> 
             }      
       </DynamicHeightContainer>
     </div>
@@ -50,29 +50,29 @@ const ProfileFeed = () => {
 export default ProfileFeed;
 
 
-// const useProfileFeed = ()=>{
-//   const [activeTab, setActiveTab] = useState("received")
-//   const [tipsReceived, setTipsReceived] = useState([]);
-//   const [tipsSent, setTipsSent] = useState([])
-//   const { username } = useParams();
+const useProfileFeed = ()=>{
+  const [activeTab, setActiveTab] = useState("received")
+  const [tipsReceived, setTipsReceived] = useState([]);
+  const [tipsSent, setTipsSent] = useState([])
+  const { username } = useParams();
 
 
 
-//     // useEffect for fetching feed
-//     const fetchDaFeed = async () => {
-//       const [receieved, sent ] = await Promise.all ([getUsersTipReceived(username), getUsersTipSent(username)
-//       ])
-//       if (receieved.status === 200) setTipsReceived(receieved.data)
+    // useEffect for fetching feed
+    const fetchDaFeed = async () => {
+      const [receieved, sent ] = await Promise.all ([getUsersTipReceived(username), getUsersTipSent(username)
+      ])
+      if (receieved.status === 200) setTipsReceived(receieved.data)
       
-//       if (sent.status === 200) setTipsSent(sent.data)
-//     }
+      if (sent.status === 200) setTipsSent(sent.data)
+    }
     
-//     // useEffect(() => {
-//     //   fetchDaFeed() 
-//     // }, [activeTab])
+    // useEffect(() => {
+    //   fetchDaFeed() 
+    // }, [activeTab])
     
-//   return {
-//     activeTab, setActiveTab,
-//     tipsSent, tipsReceived
-//   }
-// }
+  return {
+    activeTab, setActiveTab,
+    tipsSent, tipsReceived
+  }
+}

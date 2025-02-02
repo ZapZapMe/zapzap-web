@@ -12,9 +12,10 @@ const FeedItem = (props) => {
     amount_sats,
     avatar_url,
     comment,
-    type,
+    tip_type,
     mode
   } = props;
+  console.log("🚀 ~ FeedItem ~ props:", props)
   const navigate = useNavigate()
 
 
@@ -23,7 +24,7 @@ const FeedItem = (props) => {
         <img className="feedItemProfilePic" src={avatar_url} alt={tip_sender} />
         <div className="feedItemDetails">
           <div className="feedItemReceivedFromUser">
-              <TipTitle recipient={recipient} tip_sender={tip_sender} type={type}/>
+              <TipTitle recipient={recipient} tip_sender={tip_sender} type={tip_type}/>
           </div>
           <div className="feedItemSatTime">
             <b>{amount_sats} sat</b> - {formatDateDifference(created_at)}
@@ -43,11 +44,11 @@ export default FeedItem;
 const TipTitle = ({tip_sender, recipient, type})=>{
   const {username} = useParams()
   const {user} = useAuth()
-
+  
   // =========== SENT
   if (type==="sent"){
     // ---------- logged in user sent a tip 
-    if (user.twitter_username===tip_sender) {
+    if (user?.twitter_username===tip_sender) {
       return (
         <>You tipped <TwitterHandle tip_sender={tip_sender}/> </>
       )
@@ -82,3 +83,5 @@ const TwitterHandle = ({tip_sender})=>{
     <span onClick={navigateToProfile} className='cursor-pointer text-blue-700 font-bold'>@{tip_sender??"anonymous"}</span> 
   )
 }
+
+

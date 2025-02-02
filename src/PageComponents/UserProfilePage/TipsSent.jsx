@@ -3,23 +3,23 @@ import FeedItem from './FeedItem';
 import { getUsersTipSent } from '../../lib/utils/apiHandlers';
 import { useParams } from 'react-router-dom';
 
-const TipsSent = () => {
-  const {username} = useParams()  
-  const [tipsSent, setTipsSent] = useState([])
-      // useEffect for fetching feed
-  const fetchDaFeed = async () => {
-    const sent = await getUsersTipSent(username)
+const TipsSent = ({data}) => {
+  // const {username} = useParams()  
+  // const [tipsSent, setTipsSent] = useState([])
+  //     // useEffect for fetching feed
+  // const fetchDaFeed = async () => {
+  //   const sent = await getUsersTipSent(username)
 
-    if (sent.status === 200) setTipsSent(sent.data)
+  //   if (sent.status === 200) setTipsSent(sent.data)
 
-  }
+  // }
   
-  useEffect(() => {
-    fetchDaFeed() 
-  }, [])
+  // useEffect(() => {
+  //   fetchDaFeed() 
+  // }, [])
 
-  if (tipsSent) return (
-    tipsSent?.map((item, index) => (
+  if (data) return (
+    data?.map((item, index) => (
       <FeedItem mode="sent" key={index} {...item} />
     ))
   )
