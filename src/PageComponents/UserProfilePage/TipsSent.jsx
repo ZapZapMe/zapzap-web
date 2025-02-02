@@ -3,7 +3,7 @@ import FeedItem from './FeedItem';
 const FEED_ITEMS = [
     {
       profilePic: 'img/default-avatar.png',
-      username: 'someone_else',
+      username: 'imaginator',
       amount: '4,000',
       timeAgo: 'Just now',
     },
@@ -36,11 +36,14 @@ const FEED_ITEMS = [
       timeAgo: '1 year ago',
     },
   ];
-const TipsSent = () => {
+const TipsSent = ({data}) => {
   return (
-    FEED_ITEMS.map((item, index) => (
-        <FeedItem key={index} {...item} />
+    data ? 
+      data?.map((item, index) => (
+        <FeedItem mode="sent" key={index} {...item} />
       ))
+      :
+      <></>
   )
 }
 

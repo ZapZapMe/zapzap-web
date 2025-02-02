@@ -14,7 +14,7 @@ const ProfileFeed = () => {
   return (
     <div className="profileBottom">
       {/* Tabs */}
-      <div className="flex mt-2 cursor-pointer text-sm font-bold rounded-full bg-zinc-600">
+      <div className="flex mt-2 cursor-pointer text-sm font-bold rounded-full bg-[#333333]">
             <div
               onClick={() => setActiveTab("received")}
               className={`flex-1 py-3  rounded-full text-center  ${
@@ -36,7 +36,7 @@ const ProfileFeed = () => {
       <DynamicHeightContainer className='profileFeed'> 
           { 
             activeTab === "sent" ?  
-              <TipsSent/> 
+              <TipsSent data={[1]}/> 
                 : 
               <TipsRecieved/> 
             }      

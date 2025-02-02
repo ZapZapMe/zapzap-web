@@ -3,7 +3,7 @@ import FeedItem from './FeedItem';
 
 const TipsRecieved = () => {
   return (
-    <div>have not received any tips</div>
+    <FeedItem mode="received"/>
    
   )
 }
