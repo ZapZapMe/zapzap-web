@@ -50,37 +50,37 @@ const TipTitle = ({tip_sender, recipient, type})=>{
     // ---------- logged in user sent a tip 
     if (user?.twitter_username===tip_sender) {
       return (
-        <>You tipped <TwitterHandle tip_sender={recipient}/> </>
+        <>You tipped <TwitterHandle handle={recipient}/> </>
       )
     }
     // ----------- Others page
     if (tip_sender) {
       return (
-        <><TwitterHandle tip_sender={tip_sender}/> sent a tip to <TwitterHandle tip_sender={recipient}/> </>
+        <><TwitterHandle handle={tip_sender}/> sent a tip to <TwitterHandle handle={recipient}/> </>
       )
     }
 
   }
 
   // ======== RECEIVED => @someone sent a tip 
-  if (!tip_sender){
+  if (recipient){
     return (
       <>
-        <TwitterHandle tip_sender={tip_sender}/> {' '} sent a tip    
+        <TwitterHandle handle={recipient}/> {' '} sent a tip    
       </>
     )
   }
 }
 
 
-const TwitterHandle = ({tip_sender})=>{
+const TwitterHandle = ({handle})=>{
   
   const navigateToProfile = () =>{
-    if (tip_sender) window.open(`https://x.com/${tip_sender}`, "_blank")
+    if (handle) window.open(`https://x.com/${handle}`, "_blank")
   }
 
   return (
-    <span onClick={navigateToProfile} className='cursor-pointer text-blue-700 font-bold'>@{tip_sender??"anonymous"}</span> 
+    <span onClick={navigateToProfile} className='cursor-pointer text-blue-700 font-bold'>@{handle??"anonymous"}</span> 
   )
 }
 
