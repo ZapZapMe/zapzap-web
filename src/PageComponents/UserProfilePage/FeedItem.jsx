@@ -50,7 +50,7 @@ const TipTitle = ({tip_sender, recipient, type})=>{
     // ---------- logged in user sent a tip 
     if (user?.twitter_username===tip_sender) {
       return (
-        <>You tipped <TwitterHandle tip_sender={tip_sender}/> </>
+        <>You tipped <TwitterHandle tip_sender={recipient}/> </>
       )
     }
     // ----------- Others page

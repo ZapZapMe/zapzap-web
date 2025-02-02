@@ -67,9 +67,9 @@ const useProfileFeed = ()=>{
       if (sent.status === 200) setTipsSent(sent.data)
     }
     
-    // useEffect(() => {
-    //   fetchDaFeed() 
-    // }, [activeTab])
+    useEffect(() => {
+      fetchDaFeed() 
+    }, [])
     
   return {
     activeTab, setActiveTab,
