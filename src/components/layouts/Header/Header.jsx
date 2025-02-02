@@ -82,8 +82,8 @@ const UserSection = ({ userAvatar, handleTwitterLogin }) => {
 
 const Header = () => {
   const [userAvatar, setUserAvatar] = useState(null);
-  const { token } = useAuth();
-  const {username} = useParams()
+  const { token, user } = useAuth();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -149,8 +149,11 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:block'>
-            <NavLinks username={username} closeMenu={menuCloseHandler} />
+          <div className="hidden md:block">
+            <NavLinks
+              username={user.twitter_username}
+              closeMenu={menuCloseHandler}
+            />
           </div>
           <div className="desktop-nav">
             <UserSection
@@ -161,10 +164,10 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           <div className="mobile-nav">
-            <UserSection 
+            <UserSection
               handleTwitterLogin={handleTwitterLogin}
               userAvatar={userAvatar}
-              />
+            />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="menu-button"
@@ -191,7 +194,10 @@ const Header = () => {
         id={mobile_menu_id}
         className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
       >
-        <NavLinks username={username} closeMenu={menuCloseHandler} />
+        <NavLinks
+          username={user.twitter_username}
+          closeMenu={menuCloseHandler}
+        />
       </div>
     </nav>
   );
