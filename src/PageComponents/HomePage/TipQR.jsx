@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Pencil } from 'lucide-react';
 import CommentBox from './CommentBox';
+import { useAuth } from '../../lib/contexts/AuthContext';
 
 function TipQR({ tweetData, invoiceData }) {
+  const { user } = useAuth();
+  const { twitter_username } = user;
   const invoice = invoiceData?.bolt11_invoice??"lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk" 
   console.log("🚀 ~ TipQR ~ invoice:", invoice)
     // 'lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk';
@@ -33,7 +36,7 @@ function TipQR({ tweetData, invoiceData }) {
         </span>
       </div>
         {
-          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={'self_profile'}/>
+          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={twitter_username}/>
         }
       </div>
 

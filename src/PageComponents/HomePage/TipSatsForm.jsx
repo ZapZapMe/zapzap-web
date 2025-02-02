@@ -2,8 +2,11 @@
 import { ChevronLeft } from 'lucide-react';
 import React, { useState } from 'react';
 import CommentBox from './CommentBox';
+import { useAuth } from '../../lib/contexts/AuthContext';
 
 function TipSatForm({ onSubmit, onBack, tweetData}) {
+  const { user } = useAuth();
+  const { twitter_username } = user;
   const [satValue, setSatValue] = useState('');
 
   const handleChange = (e) => {
@@ -29,7 +32,7 @@ function TipSatForm({ onSubmit, onBack, tweetData}) {
             I want to tip <span className="twitter-handle">{tweetData.accountTitle}</span>
         </span>
         {
-          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={'self_profile'}/>
+          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={twitter_username}/>
         }
       </div>
 

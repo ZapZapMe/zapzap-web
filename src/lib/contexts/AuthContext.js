@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem('userData'));
 
   // Fetch user data whenever the token changes
   useEffect(() => {

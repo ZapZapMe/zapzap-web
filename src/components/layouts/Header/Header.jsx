@@ -57,11 +57,11 @@ const NavLinks = ({ username, closeMenu }) => {
   );
 };
 
-const UserSection = ({ userAvatar, handleTwitterLogin }) => {
+const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
   const { token } = useAuth();
   return token ? (
     <div className="flex gap-3 items-center">
-      <Link to="/profile">
+      <Link to={`/profile/${username}`}>
         <img
           className="navDesktopProfilePic"
           src={userAvatar || '/default-avatar.png'}
@@ -159,6 +159,7 @@ const Header = () => {
             <UserSection
               handleTwitterLogin={handleTwitterLogin}
               userAvatar={userAvatar}
+              username={user?.twitter_username}
             />
           </div>
 
@@ -167,6 +168,7 @@ const Header = () => {
             <UserSection
               handleTwitterLogin={handleTwitterLogin}
               userAvatar={userAvatar}
+              username={user?.twitter_username}
             />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
