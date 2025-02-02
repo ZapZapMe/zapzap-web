@@ -160,7 +160,10 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           <div className="mobile-nav">
-            <UserSection />
+            <UserSection 
+              handleTwitterLogin={handleTwitterLogin}
+              userAvatar={userAvatar}
+              />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="menu-button"
