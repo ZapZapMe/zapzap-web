@@ -148,7 +148,9 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <NavLinks username={'imaginator'} closeMenu={menuCloseHandler} />
+          <div className='hidden md:block'>
+            <NavLinks username={'imaginator'} closeMenu={menuCloseHandler} />
+          </div>
           <div className="desktop-nav">
             <UserSection
               handleTwitterLogin={handleTwitterLogin}
