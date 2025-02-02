@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../../../lib/contexts/AuthContext';
 import { API_ENDPOINT } from '../../../config';
 import { HeaderZapLogo } from '../../../lib/utils/icons';
@@ -83,6 +83,7 @@ const UserSection = ({ userAvatar, handleTwitterLogin }) => {
 const Header = () => {
   const [userAvatar, setUserAvatar] = useState(null);
   const { token } = useAuth();
+  const {username} = useParams()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -149,7 +150,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className='hidden md:block'>
-            <NavLinks username={'imaginator'} closeMenu={menuCloseHandler} />
+            <NavLinks username={username} closeMenu={menuCloseHandler} />
           </div>
           <div className="desktop-nav">
             <UserSection
@@ -190,7 +191,7 @@ const Header = () => {
         id={mobile_menu_id}
         className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
       >
-        <NavLinks username={'imaginator'} closeMenu={menuCloseHandler} />
+        <NavLinks username={username} closeMenu={menuCloseHandler} />
       </div>
     </nav>
   );

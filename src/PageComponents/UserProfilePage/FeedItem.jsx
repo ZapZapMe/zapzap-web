@@ -2,7 +2,7 @@ import { useAuth } from '../../lib/contexts/AuthContext';
 import {formatDateDifference} from '../../lib/utils/helperFunctions';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+const sampleAvatar='https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
 const FeedItem = (props) => {
   const {
     tip_sender = "anonymous",
@@ -21,7 +21,7 @@ const FeedItem = (props) => {
 
     return (
       <div className="feedItem">
-        <img className="feedItemProfilePic" src={avatar_url} alt={tip_sender} />
+        <img className="feedItemProfilePic" src={avatar_url??sampleAvatar} alt={tip_sender} />
         <div className="feedItemDetails">
           <div className="feedItemReceivedFromUser">
               <TipTitle recipient={recipient} tip_sender={tip_sender} type={tip_type}/>
