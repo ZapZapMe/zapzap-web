@@ -58,6 +58,7 @@ const Suggestions = () => {
             {/* -------- input for wallet address -------------- */}
             <input
                 id="wallet_address"
+                autoComplete="off"
                 type="text"
                 name="wallet_address"  
                 value={walletAddress}
@@ -93,7 +94,7 @@ const ErrorMessage = () => {
 
 interface ISuggestionsDropdown {
     shouldShow: boolean;
-    filteredElements: string[];
+    filteredElements: any[];
     onClick: (param: string) => void;
     prefIx:string;
 
