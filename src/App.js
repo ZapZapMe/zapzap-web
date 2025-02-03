@@ -8,6 +8,10 @@ import UserPage from './pages/UserProfilePage';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
 import "./App.css"
+import { Toaster } from 'react-hot-toast';
+
+
+
 function App() {
   return (
       <div className="app-wrapper">
@@ -33,6 +37,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Toaster/>
       </div>
   );
 }

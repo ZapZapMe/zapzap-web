@@ -4,6 +4,7 @@ import TipTweetCard from './TipTweetCard';
 import TipQR from './TipQR';
 import TipCommentForm from './TipCommentForm';
 import { createInvoice } from '../../lib/utils/apiHandlers';
+import toast from 'react-hot-toast';
 
 function TipCard() {
   const [step, setStep] = useState(1);
@@ -32,27 +33,32 @@ function TipCard() {
   }
   const handleSatSubmit = async(amount) => {
     setTweetData(prev=>({...prev, satAmount:amount}))
-    
-    
-    const response = await createInvoice({
+    const body = {
       amount_sats:amount,
       comment:tweetData.comment?.text??"",
       tip_sender:"anonymous",
       tweet_url:tweetData?.url
-    })
+    }
 
-    if (response && response.status===200){
-      // 
-      console.log(response.data)
-      setInvoiceData(response.data)
-      setStep(4);
-
-    }   
+    toast.promise(
+      createInvoice(body), // This must be a Promise!
+      {
+        loading: "Creating tip...",
+        success: (response) => {
+          console.log(response.data);
+          setInvoiceData(response.data);
+          setStep(4);
+          return "Tip created successfully!";
+        },
+        error: "Something went wrong!",
+      }
+    );
   };
 
   const handleBack = () => {
     setStep(prev => prev - 1);
   };
+
   const renderCurrentStep = () => {
     switch(step) {
       case 1:

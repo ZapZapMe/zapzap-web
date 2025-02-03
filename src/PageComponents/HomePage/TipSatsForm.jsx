@@ -6,7 +6,7 @@ import { useAuth } from '../../lib/contexts/AuthContext';
 
 function TipSatForm({ onSubmit, onBack, tweetData}) {
   const { user } = useAuth();
-  const { twitter_username } = user;
+  const twitter_username  = user?.twitter_username;
   const [satValue, setSatValue] = useState('');
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ function TipSatForm({ onSubmit, onBack, tweetData}) {
             I want to tip <span className="twitter-handle">{tweetData.accountTitle}</span>
         </span>
         {
-          tweetData?.comment && <CommentBox text={tweetData?.comment.text} twitterHandler={twitter_username}/>
+          tweetData?.comment && twitter_username && <CommentBox text={tweetData?.comment.text} twitterHandler={twitter_username}/>
         }
       </div>
 
