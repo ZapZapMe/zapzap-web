@@ -44,18 +44,15 @@ function TipCard() {
 
     toast.promise(response, {
       loading: 'Creating tip!',
-      success: 'Tip created successfully!',
+      success: ()=>{
+        console.log(response.data)
+        setInvoiceData(response.data)
+        setStep(4);
+        return 'Tip created successfully!'
+      },
       error: 'Something went wrong!',
+      
     });
-    
-
-    if (response && response.status===200){
-      // 
-      console.log(response.data)
-      setInvoiceData(response.data)
-      setStep(4);
-
-    }   
   };
 
   const handleBack = () => {
