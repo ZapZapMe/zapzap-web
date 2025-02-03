@@ -10,7 +10,7 @@ import { toast } from 'react-hot-toast';
 
 const SettingsPage = () => {
   const [showInfo, setShowInfo] = useState(false)  
-
+  const {  user, updateUser } = useAuth()
   // Pressing Enter in the input to push the address
 
 
@@ -18,16 +18,17 @@ const SettingsPage = () => {
   const handleClose = () => {
     setShowInfo(false)
   }
-
-
+  //  {name:"shaw", wallet_address:4123}
+  //  { name:'shaw',  wallet_address:4123}
   const handleSave = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     console.log("🚀 ~ handleSave ~ formData:", formData)
-    const walletValue = formData.get('wallet_address');
-    console.log('Wallet value:', walletValue);
+    const wallet_address = formData.get('wallet_address');
+    console.log('Wallet value:', wallet_address);
+    updateUser({...user, wallet_address})
     toast.promise(
-      updateWalletAddress(walletValue), // This must be a Promise!
+      updateWalletAddress(wallet_address), // This must be a Promise!
       {
         loading: "Updating wallet address...",
         success: (response) => {

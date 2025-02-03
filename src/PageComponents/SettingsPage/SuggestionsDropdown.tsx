@@ -116,6 +116,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({ shouldShow, filte
         }
 
         if (event.key === "Enter") {
+            event.preventDefault()
             enterHandler();
             return;
         }

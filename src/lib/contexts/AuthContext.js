@@ -5,14 +5,17 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(localStorage.getItem('userData'));
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('userData');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   // Fetch user data whenever the token changes
   useEffect(() => {
     const fetchUserData = async () => {
       if (!token) {
-        setUser(null); // Clear user data if there's no token
-        localStorage.removeItem('userData'); // Remove user data from localStorage
+        setUser(null);
+        localStorage.removeItem('userData');
         return;
       }
 
@@ -28,17 +31,17 @@ export const AuthProvider = ({ children }) => {
         }
 
         const userData = await response.json();
-        setUser(userData); // Set user data in state
-        localStorage.setItem('userData', JSON.stringify(userData)); // Store user data in localStorage
+        setUser(userData);
+        localStorage.setItem('userData', JSON.stringify(userData));
       } catch (error) {
         console.error('Error fetching user data:', error);
-        setUser(null); // Clear user data on error
-        localStorage.removeItem('userData'); // Remove user data from localStorage
+        setUser(null);
+        localStorage.removeItem('userData');
       }
     };
 
     fetchUserData();
-  }, [token]); // Run this effect whenever the token changes
+  }, [token]);
 
   // Initialize token and user data from localStorage or URL
   useEffect(() => {
@@ -48,26 +51,33 @@ export const AuthProvider = ({ children }) => {
         setToken(storedToken);
       }
 
-      // Check if the current URL has ?token= in the query string
       const params = new URLSearchParams(window.location.search);
       const urlToken = params.get('token');
 
       if (urlToken) {
-        // Store in local storage
         localStorage.setItem('token', urlToken);
         setToken(urlToken);
 
-        // Clean up URL to remove token from browser address bar
         params.delete('token');
         window.history.replaceState({}, '', window.location.pathname);
       }
     } catch (error) {
       console.error('Error accessing localStorage:', error);
     }
-  }, []); // Runs only once when the component mounts
+  }, []);
+
+  // Function to update user dynamically
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+    if (newUserData) {
+      localStorage.setItem('userData', JSON.stringify(newUserData));
+    } else {
+      localStorage.removeItem('userData');
+    }
+  };
 
   return (
-    <AuthContext.Provider value={{ token, setToken, user }}>
+    <AuthContext.Provider value={{ token, setToken, user, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
