@@ -12,10 +12,10 @@ function PaymentStatus({ paymentHash }) {
 
     eventSource.onmessage = (event) => {
       console.log("🚀 ~ useEffect ~ event:", event)
-      const message = event.data;
+      const message = event.data.status;
       
       // Handle special "end" message from server
-      if (message === 'end') {
+      if (message === 'paid') {
         eventSource.close();
         toast.success("Payment completed!")
         setStatus('Payment completed!');
