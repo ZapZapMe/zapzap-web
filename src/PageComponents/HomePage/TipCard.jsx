@@ -33,26 +33,26 @@ function TipCard() {
   }
   const handleSatSubmit = async(amount) => {
     setTweetData(prev=>({...prev, satAmount:amount}))
-    setStep(4);
-    const response =  createInvoice({
+    const body = {
       amount_sats:amount,
       comment:tweetData.comment?.text??"",
       tip_sender:"anonymous",
       tweet_url:tweetData?.url
-    })
+    }
 
-
-    toast.promise(response, {
-      loading: 'Creating tip!',
-      success: ()=>{
-        console.log(response.data)
-        setInvoiceData(response.data)
-        setStep(4);
-        return 'Tip created successfully!'
-      },
-      error: 'Something went wrong!',
-      
-    });
+    toast.promise(
+      createInvoice(body), // This must be a Promise!
+      {
+        loading: "Creating tip...",
+        success: (response) => {
+          console.log(response.data);
+          setInvoiceData(response.data);
+          setStep(4);
+          return "Tip created successfully!";
+        },
+        error: "Something went wrong!",
+      }
+    );
   };
 
   const handleBack = () => {
