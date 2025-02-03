@@ -64,7 +64,7 @@ function TipCard() {
 
   useEffect(() => {
     // Create an EventSource connection to your backend endpoint
-    const eventSource = new EventSource('http://localhost:8080/subscribe');
+    const eventSource = new EventSource('http://localhost:8080/sse/subscribe');
 
     // Handle incoming messages
     eventSource.onmessage = (event) => {
