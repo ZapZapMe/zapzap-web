@@ -12,7 +12,7 @@ function PaymentStatus({ paymentHash }) {
 
     eventSource.onmessage = (event) => {
       console.log("🚀 ~ useEffect ~ event:", event)
-      const message = JSON.parse(event.data).status;
+      const message = JSON.parse(event.data)?.status;
       
       // Handle special "end" message from server
       if (message === 'paid') {

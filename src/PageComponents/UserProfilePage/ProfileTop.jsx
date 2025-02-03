@@ -1,30 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../lib/contexts/AuthContext';
-const avatar = "https://s3-alpha-sig.figma.com/img/cc52/5eff/2ee1d0cd1de936a0c514f7464971af51?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uQMdAH7Qtc1b8bI7HeDbMAtiVgBWD3ATjGLMX~WO-ytSB-w1tWgH9qMSkv1hF4zvAS9IgHNS5SqrAyE5OwhkUVgQkXxciBO8VbNtPhLJ4Gb3c~zxubfYdkPHiOj20euKKhmJxa4XRg~9qaib45zGjnJq20MmOsp7iqMjWAS4yNJXpbp5yWBP~6jqjp9ob4n7UDH7LeD0-l8zHPerfIuffkex3TNIyfEOqjxNCRbYk95OaeGwD6ZiMbfcUkg3~2mjUSDUCbGfWQQK0QyOHjgYvRYj-WgOUoTmzJiiFjtoQzZm38xbCdvP2-0SMYgC5pP9Ho2SHMUC1pmCPIH~hjGAQQ__"
-function ProfileTop() {
-  // const username = 'imaginator';
-  // const walletAddress = 'imaginator@strike.me';
-  const { user } = useAuth();
-  const { twitter_username, wallet_address, avatar_url } = user;
 
-  
+const avatarPlaceholder = "https://s3-alpha-sig.figma.com/img/cc52/5eff/2ee1d0cd1de936a0c514f7464971af51?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uQMdAH7Qtc1b8bI7HeDbMAtiVgBWD3ATjGLMX~WO-ytSB-w1tWgH9qMSkv1hF4zvAS9IgHNS5SqrAyE5OwhkUVgQkXxciBO8VbNtPhLJ4Gb3c~zxubfYdkPHiOj20euKKhmJxa4XRg~9qaib45zGjnJq20MmOsp7iqMjWAS4yNJXpbp5yWBP~6jqjp9ob4n7UDH7LeD0-l8zHPerfIuffkex3TNIyfEOqjxNCRbYk95OaeGwD6ZiMbfcUkg3~2mjUSDUCbGfWQQK0QyOHjgYvRYj-WgOUoTmzJiiFjtoQzZm38xbCdvP2-0SMYgC5pP9Ho2SHMUC1pmCPIH~hjGAQQ__";
+
+function ProfileTop() {
+  const { user } = useAuth();
+  const twitter_username = user?.twitter_username || 'unknown';
+  const wallet_address = user?.wallet_address || 'N/A';
+  const avatar_url = user?.avatar_url || avatarPlaceholder;
 
   return (
     <div className="profileTop">
       <div className="profilePicRow">
         <img className="profilePicImg" src={avatar_url} alt="Profile" />
-        <a
-          href={`http://x.com/${twitter_username}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
+        {user?.twitter_username && (
+          <a
+            href={`http://x.com/${twitter_username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          </a>
+        )}
       </div>
 
       <div className='flex flex-col mr-auto gap-3'>
         <div className="profileUsername">@{twitter_username}</div>
-        {/* ======== wallet ============ */}
+        
         <div className="profileWalletRow">
           <div className="profileWalletIcon">
             <svg
@@ -53,29 +55,29 @@ function ProfileTop() {
           </Link>
         </div>
       </div>
-      <a
+      {user?.twitter_username && (
+        <a
           href={`http://x.com/${twitter_username}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-        <XIcon/>
-      </a>
-
+          <XIcon />
+        </a>
+      )}
     </div>
   );
 }
 
 export default ProfileTop;
 
-
 const XIcon = () => (
-          <svg
-            width="26"
-            height="24"
-            viewBox="0 0 26 24"
-            xmlns="http://www.w3.org/2000/svg"
-            className='self-end'
-          >
-            <path d="M13.9405 0H16.6548L10.7249 6.77744L17.7009 16H12.2388L7.96062 10.4066L3.06544 16H0.349538L6.6921 8.75077L0 0H5.60082L9.4679 5.11262L13.9405 0ZM12.9879 14.3754H14.4919L4.78359 1.53928H3.16964L12.9879 14.3754Z" />
-          </svg>
-)
+  <svg
+    width="26"
+    height="24"
+    viewBox="0 0 26 24"
+    xmlns="http://www.w3.org/2000/svg"
+    className='self-end'
+  >
+    <path d="M13.9405 0H16.6548L10.7249 6.77744L17.7009 16H12.2388L7.96062 10.4066L3.06544 16H0.349538L6.6921 8.75077L0 0H5.60082L9.4679 5.11262L13.9405 0ZM12.9879 14.3754H14.4919L4.78359 1.53928H3.16964L12.9879 14.3754Z" />
+  </svg>
+);

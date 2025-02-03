@@ -5,6 +5,7 @@ import "../styles/settings.scss"
 import WalletIcon from "../assets/wallet.png"
 import { updateWalletAddress } from '../lib/utils/apiHandlers';
 import Suggestions from '../PageComponents/SettingsPage/SuggestionsDropdown';
+import { toast } from 'react-hot-toast';
 // implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
 
 const SettingsPage = () => {
@@ -25,7 +26,17 @@ const SettingsPage = () => {
     console.log("🚀 ~ handleSave ~ formData:", formData)
     const walletValue = formData.get('wallet_address');
     console.log('Wallet value:', walletValue);
-    updateWalletAddress(walletValue)
+    toast.promise(
+      updateWalletAddress(walletValue), // This must be a Promise!
+      {
+        loading: "Updating wallet address...",
+        success: (response) => {
+          console.log(response.data);
+          return "Wallet updated successfully!";
+        },
+        error: "Something went wrong!",
+      }
+    );
   };
 
 
