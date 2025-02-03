@@ -62,36 +62,6 @@ function TipCard() {
     setStep(prev => prev - 1);
   };
 
-  useEffect(() => {
-    // Create an EventSource connection to your backend endpoint
-    const eventSource = new EventSource('http://localhost:8080/sse/subscribe');
-
-    // Handle incoming messages
-    eventSource.onmessage = (event) => {
-      console.log("🚀 ~ useEffect ~ event:", event)
-      const data = JSON.parse(event.data);
-      if (data.type === 'success') {
-        toast(data.message);
-        
-        // Clear notification after 5 seconds
-        // setTimeout(() => {
-        //   setNotification(null);
-        // }, 5000);
-      }
-    };
-
-    // Handle errors
-    eventSource.onerror = () => {
-      console.error('EventSource failed.');
-      eventSource.close();
-      toast.error("Something went wrong!")
-    };
-
-    // Cleanup on component unmount
-    return () => {
-      eventSource.close();
-    };
-  }, []);
   const renderCurrentStep = () => {
     switch(step) {
       case 1:
