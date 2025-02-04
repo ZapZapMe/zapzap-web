@@ -68,7 +68,7 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
           alt="ProfilePicture"
         />
       </Link>
-      <LogoutButton />
+      {/* <LogoutButton /> */}
     </div>
   ) : (
     <button onClick={handleTwitterLogin} className="login-button">

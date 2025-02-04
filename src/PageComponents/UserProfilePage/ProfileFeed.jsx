@@ -33,14 +33,14 @@ const ProfileFeed = () => {
             </div>
       </div>
 
-      <DynamicHeightContainer className='profileFeed'> 
+      <div className='profileFeed'> 
           { 
             activeTab === "sent" ?  
               <TipsSent data={tipsSent} /> 
                 : 
               <TipsRecieved data={tipsReceived}/> 
             }      
-      </DynamicHeightContainer>
+      </div>
     </div>
   )
 }

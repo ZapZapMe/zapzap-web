@@ -74,6 +74,12 @@ function FAQPage() {
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
+
+  const onQuestionClickHandler = ( index:number ) => {
+    toggleAccordion(index)
+    document.getElementById(`faq-${index}`)?.scrollIntoView({behavior:"smooth", block:"center"})
+  }
+
   return (
     <div className="faq_container">
       <header>
@@ -83,13 +89,14 @@ function FAQPage() {
         <dl className="faq-container space-y-4">
           {faqData.map((item, index) => (
             <div
+              id={`faq-${index}`}
               key={index}
               className={`faq-item ${openIndices.includes(index) ? "active" : ""}`}
             >
               {/* ======== question ======= */}
               <dt
                 className="faq-question"
-                onClick={() => toggleAccordion(index)}
+                onClick={() => onQuestionClickHandler(index)}
               >
                 +&nbsp;&nbsp;{item.question}
               </dt>

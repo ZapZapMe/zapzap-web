@@ -9,7 +9,8 @@ $mobile-menu-bg: #27272a; // zinc-800
 .navbar {
   background-color: $bg-color;
   border-bottom: 1px solid $border-color;
-
+  position: sticky;
+  top: -1px;
   .navbar-container {
     max-width: 1280px; // max-w-7xl
     margin: 0 auto;

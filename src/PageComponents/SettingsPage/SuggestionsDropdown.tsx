@@ -163,7 +163,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({ shouldShow, filte
                         <button
                             onMouseEnter={()=>setCurrIdx(index)}
                             key={suggestion}
-                            className={`suggestionItem ${index===currIdx ?"bg-yellow-300":""}`}
+                            className={`suggestionItem ${index===currIdx ?"activeItem":""}`}
                             onClick={() => onClick(suggestion)}
                             type="button"
                         >

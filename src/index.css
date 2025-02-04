@@ -238,17 +238,6 @@ h1 {
 }
 
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .tip-steps-container {
   width: 100%;
   position: relative;
@@ -937,4 +926,33 @@ footer.footerDesktop div.footerDesktopCopyright {
 .tweet-embed-container iframe {
   width: 100% !important;
   margin: 0 !important;
+}
+
+
+
+
+/* =======================================================================*/
+/* ========================= MOBILE RESPONSIVE  =======================*/
+
+/* =======================================================================*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width:768px) {
+    .tipCard{
+      width: 100%;
+    }
+
+   
+
+
 }

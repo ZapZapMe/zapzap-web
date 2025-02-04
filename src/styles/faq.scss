@@ -2,7 +2,7 @@ $transition-duration: 300ms;
 $border-radius: 0.5rem;
 $primary-color: white;
 $secondary-color: gray;
-$hover-color: #3b82f6; // Adjust as needed
+$hover-color: #F7CF52; // Adjust as needed
 
 .faq_container {
   margin-left: auto;
@@ -15,58 +15,73 @@ $hover-color: #3b82f6; // Adjust as needed
     h1 {
       font-size: 40px;
       font-weight: 700;
-      color: white;
+      color: $primary-color;
     }
   }
+
   .faq-container {
-      .faq-item {
-        border-radius: $border-radius;
-        overflow: hidden;
-        // transition: all $transition-duration ease-in-out;
-        color:#8b8b8b;
-        &.active {
-          color: $primary-color;
-        //   background-color: $hover-color;
-        }
-    
-        dt {
-          font-size: 1.25rem;
-          font-weight: bold;
-          padding: 1rem;
-          cursor: pointer;
-          display: flex;
-          gap: 8px;
-        //   justify-content: space-between;
-          align-items: center;
-          transition: background-color $transition-duration;
-    
-          .chevron {
-            width: 1.25rem;
-            height: 1.25rem;
-            transition: transform $transition-duration;
-    
-            &.rotated {
-              transform: rotate(180deg);
-            }
-          }
-        }
-    
-        dd {
-          padding: 0 1rem;
-          font-size: 1rem;
-          overflow: hidden;
-        //   transition: max-height $transition-duration ease-in-out;
-          max-height: 0;
-    
-          &.expanded {
-            max-height: 24rem; // Adjust based on content
-            padding-bottom: 1rem;
+    .faq-item {
+      border-radius: $border-radius;
+      overflow: hidden;
+      color: #8b8b8b;
+      transition: background-color $transition-duration ease-in-out, color $transition-duration ease-in-out;
+
+      &.active {
+        color: black;
+        background-color: $hover-color;
+      }
+
+      dt {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem;
+        cursor: pointer;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        transition: background-color $transition-duration;
+
+        .chevron {
+          width: 1.25rem;
+          height: 1.25rem;
+          transition: transform $transition-duration;
+
+          &.rotated {
+            transform: rotate(180deg);
           }
         }
       }
 
-      .faq-question{
-       font-style: 24px;
+      dd {
+        padding: 0 1rem;
+        font-size: 1rem;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height $transition-duration ease-in-out, opacity $transition-duration ease-in-out, padding $transition-duration ease-in-out;
+
+        &.expanded {
+          max-height: 24rem; // Adjust based on content
+          opacity: 1;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+
+    .faq-question {
+      font-size: 24px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .faq_container {
+    padding: 16px 0px;
+
+    header {
+      h1 {
+        font-size: 32px;
+      }
     }
   }
 }
