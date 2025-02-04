@@ -6,6 +6,7 @@
     "zapzap-me": {
       "hosting": {
         "beta": [
+          "zapzap-beta",
           "zapzap-me"
         ]
       }
