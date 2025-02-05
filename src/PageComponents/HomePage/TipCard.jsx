@@ -23,10 +23,8 @@ function TipCard() {
   // }
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
-  console.log('🚀 ~ TipCard ~ tweetData:', tweetData);
   const [isTweetLoaded, setIsTweetLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [invoiceData, setInvoiceData] = useState();
 
   function extractTwitterHandle(url) {
@@ -83,7 +81,10 @@ function TipCard() {
     setStep((prev) => prev - 1);
   };
 
-  const resetProgress = () => setStep(1);
+  const resetProgress = () => {
+    setTweetData(undefined);
+    setStep(1);
+  };
 
   const renderCurrentStep = () => {
     switch (step) {
