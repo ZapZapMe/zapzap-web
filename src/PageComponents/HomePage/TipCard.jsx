@@ -84,6 +84,10 @@ function TipCard() {
   const resetProgress = () => {
     setTweetData(undefined);
     setStep(1);
+    const container = document.getElementById('tweet-embed-container');
+    if (container) {
+      container.innerHTML = '';
+    }
   };
 
   const renderCurrentStep = () => {
