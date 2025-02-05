@@ -952,7 +952,9 @@ footer.footerDesktop div.footerDesktopCopyright {
       width: 100%;
     }
 
-   
+   .profileTop{
+    flex-direction: column;
+   }
 
 
 }

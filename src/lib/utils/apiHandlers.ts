@@ -49,3 +49,14 @@ export const getUsersTipSent = async (username:string) =>{
     
   }
 }
+
+
+// GET USER BY USERNAME => /users/:username 
+export const getUserByUsername = async(username:string)=>{
+  try {
+    return await axiosClient.get(`${API_BASE_URL}/users/${username}`); 
+  } catch (error) {
+    throw error;
+    
+  }
+}

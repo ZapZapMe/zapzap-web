@@ -10,7 +10,7 @@ import { getUsersTipReceived, getUsersTipSent } from '../../lib/utils/apiHandler
 
 const ProfileFeed = () => {
   // const [activeTab, setActiveTab] = useState("received")
-  const {activeTab, setActiveTab, tipsReceived, tipsSent} = useProfileFeed()
+  const {activeTab, setActiveTab, tipsReceived, tipsSent, isLoading } = useProfileFeed()
   return (
     <div className="profileBottom">
       {/* Tabs */}
@@ -36,9 +36,9 @@ const ProfileFeed = () => {
       <div className='profileFeed'> 
           { 
             activeTab === "sent" ?  
-              <TipsSent data={tipsSent} /> 
+              <TipsSent isLoading={isLoading} data={tipsSent} /> 
                 : 
-              <TipsRecieved data={tipsReceived}/> 
+              <TipsRecieved isLoading={isLoading} data={tipsReceived}/> 
             }      
       </div>
     </div>
@@ -54,17 +54,19 @@ const useProfileFeed = ()=>{
   const [activeTab, setActiveTab] = useState("received")
   const [tipsReceived, setTipsReceived] = useState([]);
   const [tipsSent, setTipsSent] = useState([])
+  const [isLoading, setLoading] = useState(true)
   const { username } = useParams();
 
 
 
     // useEffect for fetching feed
     const fetchDaFeed = async () => {
+      setLoading(true)
       const [receieved, sent ] = await Promise.all ([getUsersTipReceived(username), getUsersTipSent(username)
       ])
       if (receieved.status === 200) setTipsReceived(receieved.data)
-      
       if (sent.status === 200) setTipsSent(sent.data)
+      setLoading(false)
     }
     
     useEffect(() => {
@@ -73,6 +75,7 @@ const useProfileFeed = ()=>{
     
   return {
     activeTab, setActiveTab,
-    tipsSent, tipsReceived
+    tipsSent, tipsReceived,
+    isLoading
   }
 }

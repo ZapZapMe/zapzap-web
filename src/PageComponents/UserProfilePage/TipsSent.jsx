@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import FeedItem from './FeedItem';
-import { getUsersTipSent } from '../../lib/utils/apiHandlers';
-import { useParams } from 'react-router-dom';
 
-const TipsSent = ({data}) => {
+import FeedItemSkeleton from '../../components/ui/LoadingSkeleton/FeedItemSkeleton';
+
+const TipsSent = ({data, isLoading}) => {
   // const {username} = useParams()  
   // const [tipsSent, setTipsSent] = useState([])
   //     // useEffect for fetching feed
@@ -17,6 +17,7 @@ const TipsSent = ({data}) => {
   // useEffect(() => {
   //   fetchDaFeed() 
   // }, [])
+  if (isLoading) return [...Array(3)].map((_, index) => <FeedItemSkeleton key={index} />)
 
   if (data) return (
     data?.map((item, index) => (

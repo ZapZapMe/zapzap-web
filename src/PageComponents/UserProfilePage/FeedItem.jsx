@@ -56,7 +56,7 @@ const TipTitle = ({tip_sender, recipient, type})=>{
     // ----------- Others page
     if (tip_sender) {
       return (
-        <><TwitterHandle handle={tip_sender}/> sent a tip to <TwitterHandle handle={recipient}/> </>
+        <><TwitterHandle handle={recipient}/> received a tip from <TwitterHandle handle={tip_sender}/> </>
       )
     }
 
@@ -66,7 +66,7 @@ const TipTitle = ({tip_sender, recipient, type})=>{
   if (recipient){
     return (
       <>
-        <TwitterHandle handle={recipient}/> {' '} sent a tip    
+        <TwitterHandle handle={tip_sender??"anonymous"}/> {' '} sent a tip    
       </>
     )
   }
