@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci --verbose
+      - run: npm i --verbose
       - run: CI=false npm run build --verbose
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
