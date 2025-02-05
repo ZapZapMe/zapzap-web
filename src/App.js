@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/layouts/Header/Header';
 import Footer from './components/layouts/Footer/Footer';
 import HomePage from './pages/HomePage';
@@ -7,6 +7,10 @@ import SettingsPage from './pages/SettingsPage';
 import UserPage from './pages/UserProfilePage';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
+import "./App.css"
+import { Toaster } from 'react-hot-toast';
+
+
 
 function App() {
   return (
@@ -23,18 +27,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/faqs" element={<FAQPage />} />
             <Route
-              path="/:username"
+              path="/profile/:username"
               element={
-                <ProtectedRoute>
                   <UserPage />
-                </ProtectedRoute>
               }
             />
           </Routes>
         </main>
         <Footer />
+        <Toaster/>
       </div>
   );
 }

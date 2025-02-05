@@ -57,12 +57,14 @@ const Suggestions = () => {
 
             {/* -------- input for wallet address -------------- */}
             <input
-                id="wallet"
+                id="wallet_address"
+                autoComplete="off"
                 type="text"
+                name="wallet_address"  
                 value={walletAddress}
                 onChange={(e) => handleChange(e.target.value)}
                 placeholder="satoshi@example.org"
-                className={'walletInput'}
+                className={'walletInput w-full'}
             />
             {showError && <ErrorMessage />}
 
@@ -92,7 +94,7 @@ const ErrorMessage = () => {
 
 interface ISuggestionsDropdown {
     shouldShow: boolean;
-    filteredElements: string[];
+    filteredElements: any[];
     onClick: (param: string) => void;
     prefIx:string;
 
@@ -114,6 +116,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({ shouldShow, filte
         }
 
         if (event.key === "Enter") {
+            event.preventDefault()
             enterHandler();
             return;
         }
@@ -160,7 +163,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({ shouldShow, filte
                         <button
                             onMouseEnter={()=>setCurrIdx(index)}
                             key={suggestion}
-                            className={`suggestionItem ${index===currIdx ?"bg-yellow-300":""}`}
+                            className={`suggestionItem ${index===currIdx ?"activeItem":""}`}
                             onClick={() => onClick(suggestion)}
                             type="button"
                         >

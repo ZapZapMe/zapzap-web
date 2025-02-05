@@ -199,9 +199,14 @@ button[disabled] {
 
 
 
-h1 span.highlight {
-  color: var(--lightYellow);
+h1 {
+  font-weight: 700;
+  span.highlight {
+    color: var(--lightYellow);
+    
+  }
 }
+
 
 .tipCard {
   background: var(--white);
@@ -232,17 +237,6 @@ h1 span.highlight {
   pointer-events: all;
 }
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .tip-steps-container {
   width: 100%;
@@ -503,6 +497,9 @@ h1 span.highlight {
   text-align: right;
   width: auto;
   transition: font-size 0.2s ease;
+  max-width: 250px;
+  overflow-x: auto;
+  text-overflow:ellipsis;
 }
 
 .tipCard input.tipSatInput[value*="000000"] {
@@ -596,8 +593,10 @@ h1 span.highlight {
 
 div.profileTop {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  /* flex-direction: column; */
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 div.profilePicRow {
@@ -608,7 +607,10 @@ div.profilePicRow {
 }
 
 div.profilePicRow img.profilePicImg {
-  width: 73px;
+  width: 120px;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 9999px;
 }
 
 div.profileTop svg {
@@ -619,7 +621,7 @@ div.profileUsername {
   color: var(--white);
   font-family: "Poppins", serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 32px;
 }
 
 div.profileWalletRow {
@@ -669,6 +671,7 @@ div.profileFeed div.feedItem {
 div.feedItem img.feedItemProfilePic {
   width: 48px;
   height: 48px;
+  border-radius: 9999px;
 }
 
 div.feedItem div.feedItemDetails {
@@ -762,10 +765,10 @@ div.navDesktopActions {
   align-items: center;
 }
 
-div.navDesktopActions img.navDesktopProfilePic {
+.navDesktopProfilePic {
   width: 48px;
   height: 48px;
-  border-radius: 48px;
+  border-radius: 9999px;
   border: 2px solid var(--lightYellow);
 }
 
@@ -923,4 +926,35 @@ footer.footerDesktop div.footerDesktopCopyright {
 .tweet-embed-container iframe {
   width: 100% !important;
   margin: 0 !important;
+}
+
+
+
+
+/* =======================================================================*/
+/* ========================= MOBILE RESPONSIVE  =======================*/
+
+/* =======================================================================*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width:768px) {
+    .tipCard{
+      width: 100%;
+    }
+
+   .profileTop{
+    flex-direction: column;
+   }
+
+
 }

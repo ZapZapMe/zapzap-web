@@ -5,33 +5,42 @@ import "../styles/settings.scss"
 import WalletIcon from "../assets/wallet.png"
 import { updateWalletAddress } from '../lib/utils/apiHandlers';
 import Suggestions from '../PageComponents/SettingsPage/SuggestionsDropdown';
+import { toast } from 'react-hot-toast';
 // implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
 
 const SettingsPage = () => {
   const [showInfo, setShowInfo] = useState(false)  
-
+  const {  user, updateUser } = useAuth()
   // Pressing Enter in the input to push the address
-  // const handleKeyDown = async (e) => {
-  //   if (e.key === 'Enter') {
-  //     e.preventDefault();
-  //     setSuggestions([]);
-  //     await updateWalletAddress('d');
-  //   }
-  // };
-  // const handleSave = (e) => {
-  //   e.preventDefault()
-  //   if (!walletAddress) {
-  //     setShowError(true)
-  //     setShowInfo(true)
-  //     return
-  //   }
-  //   setShowError(false)
-  //   setShowInfo(false)
-  // }
 
+
+  
   const handleClose = () => {
     setShowInfo(false)
   }
+  //  {name:"shaw", wallet_address:4123}
+  //  { name:'shaw',  wallet_address:4123}
+  const handleSave = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    console.log("🚀 ~ handleSave ~ formData:", formData)
+    const wallet_address = formData.get('wallet_address');
+    console.log('Wallet value:', wallet_address);
+    updateUser({...user, wallet_address})
+    toast.promise(
+      updateWalletAddress(wallet_address), // This must be a Promise!
+      {
+        loading: "Updating wallet address...",
+        success: (response) => {
+          console.log(response.data);
+          return "Wallet updated successfully!";
+        },
+        error: "Something went wrong!",
+      }
+    );
+  };
+
+
   return (
     <div className={'settingsContainer'}>
       <h1 className={'settingsHeader'}>Settings</h1>
@@ -47,14 +56,15 @@ const SettingsPage = () => {
         </div>
 
 
-      {/* <form onSubmit={handleSave} className={'settingsForm'}> */}
+      <form onSubmit={handleSave}>
         <div className={'inputGroup'}>
-        <label htmlFor="wallet" className={'inputLabel'}>
+            <label htmlFor="wallet" className={'inputLabel'}>
               <img alt="wallet" loading='lazy' style={{height:"24px", width:"24px"}} src={WalletIcon}/>
             {/* <div className={'walletIcon'}>
             </div> */}
             Wallet address
           </label>
+          {/* -------- suggestions -------- */}
           <Suggestions/>
          
 
@@ -63,7 +73,7 @@ const SettingsPage = () => {
         <button type="submit" className={'saveButton'}>
           Save
         </button>
-      {/* </form> */}
+      </form>
     
     </div>
   );
