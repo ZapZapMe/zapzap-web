@@ -15,7 +15,7 @@ function TipSuccess({ tweetData, twitterHandle, resetProgress }) {
           rel="noopener noreferrer"
           className="tipTweetUser"
         >
-          @{twitterHandle}
+          {twitterHandle}
         </a>
         a tip of <a className="tipTweetSat">{tweetData.satAmount}sat</a> with
         ZapZap
