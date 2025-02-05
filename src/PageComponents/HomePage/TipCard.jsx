@@ -53,6 +53,7 @@ function TipCard() {
       amount_sats: amount,
       comment: tweetData.comment?.text ?? '',
       tip_sender: twitter_username ?? 'anonymous',
+      shouldPostOnX: tweetData.comment.postOnX,
       tweet_url: tweetData?.url,
     };
 
