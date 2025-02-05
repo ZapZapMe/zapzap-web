@@ -1,29 +1,32 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { cn } from '../lib/utils/cn';
 
-
-const DynamicHeightContainer = ({children, className, offsetPercentage=5}) => {
+const DynamicHeightContainer = ({
+  children,
+  className,
+  offsetPercentage = 5,
+}) => {
   const containerRef = useRef(null);
   const [maxHeight, setMaxHeight] = useState('100%');
 
   useEffect(() => {
     const updateMaxHeight = () => {
       if (!containerRef.current) return;
-      
+
       // Get container's top position relative to viewport
       const containerRect = containerRef.current.getBoundingClientRect();
       const topPosition = containerRect.top;
-      
+
       // Calculate available height from container's top to viewport bottom
       const viewportHeight = window.innerHeight;
       const offset = (viewportHeight * offsetPercentage) / 100;
-      
+
       // Calculate available height minus offset
       const availableHeight = viewportHeight - topPosition - offset;
-      
+
       // Add small buffer to prevent exact edge cases
       const heightWithBuffer = Math.floor(availableHeight - 4);
-      
+
       setMaxHeight(`${heightWithBuffer}px`);
     };
 
@@ -44,9 +47,9 @@ const DynamicHeightContainer = ({children, className, offsetPercentage=5}) => {
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className={cn("relative overflow-y-auto", className)}
+      className={cn('relative overflow-y-auto', className)}
       style={{ maxHeight }}
     >
       {children}
