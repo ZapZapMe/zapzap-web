@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { API_ENDPOINT } from '../config';
+import { API_ENDPOINT } from '../../config';
 
 function PaymentStatus({ paymentHash, onSuccess }) {
   const [status, setStatus] = useState('Waiting for payment...');
