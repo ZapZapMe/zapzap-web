@@ -1,13 +1,16 @@
 import React from 'react';
-import ProfileTop from '../components/UserProfilePage/ProfileTop';
-import ProfileFeed from '../components/UserProfilePage/ProfileFeed';
+import ProfileTop from '../PageComponents/UserProfilePage/ProfileTop';
+import ProfileFeed from '../PageComponents/UserProfilePage/ProfileFeed';
+import { useParams } from 'react-router-dom';
 
 //import { userParams } from 'react-router-dom';
 
 function UserProfilePage() {
-  // const { username } = useParams();
+  
+
+  
   return (
-    <div className="content">
+    <div className="content max-w-[640px] w-full mx-auto py-16">
       <ProfileTop />
       <ProfileFeed />
     </div>

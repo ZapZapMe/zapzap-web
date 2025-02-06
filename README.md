@@ -10,8 +10,9 @@ Install [Firebase CLI](https://firebase.google.com/docs/cli)
 
 
 ```bash
-firebase login
-firebase deploy
+npm login 
+npm run build
+firebase deploy --only hosting:beta # or production
 ```
 
 Deploys to:
@@ -46,4 +47,3 @@ docker run -p 4200:4200  -v .:/src zapzap-web # live editing
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-

@@ -1,15 +1,17 @@
 {
   "projects": {
-    "default": "beta-zap-zap-me"
+    "default": "zapzap-me"
   },
   "targets": {
     "zapzap-me": {
       "hosting": {
+        "production": [
+          "production-zapzap-me"
+        ],
         "beta": [
-          "zapzap-me"
+          "beta-zapzap-me"
         ]
       }
     }
-  },
-  "etags": {}
+  }
 }
