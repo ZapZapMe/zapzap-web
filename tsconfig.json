@@ -42,11 +42,5 @@
     "postcss.config.js",
     "tailwind.config.js"
   ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    ".next",
-    "coverage"
-  ]
+  "exclude": ["node_modules", "build", "dist", ".next", "coverage"]
 }
