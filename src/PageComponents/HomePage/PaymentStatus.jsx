@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { API_ENDPOINT } from '../config';
 
 function PaymentStatus({ paymentHash, onSuccess }) {
   const [status, setStatus] = useState('Waiting for payment...');
@@ -9,7 +10,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     if (!paymentHash) return;
 
     const eventSource = new EventSource(
-      `http://localhost:8080/sse/subscribe?payment_hash=${paymentHash}`
+      `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
     );
 
     eventSource.onmessage = (event) => {
@@ -40,7 +41,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     return () => {
       eventSource.close();
     };
-  }, [paymentHash]);
+  }, [paymentHash, onSuccess]);
 
   return (
     <div>
