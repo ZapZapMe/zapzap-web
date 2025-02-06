@@ -10,8 +10,9 @@ Install [Firebase CLI](https://firebase.google.com/docs/cli)
 
 
 ```bash
-firebase login
-firebase deploy
+npm login 
+npm run build
+firebase deploy --only hosting:beta # or production
 ```
 
 Deploys to:
