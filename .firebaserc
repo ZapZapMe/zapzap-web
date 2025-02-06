@@ -6,10 +6,10 @@
     "zapzap-me": {
       "hosting": {
         "production": [
-          "production-zapzap-me"
+          "zapzap-me-production"
         ],
         "beta": [
-          "beta-zapzap-me"
+          "zapzap-me-beta"
         ]
       }
     }
