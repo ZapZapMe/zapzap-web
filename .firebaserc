@@ -1,26 +1,17 @@
 {
-  "hosting": [
-    {
-      "target": "production",
-      "public": "build",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    },
-    {
-      "target": "beta",
-      "public": "build",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+  "projects": {
+    "default": "zapzap-me"
+  },
+  "targets": {
+    "zapzap-me": {
+      "hosting": {
+        "production": [
+          "production-zapzap-me"
+        ],
+        "beta": [
+          "beta-zapzap-me"
+        ]
+      }
     }
-  ]
+  }
 }
