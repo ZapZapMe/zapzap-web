@@ -2,12 +2,12 @@ $transition-duration: 300ms;
 $border-radius: 0.5rem;
 $primary-color: white;
 $secondary-color: gray;
-$hover-color: #F7CF52; // Adjust as needed
+$hover-color: #f7cf52; // Adjust as needed
 
 .faq_container {
   margin-left: auto;
   margin-right: auto;
-  padding: 16px 32px;
+  padding: 48px 32px;
 
   header {
     margin-bottom: 2rem;
@@ -24,7 +24,9 @@ $hover-color: #F7CF52; // Adjust as needed
       border-radius: $border-radius;
       overflow: hidden;
       color: #8b8b8b;
-      transition: background-color $transition-duration ease-in-out, color $transition-duration ease-in-out;
+      transition:
+        background-color $transition-duration ease-in-out,
+        color $transition-duration ease-in-out;
 
       &.active {
         color: black;
@@ -58,7 +60,10 @@ $hover-color: #F7CF52; // Adjust as needed
         overflow: hidden;
         max-height: 0;
         opacity: 0;
-        transition: max-height $transition-duration ease-in-out, opacity $transition-duration ease-in-out, padding $transition-duration ease-in-out;
+        transition:
+          max-height $transition-duration ease-in-out,
+          opacity $transition-duration ease-in-out,
+          padding $transition-duration ease-in-out;
 
         &.expanded {
           max-height: 24rem; // Adjust based on content
@@ -76,7 +81,7 @@ $hover-color: #F7CF52; // Adjust as needed
 
 @media (max-width: 768px) {
   .faq_container {
-    padding: 16px 0px;
+    padding: 16px;
 
     header {
       h1 {
