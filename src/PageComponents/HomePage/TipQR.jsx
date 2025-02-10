@@ -30,11 +30,10 @@ function TipQR({ tweetData, invoiceData, onSuccess }) {
   return (
     <div className="tipQR">
       <div className=" w-full flex items-center gap-4 flex-col text-[#333333]">
-        <div className="flex items-center gap-1 text-base font-bold">
-          Send
-          <span className="twitter-handle">{tweetData.accountTitle}</span>a tip
-          of
-          <span className="inline-flex items-center gap-1 bg-yellow-400 px-2 py-0.5 rounded text-black">
+        <div className="block text-base font-bold leading-8 tracking-wide">
+          Send <span className="twitter-handle">{tweetData.accountTitle}</span>{' '}
+          a tip of{' '}
+          <span className="inline-flex max-h-6 items-center gap-1 bg-yellow-400 px-2 py-0.5 rounded text-black mx-1">
             {tweetData.satAmount} sat
             <Pencil className="w-4 h-4" />
           </span>

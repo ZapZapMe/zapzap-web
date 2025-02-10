@@ -902,7 +902,14 @@ footer.footerDesktop div.footerDesktopCopyright {
   font-size: 14px;
   margin-top: 8px;
 }
-
+.twitter-handle {
+  background-color: #1da1f2;
+  border-radius: 8px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: white;
+  width: 90px;
+}
 .tweet-embed-container {
   margin-top: 12px;
   border-radius: 12px;
