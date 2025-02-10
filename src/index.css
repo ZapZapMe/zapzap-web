@@ -894,9 +894,9 @@ footer.footerDesktop div.footerDesktopCopyright {
   border-radius: 12px;
   overflow: hidden;
 }
-.hidden{
+/* .hidden{
   display: none !important;
-}
+} */
 .tweetPreview .tweetTimestamp {
   color: var(--grey);
   font-size: 14px;
