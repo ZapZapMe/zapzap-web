@@ -17,7 +17,7 @@ const navLinks = [
     text: 'Tip',
   },
   {
-    href: (username) => `/profile/${username}`,
+    href: (username) => `/${username}`,
     text: 'Profile',
     shouldProtect: true,
   },
@@ -61,7 +61,7 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
   const { token } = useAuth();
   return token ? (
     <div className="flex gap-3 items-center">
-      <Link to={`/profile/${username}`}>
+      <Link to={`/${username}`}>
         <img
           className="navDesktopProfilePic"
           src={userAvatar || '/default-avatar.png'}
