@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { QRCodeSVG } from 'qrcode.react';
 import { Pencil } from 'lucide-react';
 import CommentBox from './CommentBox';
 import { useAuth } from '../../lib/contexts/AuthContext';
 import PaymentStatus from './PaymentStatus';
+import { setCopied } from '../../pages/HomePage/homePageSlice';
 
-function TipQR({ tweetData, invoiceData, onSuccess }) {
+function TipQR({ onSuccess }) {
+  const state = useSelector((state) => state.homePage);
+  const { invoiceData, tweetData } = state;
+
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
   const payment_hash = invoiceData?.payment_hash;
@@ -31,10 +36,10 @@ function TipQR({ tweetData, invoiceData, onSuccess }) {
     <div className="tipQR">
       <div className=" w-full flex items-center gap-4 flex-col text-[#333333]">
         <div className="block text-base font-bold leading-8 tracking-wide">
-          Send <span className="twitter-handle">{tweetData.accountTitle}</span>{' '}
+          Send <span className="twitter-handle">{tweetData?.accountTitle}</span>{' '}
           a tip of{' '}
           <span className="inline-flex max-h-6 items-center gap-1 bg-yellow-400 px-2 py-0.5 rounded text-black mx-1">
-            {tweetData.satAmount} sat
+            {tweetData?.satAmount} sat
             <Pencil className="w-4 h-4" />
           </span>
         </div>
@@ -67,12 +72,13 @@ function TipQR({ tweetData, invoiceData, onSuccess }) {
 export default TipQR;
 
 function CopyButton({ value }) {
-  const [copied, setCopied] = useState(false);
+  const state = useSelector((state) => state.homePage);
+  const dispatch = useDispatch();
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(value);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    dispatch(setCopied(true));
+    setTimeout(() => dispatch(setCopied(false)), 2000);
   };
 
   return (
@@ -84,7 +90,7 @@ function CopyButton({ value }) {
         onClick={handleCopy}
         className="shrink-0 px-4 py-2 text-ellipsis text-sm font-medium text-white bg-black rounded-r-md hover:bg-gray-800"
       >
-        {copied ? 'Copied' : 'Copy'}
+        {state.copied ? 'Copied' : 'Copy'}
       </button>
     </>
   );

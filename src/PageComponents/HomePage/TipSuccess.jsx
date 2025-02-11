@@ -1,7 +1,11 @@
 import { SquareArrowOutUpRight } from 'lucide-react';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-function TipSuccess({ tweetData, twitterHandle, resetProgress }) {
+function TipSuccess({ resetProgress }) {
+  const state = useSelector((state) => state.homePage);
+  const { tweetData = null } = state;
+
   const onViewClick = () => window.open(tweetData?.url, '_blank');
 
   return (
@@ -10,12 +14,12 @@ function TipSuccess({ tweetData, twitterHandle, resetProgress }) {
       <h3 style={{ maxWidth: '85%' }}>
         You successfully sent{' '}
         <a
-          href={`https://x.com/${twitterHandle}`}
+          href={`https://x.com/${tweetData?.accountTitle}`}
           target="_blank"
           rel="noopener noreferrer"
           className="tipTweetUser"
         >
-          {twitterHandle}
+          {tweetData?.accountTitle}
         </a>
         a tip of <a className="tipTweetSat">{tweetData.satAmount}sat</a> with
         ZapZap
