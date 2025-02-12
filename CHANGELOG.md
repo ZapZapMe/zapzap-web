@@ -1,3 +1,28 @@
+## [1.0.3](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.2...v1.0.3) (2025-02-12)
+
+
+### Bug Fixes
+
+* env.production should always point to api.zap-zap.me ([18051ff](https://github.com/ZapZapMe/zapzap-web/commit/18051ffd131c1d133bb7a4ebb1e26b8fea453ccb))
+* fixed avar placeholders on navbar and profile pages ([4135efa](https://github.com/ZapZapMe/zapzap-web/commit/4135efaf0611a3c8a0a34934024508375d6f646b))
+* update README Docker details ([243a973](https://github.com/ZapZapMe/zapzap-web/commit/243a973cf1f30265ef2c29ccc780dca2c4c88316))
+
+
+### Styles
+
+* made separate components for default profile avatar and X icon ([f69641e](https://github.com/ZapZapMe/zapzap-web/commit/f69641ef4bcc0bfa428743a882f99bdd9ce03023))
+
+
+### Code Refactoring
+
+* moved HomePage components to corresponding route folder ([2cba432](https://github.com/ZapZapMe/zapzap-web/commit/2cba43291369774148acb227d4bd65961e63eb27))
+
+
+### Chores
+
+* added env definition to app title ([cb74e12](https://github.com/ZapZapMe/zapzap-web/commit/cb74e12ff1dee686529a7f035e90219f03a72304))
+* adding bootstrap custom components ([aea2779](https://github.com/ZapZapMe/zapzap-web/commit/aea2779d4929395a64c62cbe969047438fcf10da))
+
 ## [1.0.2](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.1...v1.0.2) (2025-02-12)
 
 
