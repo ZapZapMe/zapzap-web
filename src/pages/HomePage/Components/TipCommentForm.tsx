@@ -55,7 +55,7 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, onBack }) => {
           }
           className="tip-comment-form__input"
         />
-        {!isNextDisabled && (
+        {!isNextDisabled ? (
           <div className="flex items-center self-start gap-2">
             <button
               onClick={handleToggle}
@@ -78,7 +78,7 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, onBack }) => {
             </button>
             <span className="text-sm text-gray-700">Post tip on X</span>
           </div>
-        )}
+        ) : null}
       </div>
       <div className="tip-comment-form__footer">
         <button onClick={onBack} className="back-button">
