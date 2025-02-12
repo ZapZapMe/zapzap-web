@@ -24,7 +24,7 @@ View the [Firebase Console](https://console.firebase.google.com/u/0/project/zapz
 
 ```bash
 docker build -t zapzap-web -f Dockerfile
-docker run -p 4200:4200  -v .:/src zapzap-web # live editing
+docker run -p 3000:3000  -v .:/src zapzap-web # live editing
 ```
 
 ## Releasing with semantic-release
