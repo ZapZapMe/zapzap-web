@@ -5,7 +5,7 @@ import {
   setTweetURL,
   setIsLoading,
   setIsInvalid,
-} from '../../pages/HomePage/homePageSlice';
+} from '../homePageSlice';
 
 function TipTweetCard({ onSubmit }) {
   const state = useSelector((state) => state.homePage);

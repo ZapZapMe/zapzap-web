@@ -2,9 +2,9 @@
 import { ChevronLeft } from 'lucide-react';
 import React from 'react';
 import CommentBox from './CommentBox';
-import { useAuth } from '../../lib/contexts/AuthContext';
+import { useAuth } from '../../../lib/contexts/AuthContext';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSatValue } from '../../pages/HomePage/homePageSlice';
+import { setSatValue } from '../homePageSlice';
 
 function TipSatForm({ onSubmit, onBack }) {
   const state = useSelector((state) => state.homePage);

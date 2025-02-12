@@ -4,16 +4,16 @@ import TipSatForm from './TipSatsForm';
 import TipTweetCard from './TipTweetCard';
 import TipQR from './TipQR';
 import TipCommentForm from './TipCommentForm';
-import { createInvoice } from '../../lib/utils/apiHandlers';
+import { createInvoice } from '../../../lib/utils/apiHandlers';
 import toast from 'react-hot-toast';
 import TipSuccess from './TipSuccess';
-import { useAuth } from '../../lib/contexts/AuthContext';
+import { useAuth } from '../../../lib/contexts/AuthContext';
 import {
   setStep,
   setTweetData,
   setInvoiceData,
   setComment,
-} from '../../pages/HomePage/homePageSlice';
+} from '../homePageSlice';
 
 function TipCard() {
   const state = useSelector((state) => state.homePage);
