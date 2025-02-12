@@ -40,6 +40,12 @@ npm run release
 
 This will analyze your commits, generate release notes, update the changelog, and create a new release on GitHub.
 
+
+![Screenshots](assets/image.png)
+
+![Screenshots](assets/profile-page.png)
+
+
 # License
 
     Copyright 2025 ZapZap Heavy Industries
