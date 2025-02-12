@@ -1,7 +1,128 @@
 {
   "name": "zapzap-web",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
+  "release": {
+    "branches": [
+      "integrate-conventional-commits"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "type": "feat",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
+            },
+            {
+              "type": "style",
+              "release": "patch"
+            },
+            {
+              "type": "refactor",
+              "release": "patch"
+            },
+            {
+              "type": "perf",
+              "release": "patch"
+            },
+            {
+              "type": "test",
+              "release": "patch"
+            },
+            {
+              "type": "build",
+              "release": "patch"
+            },
+            {
+              "type": "ci",
+              "release": "patch"
+            },
+            {
+              "type": "chore",
+              "release": "patch"
+            },
+            {
+              "type": "revert",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "docs",
+                "section": "Documentation"
+              },
+              {
+                "type": "style",
+                "section": "Styles"
+              },
+              {
+                "type": "refactor",
+                "section": "Code Refactoring"
+              },
+              {
+                "type": "perf",
+                "section": "Performance Improvements"
+              },
+              {
+                "type": "test",
+                "section": "Tests"
+              },
+              {
+                "type": "build",
+                "section": "Build System"
+              },
+              {
+                "type": "ci",
+                "section": "Continuous Integration"
+              },
+              {
+                "type": "chore",
+                "section": "Chores"
+              },
+              {
+                "type": "revert",
+                "section": "Reverts"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "preset": "conventionalcommits",
+    "presetConfig": {
+      "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
+      "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/branches/compare/{{currentTag}}%0D{{previousTag}}"
+    }
+  },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-dropdown-menu": "^2.1.5",
@@ -37,7 +158,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\"",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "npx semantic-release --no-ci && git push origin :refs/notes/semantic-release"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
@@ -56,9 +178,14 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "autoprefixer": "^10.4.17",
+    "conventional-changelog-conventionalcommits": "7.0.2",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.0.1",
     "husky": "^9.1.7",
@@ -66,6 +193,7 @@
     "postcss": "^8.4.33",
     "prettier": "^3.4.2",
     "prettier-plugin-import-sort": "^0.0.7",
+    "semantic-release": "22.0.12",
     "tailwindcss": "^3.4.1"
   }
 }
