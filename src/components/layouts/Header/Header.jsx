@@ -64,7 +64,7 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
       <Link to={`/${username}`}>
         <img
           className="navDesktopProfilePic"
-          src={userAvatar || '/default-avatar.png'}
+          src={userAvatar || '/img/default-avatar.png'}
           alt="ProfilePicture"
         />
       </Link>
