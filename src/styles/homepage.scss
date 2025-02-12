@@ -45,15 +45,6 @@ h1.tagline {
   }
   &__header {
     font-weight: bold;
-
-    .twitter-handle {
-      background-color: #1da1f2;
-      border-radius: 8px;
-      padding: 0.25rem 0.75rem; // py-1 px-3
-      font-size: 0.875rem; // text-sm
-      color: white;
-      width: 90px;
-    }
   }
 
   &__input {
@@ -157,7 +148,7 @@ h1.tagline {
     font-size: 32px !important;
   }
   .content_container {
-    padding: 48px 0px;
+    padding: 48px 24px;
   }
   .tip-container {
     width: 100%;

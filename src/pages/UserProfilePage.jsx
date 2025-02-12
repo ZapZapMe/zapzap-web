@@ -6,11 +6,8 @@ import { useParams } from 'react-router-dom';
 //import { userParams } from 'react-router-dom';
 
 function UserProfilePage() {
-  
-
-  
   return (
-    <div className="content max-w-[640px] w-full mx-auto py-16">
+    <div className="content container max-w-[640px] w-full mx-auto py-16">
       <ProfileTop />
       <ProfileFeed />
     </div>

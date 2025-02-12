@@ -1,22 +1,28 @@
 // TipSatsForm.jsx
 import { ChevronLeft } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import CommentBox from './CommentBox';
 import { useAuth } from '../../lib/contexts/AuthContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSatValue } from '../../pages/HomePage/homePageSlice';
 
-function TipSatForm({ onSubmit, onBack, tweetData}) {
+function TipSatForm({ onSubmit, onBack }) {
+  const state = useSelector((state) => state.homePage);
+  const dispatch = useDispatch();
+
+  const { satValue, tweetData } = state;
+
   const { user } = useAuth();
-  const twitter_username  = user?.twitter_username;
-  const [satValue, setSatValue] = useState('');
+  const twitter_username = user?.twitter_username;
 
   const handleChange = (e) => {
     // Remove non-numeric characters
     const value = e.target.value.replace(/[^\d]/g, '');
-    setSatValue(value);
+    dispatch(setSatValue(value));
   };
 
   const handleQuickSat = (val) => {
-    setSatValue(val);
+    dispatch(setSatValue(val));
   };
 
   const formatSatValue = (value) => {
@@ -27,13 +33,17 @@ function TipSatForm({ onSubmit, onBack, tweetData}) {
   return (
     <>
       {/* <h3>Enter Amount</h3> */}
-      <div className=' w-full flex items-center gap-4 flex-col text-[#333333]'>
+      <div className=" w-full flex items-center gap-4 flex-col text-[#333333]">
         <span className="tip-comment-form__header">
-            I want to tip <span className="twitter-handle">{tweetData.accountTitle}</span>
+          I want to tip{' '}
+          <span className="twitter-handle">{tweetData?.accountTitle}</span>
         </span>
-        {
-          tweetData?.comment && twitter_username && <CommentBox text={tweetData?.comment.text} twitterHandler={twitter_username}/>
-        }
+        {tweetData?.comment && twitter_username && (
+          <CommentBox
+            text={tweetData?.comment.text}
+            twitterHandler={twitter_username}
+          />
+        )}
       </div>
 
       <div className="tipSatForm">
@@ -49,11 +59,8 @@ function TipSatForm({ onSubmit, onBack, tweetData}) {
         </div>
 
         <div className="tipQuickSat">
-          {[1000, 2000, 4000, 10000].map(amount => (
-            <span 
-              key={amount}
-              onClick={() => handleQuickSat(amount)}
-            >
+          {[1000, 2000, 4000, 10000].map((amount) => (
+            <span key={amount} onClick={() => handleQuickSat(amount)}>
               {formatSatValue(amount)}
             </span>
           ))}
@@ -68,12 +75,12 @@ function TipSatForm({ onSubmit, onBack, tweetData}) {
               <path d="M23 2L9 16L23 30" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button> */}
-           <button
-              onClick={()=>onBack()}
-              className='rounded-full border border-black'
-                >
-                  <ChevronLeft size={24}/>
-            </button>
+          <button
+            onClick={() => onBack()}
+            className="rounded-full border border-black"
+          >
+            <ChevronLeft size={24} />
+          </button>
           <button
             className="tipSatButton primary filled stretch"
             disabled={!satValue}

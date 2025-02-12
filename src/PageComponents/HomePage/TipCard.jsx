@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import TipSatForm from './TipSatsForm';
 import TipTweetCard from './TipTweetCard';
 import TipQR from './TipQR';
@@ -7,10 +8,28 @@ import { createInvoice } from '../../lib/utils/apiHandlers';
 import toast from 'react-hot-toast';
 import TipSuccess from './TipSuccess';
 import { useAuth } from '../../lib/contexts/AuthContext';
+import {
+  setStep,
+  setTweetData,
+  setInvoiceData,
+  setComment,
+} from '../../pages/HomePage/homePageSlice';
 
 function TipCard() {
-  const [step, setStep] = useState(1);
-  const [tweetData, setTweetData] = useState(null);
+  const state = useSelector((state) => state.homePage);
+
+  const {
+    isLoading = false,
+    isTweetLoaded = false,
+    step,
+    tweetData = null,
+    comment = '',
+    // invoiceData = null,
+  } = state;
+  const dispatch = useDispatch();
+
+  // const [step, setStep] = useState(1);
+  // const [tweetData, ] = useState(null);
   // -------> interface for tweetData
   // tweetData:{
   //   comment:{
@@ -23,9 +42,6 @@ function TipCard() {
   // }
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
-  const [isTweetLoaded, setIsTweetLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [invoiceData, setInvoiceData] = useState();
 
   function extractTwitterHandle(url) {
     const match = url.match(/(?:twitter.com|x.com)\/([^/?]+)/i);
@@ -33,27 +49,30 @@ function TipCard() {
   }
 
   const handleTweetSubmit = async (tweetUrl) => {
-    setTweetData({
-      url: tweetUrl,
-      accountTitle: extractTwitterHandle(tweetUrl),
-    });
-    setStep(2);
+    dispatch(
+      setTweetData({
+        url: tweetUrl,
+        accountTitle: extractTwitterHandle(tweetUrl),
+      })
+    );
+    dispatch(setStep(2));
   };
 
   const handleCommentSubmit = (comment, shouldSkip = false) => {
-    setStep(3);
+    dispatch(setStep(3));
     if (!shouldSkip) {
-      setTweetData((prev) => ({ ...prev, comment }));
+      dispatch(setTweetData({ comment }));
     }
   };
 
   const handleSatSubmit = async (amount) => {
-    setTweetData((prev) => ({ ...prev, satAmount: amount }));
+    dispatch(setTweetData({ satAmount: amount }));
+    dispatch(setComment(tweetData?.comment?.text));
     const body = {
       amount_sats: amount,
-      comment: tweetData.comment?.text ?? '',
+      comment: comment || '',
       tip_sender: twitter_username ?? 'anonymous',
-      shouldPostOnX: tweetData.comment.postOnX,
+      shouldPostOnX: tweetData?.comment?.postOnX,
       tweet_url: tweetData?.url,
     };
 
@@ -63,8 +82,8 @@ function TipCard() {
         loading: 'Creating tip...',
         success: (response) => {
           console.log(response.data);
-          setInvoiceData(response.data);
-          setStep(4);
+          dispatch(setInvoiceData(response.data));
+          dispatch(setStep(4));
           return 'Tip created successfully!';
         },
         error: (error) => {
@@ -79,12 +98,12 @@ function TipCard() {
   };
 
   const handleBack = () => {
-    setStep((prev) => prev - 1);
+    dispatch(setStep((prev) => prev - 1));
   };
 
   const resetProgress = () => {
-    setTweetData(undefined);
-    setStep(1);
+    dispatch(setTweetData(null));
+    dispatch(setStep(1));
     const container = document.getElementById('tweet-embed-container');
     if (container) {
       container.innerHTML = '';
@@ -94,48 +113,19 @@ function TipCard() {
   const renderCurrentStep = () => {
     switch (step) {
       case 1:
-        return (
-          <TipTweetCard
-            onSubmit={handleTweetSubmit}
-            initialTweetData={tweetData}
-            setIsTweetLoaded={setIsTweetLoaded}
-            isTweetLoaded={isTweetLoaded}
-          />
-        );
+        return <TipTweetCard onSubmit={handleTweetSubmit} />;
       case 2:
         return (
-          <TipCommentForm
-            initialComment={tweetData?.comment?.text ?? ''}
-            onSubmit={handleCommentSubmit}
-            onBack={handleBack}
-            twitterHandle={tweetData?.accountTitle ?? ''}
-          />
+          <TipCommentForm onSubmit={handleCommentSubmit} onBack={handleBack} />
         );
       case 3:
-        return (
-          <TipSatForm
-            onSubmit={handleSatSubmit}
-            onBack={handleBack}
-            tweetData={tweetData}
-          />
-        );
+        return <TipSatForm onSubmit={handleSatSubmit} onBack={handleBack} />;
       case 4:
         return (
-          <TipQR
-            tweetData={tweetData}
-            invoiceData={invoiceData}
-            onBack={handleBack}
-            onSuccess={() => setStep(5)}
-          />
+          <TipQR onBack={handleBack} onSuccess={() => dispatch(setStep(5))} />
         );
       case 5:
-        return (
-          <TipSuccess
-            twitterHandle={tweetData?.accountTitle}
-            tweetData={tweetData}
-            resetProgress={resetProgress}
-          />
-        );
+        return <TipSuccess resetProgress={resetProgress} />;
       default:
         return null;
     }

@@ -894,13 +894,22 @@ footer.footerDesktop div.footerDesktopCopyright {
   border-radius: 12px;
   overflow: hidden;
 }
-
+/* .hidden{
+  display: none !important;
+} */
 .tweetPreview .tweetTimestamp {
   color: var(--grey);
   font-size: 14px;
   margin-top: 8px;
 }
-
+.twitter-handle {
+  background-color: #1da1f2;
+  border-radius: 8px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: white;
+  width: 90px;
+}
 .tweet-embed-container {
   margin-top: 12px;
   border-radius: 12px;
@@ -930,6 +939,44 @@ footer.footerDesktop div.footerDesktopCopyright {
 }
 
 
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Extra small devices (portrait phones) */
+/* Container is 100% width at this size */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
 
 
 /* =======================================================================*/
@@ -957,5 +1004,11 @@ footer.footerDesktop div.footerDesktopCopyright {
     flex-direction: column;
    }
 
+   footer.footerDesktop{
+    /* position: sticky;
+    bottom: 0px; */
+    padding:24px;
+    gap: 16px;
+ }
 
 }

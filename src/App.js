@@ -7,38 +7,31 @@ import SettingsPage from './pages/SettingsPage';
 import UserPage from './pages/UserProfilePage';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
-import "./App.css"
+import './App.css';
 import { Toaster } from 'react-hot-toast';
-
-
 
 function App() {
   return (
-      <div className="app-wrapper">
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <SettingsPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/faqs" element={<FAQPage />} />
-            <Route
-              path="/profile/:username"
-              element={
-                  <UserPage />
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-        <Toaster/>
-      </div>
+    <div className="app-wrapper">
+      <Header />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <SettingsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/faqs" element={<FAQPage />} />
+          <Route path="/:username" element={<UserPage />} />
+        </Routes>
+      </main>
+      <Footer />
+      <Toaster />
+    </div>
   );
 }
 

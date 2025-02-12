@@ -8,29 +8,43 @@ Install [Firebase CLI](https://firebase.google.com/docs/cli)
 
 ## deployment
 
-
 ```bash
-npm login 
+npm login
 npm run build
 firebase deploy --only hosting:beta # or production
 ```
 
 Deploys to:
+
 - https://beta.zap-zap.me
 
 View the [Firebase Console](https://console.firebase.google.com/u/0/project/zapzap-me/hosting/sites/beta-zap-zap-me) for status
 
-
 ### Using Docker to just run the frontend
 
-```bash 
+```bash
 docker build -t zapzap-web -f Dockerfile
 docker run -p 4200:4200  -v .:/src zapzap-web # live editing
 ```
 
+## Releasing with semantic-release
+
+To automate the release process, project uses [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
+For more information on how to write commit messages that will be recognized by semantic-release, refer to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+
+To create a new release, simply run:
+
+```bash
+npm run release
+```
+
+This will analyze your commits, generate release notes, update the changelog, and create a new release on GitHub.
+
+
 ![Screenshots](assets/image.png)
 
 ![Screenshots](assets/profile-page.png)
+
 
 # License
 

@@ -1,8 +1,8 @@
 // HomePage.jsx
 import React from 'react';
-import TipCard from '../PageComponents/HomePage/TipCard';
-import '../styles/homepage.scss';
-import ZapLogo from '../assets/zapzap logo.png';
+import TipCard from '../../PageComponents/HomePage/TipCard';
+import '../../styles/homepage.scss';
+import ZapLogo from '../../assets/zapzap logo.png';
 function HomePage() {
   return (
     // <div></div>
