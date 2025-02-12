@@ -2,13 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChevronLeft } from 'lucide-react';
 
-import { useAuth } from '../../lib/contexts/AuthContext';
-import '../../styles/faq.scss';
-import {
-  setComment,
-  setIsNextDisabled,
-  setIsChecked,
-} from '../../pages/HomePage/homePageSlice';
+import { useAuth } from '../../../lib/contexts/AuthContext';
+import '../../../styles/faq.scss';
+import { setComment, setIsNextDisabled, setIsChecked } from '../homePageSlice';
 
 interface ITipCommentForm {
   onSubmit: (

@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { QRCodeSVG } from 'qrcode.react';
 import { Pencil } from 'lucide-react';
 import CommentBox from './CommentBox';
-import { useAuth } from '../../lib/contexts/AuthContext';
+import { useAuth } from '../../../lib/contexts/AuthContext';
 import PaymentStatus from './PaymentStatus';
-import { setCopied } from '../../pages/HomePage/homePageSlice';
+import { setCopied } from '../homePageSlice';
 
 function TipQR({ onSuccess }) {
   const state = useSelector((state) => state.homePage);
