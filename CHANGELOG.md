@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.1...v1.0.2) (2025-02-12)
+
+
+### Bug Fixes
+
+* update conventional commits release branch name ([26860ae](https://github.com/ZapZapMe/zapzap-web/commit/26860ae6f04047ded41dc14cb023397b04100ffc))
+
 ## [1.0.1](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.0...v1.0.1) (2025-02-12)
 
 
