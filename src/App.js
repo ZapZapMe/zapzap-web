@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/layouts/Header/Header';
 import Footer from './components/layouts/Footer/Footer';
@@ -11,6 +11,17 @@ import './App.css';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
+  useEffect(() => {
+    const env = process.env.NODE_ENV;
+    if (env === 'development') {
+      document.title = 'ZapZap (Development)';
+    } else if (env === 'production') {
+      document.title = 'ZapZap';
+    } else {
+      document.title = 'ZapZap (Beta)';
+    }
+  }, []);
+
   return (
     <div className="app-wrapper">
       <Header />
