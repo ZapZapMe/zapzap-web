@@ -1,34 +1,38 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { useAuth } from '../../lib/contexts/AuthContext';
-import { getUserByUsername } from '../../lib/utils/apiHandlers';
-import ProfileSkeleton from '../../components/ui/LoadingSkeleton/ProfileSkeleton';
-import DefaultProfileAvatar from './DefaultProfileAvatar';
-import XIcon from './XIcon';
 
-// const avatarPlaceholder =
-//   'https://s3-alpha-sig.figma.com/img/cc52/5eff/2ee1d0cd1de936a0c514f7464971af51?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uQMdAH7Qtc1b8bI7HeDbMAtiVgBWD3ATjGLMX~WO-ytSB-w1tWgH9qMSkv1hF4zvAS9IgHNS5SqrAyE5OwhkUVgQkXxciBO8VbNtPhLJ4Gb3c~zxubfYdkPHiOj20euKKhmJxa4XRg~9qaib45zGjnJq20MmOsp7iqMjWAS4yNJXpbp5yWBP~6jqjp9ob4n7UDH7LeD0-l8zHPerfIuffkex3TNIyfEOqjxNCRbYk95OaeGwD6ZiMbfcUkg3~2mjUSDUCbGfWQQK0QyOHjgYvRYj-WgOUoTmzJiiFjtoQzZm38xbCdvP2-0SMYgC5pP9Ho2SHMUC1pmCPIH~hjGAQQ__';
+import { useAuth } from '../../../lib/contexts/AuthContext';
+import { getUserByUsername } from '../../../lib/utils/apiHandlers';
+import ProfileSkeleton from '../../../components/ui/LoadingSkeleton/ProfileSkeleton';
+import DefaultProfileAvatar from '../../../components/ui/SvgIcons/DefaultProfileAvatar';
+import XIcon from '../../../components/ui/SvgIcons/XIcon';
+import { setUserData, setIsLoading } from '../profileSlice';
 
 function ProfileTop() {
   const { username } = useParams();
 
-  const [userData, setUserData] = useState();
+  const state = useSelector((state) => state.profile);
+  const { userData, isLoading } = state;
+
+  const dispatch = useDispatch();
+
   console.log('🚀 ~ ProfileTop ~ userData:', userData);
-  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useAuth();
-  // const twitter_username = user?.twitter_username || 'unknown';
-  // const wallet_address = user?.wallet_address || 'N/A';
-  // const avatar_url = user?.avatar_url || avatarPlaceholder;
 
   const getUser = useCallback(async () => {
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
+
     const response = await getUserByUsername(username);
+
     if (response.status === 200) {
-      setUserData(response.data);
+      console.log('🚀 ~ ProfileTop ~ response:', response);
+      dispatch(setUserData(response.data));
     }
-    setIsLoading(false);
-  }, [username]);
+
+    dispatch(setIsLoading(false));
+  }, [dispatch, username]);
 
   useLayoutEffect(() => {
     getUser();
@@ -39,7 +43,7 @@ function ProfileTop() {
   return (
     <div className="profileTop">
       <div className="profilePicRow">
-        {userData.avatar_url ? (
+        {userData?.avatar_url ? (
           <img
             className="profilePicImg"
             src={userData.avatar_url}
@@ -49,7 +53,7 @@ function ProfileTop() {
           <DefaultProfileAvatar />
         )}
 
-        {userData?.twitter_username && (
+        {userData?.twitter_username ? (
           <a
             href={`http://x.com/${userData.twitter_username}`}
             target="_blank"
@@ -57,12 +61,12 @@ function ProfileTop() {
           >
             {''}
           </a>
-        )}
+        ) : null}
       </div>
 
       <div className="flex flex-col md:mr-auto gap-3 items-center">
         <div className="profileUsername">@{userData.twitter_username}</div>
-        {userData.twitter_username === user?.twitter_username && (
+        {userData?.twitter_username === user?.twitter_username ? (
           <div
             style={{ display: 'hidden' }}
             className={`${userData.twitter_username === user?.twitter_username ? 'block' : 'hidden'} profileWalletRow`}
@@ -95,9 +99,9 @@ function ProfileTop() {
               </svg>
             </Link>
           </div>
-        )}
+        ) : null}
       </div>
-      {userData?.twitter_username && (
+      {userData?.twitter_username ? (
         <a
           href={`${userData.twitter_link}`}
           target="_blank"
@@ -105,7 +109,7 @@ function ProfileTop() {
         >
           <XIcon />
         </a>
-      )}
+      ) : null}
     </div>
   );
 }
