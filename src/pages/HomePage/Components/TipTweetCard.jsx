@@ -19,7 +19,7 @@ function TipTweetCard({ onSubmit }) {
   } = state;
 
   const handleTweetURLChange = async (e) => {
-    const url = e.target.value;
+    const url = e.target.value.split('?')[0];
     dispatch(setTweetURL(url));
     dispatch(setIsTweetLoaded(false));
 

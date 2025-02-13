@@ -60,27 +60,31 @@ const SettingsPage = () => {
             <button className={'closeButton'} onClick={handleClose}></button>
           </div>
 
-          <form onSubmit={handleSave}>
-            <div className={'inputGroup'}>
-              <label htmlFor="wallet" className={'inputLabel'}>
-                <img
-                  alt="wallet"
-                  loading="lazy"
-                  style={{ height: '24px', width: '24px' }}
-                  src={WalletIcon}
-                />
-                {/* <div className={'walletIcon'}>
+          {!user?.wallet_address ? (
+            <form onSubmit={handleSave}>
+              <div className={'inputGroup'}>
+                <label htmlFor="wallet" className={'inputLabel'}>
+                  <img
+                    alt="wallet"
+                    loading="lazy"
+                    style={{ height: '24px', width: '24px' }}
+                    src={WalletIcon}
+                  />
+                  {/* <div className={'walletIcon'}>
               </div> */}
-                Wallet address
-              </label>
-              {/* -------- suggestions -------- */}
-              <Suggestions />
-            </div>
+                  Wallet address
+                </label>
+                {/* -------- suggestions -------- */}
+                <Suggestions />
+              </div>
 
-            <button type="submit" className={'saveButton'}>
-              Save
-            </button>
-          </form>
+              <button type="submit" className={'saveButton'}>
+                Save
+              </button>
+            </form>
+          ) : (
+            <span>{user?.wallet_address}</span>
+          )}
         </div>
       </div>
     </>
