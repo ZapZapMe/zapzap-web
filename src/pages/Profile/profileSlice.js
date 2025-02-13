@@ -3,13 +3,11 @@ import { Tabs } from './constants';
 
 const initialState = {
   userData: null,
-  isLoading: false,
-
   activeTab: Tabs.RECEIVED,
-
+  isLoading: false,
+  tipsLoading: false,
   tipsReceived: [],
   tipsSent: [],
-  tipsLoading: false,
 };
 
 const homePageSlice = createSlice({

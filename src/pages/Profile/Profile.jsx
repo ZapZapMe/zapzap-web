@@ -2,6 +2,7 @@ import React from 'react';
 
 import ProfileTop from './components/ProfileTop';
 import ProfileFeed from './components/ProfileFeed';
+import './styles.scss';
 
 function UserProfilePage() {
   return (

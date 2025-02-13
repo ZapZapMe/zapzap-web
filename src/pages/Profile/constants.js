@@ -7,4 +7,8 @@ const TipSender = {
   ANONYMOUS: 'anonymous',
 };
 
-export { Tabs, TipSender };
+const Links = {
+  X: 'http://x.com',
+};
+
+export { Tabs, TipSender, Links };

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import TipsSent from './TipsSent';
-import TipsReceived from './TipsReceived';
 import {
   getUsersTipReceived,
   getUsersTipSent,
@@ -15,6 +13,7 @@ import {
   setTipsLoading,
 } from '../profileSlice';
 import { Tabs } from '../constants';
+import TipsList from './TipsList';
 
 const ProfileFeed = () => {
   const state = useSelector((state) => state.profile);
@@ -48,7 +47,7 @@ const ProfileFeed = () => {
   return (
     <div className="profileBottom">
       {/* Tabs */}
-      <div className="flex mt-2 cursor-pointer text-sm font-bold rounded-full bg-[#333333]">
+      <div className="flex mt-2 p-1 cursor-pointer text-sm font-bold rounded-full bg-[#333333]">
         <div
           onClick={handleTabChange(Tabs.RECEIVED)}
           className={`flex-1 py-3  rounded-full text-center  ${
@@ -70,7 +69,7 @@ const ProfileFeed = () => {
       </div>
 
       <div className="profileFeed">
-        {activeTab === Tabs.SENT ? <TipsSent /> : <TipsReceived />}
+        <TipsList />
       </div>
     </div>
   );

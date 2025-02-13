@@ -17,8 +17,6 @@ function ProfileTop() {
 
   const dispatch = useDispatch();
 
-  console.log('🚀 ~ ProfileTop ~ userData:', userData);
-
   const { user } = useAuth();
 
   const getUser = useCallback(async () => {
@@ -27,7 +25,6 @@ function ProfileTop() {
     const response = await getUserByUsername(username);
 
     if (response.status === 200) {
-      console.log('🚀 ~ ProfileTop ~ response:', response);
       dispatch(setUserData(response.data));
     }
 
@@ -64,11 +61,18 @@ function ProfileTop() {
         ) : null}
       </div>
 
-      <div className="flex flex-col md:mr-auto gap-3 items-center">
+      <div className="flex flex-col md:mr-auto gap-3">
         <div className="profileUsername">@{userData.twitter_username}</div>
+        {!user ? (
+          <>
+            <p className="zz-helper-text">
+              Is this you? Log in to send and receive tips.
+            </p>
+          </>
+        ) : null}
         {userData?.twitter_username === user?.twitter_username ? (
           <div
-            style={{ display: 'hidden' }}
+            // style={{ display: 'hidden' }}
             className={`${userData.twitter_username === user?.twitter_username ? 'block' : 'hidden'} profileWalletRow`}
           >
             <div className="profileWalletIcon">
