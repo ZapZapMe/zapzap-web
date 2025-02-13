@@ -4,7 +4,7 @@ import Header from './components/layouts/Header/Header';
 import Footer from './components/layouts/Footer/Footer';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
-import UserPage from './pages/UserProfilePage';
+import Profile from './pages/Profile';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
@@ -37,7 +37,7 @@ function App() {
             }
           />
           <Route path="/faqs" element={<FAQPage />} />
-          <Route path="/:username" element={<UserPage />} />
+          <Route path="/:username" element={<Profile />} />
         </Routes>
       </main>
       <Footer />

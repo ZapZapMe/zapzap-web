@@ -1,12 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import tipsReducer from './pages/HomePage/homePageSlice';
+import profileReducer from './pages/Profile/profileSlice';
 
-// Combine all reducers
-const rootReducer = combineReducers({
-  homePage: tipsReducer,
+export default configureStore({
+  reducer: {
+    homePage: tipsReducer,
+    profile: profileReducer,
+  },
 });
-
-// Create the Redux store with middleware
-const store = createStore(rootReducer);
-
-export default store;

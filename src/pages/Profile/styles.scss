@@ -1,0 +1,35 @@
+a {
+    cursor: pointer;
+}
+
+.zz-helper-text {
+    color: var(--white);
+}
+
+.zz-decolorized {
+    filter: grayscale(1);
+}
+
+.zz-no-tips-block {
+    img {
+        max-height: 26px;
+    }
+
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+        .zz-tweet-colored-text {
+            color: var(--blue);
+            font-size: 16px;
+            font-weight: 700;
+        }
+    
+        .zz-tweet-decolorized-text {
+            color: var(--grey);
+            font-size: 16px;
+            font-weight: 700;
+        }
