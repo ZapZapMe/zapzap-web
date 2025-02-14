@@ -2,24 +2,6 @@
 
 Paste a tweet URL ➡️ pay the invoice ➡️ they are notified ➡️ tips are instantly sent to their wallet!
 
-## Running on Firebase
-
-Install [Firebase CLI](https://firebase.google.com/docs/cli)
-
-## deployment
-
-```bash
-npm login
-npm run build
-firebase deploy --only hosting:beta # or production
-```
-
-Deploys to:
-
-- https://beta.zap-zap.me
-
-View the [Firebase Console](https://console.firebase.google.com/u/0/project/zapzap-me/hosting/sites/beta-zap-zap-me) for status
-
 ### Using Docker to just run the frontend
 
 ```bash
@@ -39,6 +21,9 @@ npm run release
 ```
 
 This will analyze your commits, generate release notes, update the changelog, and create a new release on GitHub.
+
+View the [Firebase Console](https://console.firebase.google.com/u/0/project/zapzap-me/hosting/sites/beta-zap-zap-me) for status
+
 
 
 ![Screenshots](assets/image.png)
