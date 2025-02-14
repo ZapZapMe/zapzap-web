@@ -132,9 +132,9 @@ const Header = () => {
   // useClickOutside(null, menuCloseHandler, mobile_menu_id);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-content">
+    <nav className="zz-navbar">
+      <div className="zz-navbar-container">
+        <div className="zz-navbar-content">
           {/* Logo */}
           {/* <div className="logo">
             <div className="logo-icon">

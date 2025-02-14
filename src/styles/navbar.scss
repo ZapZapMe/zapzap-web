@@ -1,4 +1,4 @@
-// Navbar.scss
+// zz-navbar.scss
 $bg-color: #18181b; // zinc-900
 $border-color: rgba(245, 158, 11, 0.2); // amber-500/20
 $text-color: #d4d4d8; // zinc-300
@@ -6,13 +6,13 @@ $hover-text-color: #ffffff; // white
 $primary-color: #f59e0b; // amber-500
 $mobile-menu-bg: #27272a; // zinc-800
 
-.navbar {
+.zz-navbar {
   background-color: $bg-color;
   border-bottom: 1px solid $border-color;
   position: sticky;
   top: -1px;
   z-index: 9999;
-  .navbar-container {
+  .zz-navbar-container {
     max-width: 1280px; // max-w-7xl
     margin: 0 auto;
     padding: 0 1rem; // px-4
@@ -23,7 +23,7 @@ $mobile-menu-bg: #27272a; // zinc-800
       padding: 0 2rem; // lg:px-8
     }
 
-    .navbar-content {
+    .zz-navbar-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
