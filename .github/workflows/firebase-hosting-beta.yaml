@@ -15,6 +15,6 @@ jobs:
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZAPZAP_ME }}
-          channelId: live
+          channelId: beta
           projectId: zapzap-me
           target: beta
