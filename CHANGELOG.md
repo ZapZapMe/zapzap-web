@@ -1,3 +1,40 @@
+## [1.1.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.3...v1.1.0) (2025-02-14)
+
+
+### Features
+
+* **profile:** added conditions for user auth state and tips lists ([8e2c347](https://github.com/ZapZapMe/zapzap-web/commit/8e2c347ce001a139607ab051eb5ec5038cb5e9f0))
+
+
+### Bug Fixes
+
+* **footer:** fixed bot x url ([b5608c4](https://github.com/ZapZapMe/zapzap-web/commit/b5608c4bc1e180337806d60c4f4372dc452c7895))
+* navbar styles ([bb4fe2f](https://github.com/ZapZapMe/zapzap-web/commit/bb4fe2fdf6503cbabbba49df5e5ddbc800c0a0e1))
+* post tip on x is true by default ([00c48fd](https://github.com/ZapZapMe/zapzap-web/commit/00c48fde1966883e097180243288261f506493a4))
+* **settings:** user wallet is now editable ([4774406](https://github.com/ZapZapMe/zapzap-web/commit/47744060b36d2f155b3bb7337e0f399712c5ae75))
+* temporary solution for beta deployments ([05f22c0](https://github.com/ZapZapMe/zapzap-web/commit/05f22c005925ab49ecd72e99ac33ae80d70cf07d))
+* **tip:** added lightning wallet url scheme ([9250db1](https://github.com/ZapZapMe/zapzap-web/commit/9250db1ee9e02a59f3925983d52ff8b2e4fc01f8))
+* **tip:** cleanup any additional tracking from tweet url ([902dae1](https://github.com/ZapZapMe/zapzap-web/commit/902dae1196ca1ffda4d2084b57ddcdceae100b44))
+* **tips:** store reset on successful tip ([f782f22](https://github.com/ZapZapMe/zapzap-web/commit/f782f22490ae935218f8a6542560cdd06bb2a4a5))
+* **wallet settings:** changed input validation to email ([b1052d8](https://github.com/ZapZapMe/zapzap-web/commit/b1052d89a0a625523e8bf3c4cbfe931386bb256c))
+
+
+### Code Refactoring
+
+* profile page; ([8d7afb9](https://github.com/ZapZapMe/zapzap-web/commit/8d7afb983da5fb518f660699268ad3cc0edf6dcb))
+
+
+### Tests
+
+* checking the deployment pipeline ([7f9f8d9](https://github.com/ZapZapMe/zapzap-web/commit/7f9f8d9afee23e16c047a4a08bed1fc8b8edc54b))
+* testing deployment ([294e120](https://github.com/ZapZapMe/zapzap-web/commit/294e120a14fb7435ca46e0b563e80ccef4bca1f3))
+* testing env file update ([8199a31](https://github.com/ZapZapMe/zapzap-web/commit/8199a3173448130d47cf1944cde9c5c891c4896c))
+
+
+### Chores
+
+* fixes and updates to prev commit ([50d7595](https://github.com/ZapZapMe/zapzap-web/commit/50d7595146488658908c0a8a10713374673bee5e))
+
 ## [1.0.3](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.2...v1.0.3) (2025-02-12)
 
 
