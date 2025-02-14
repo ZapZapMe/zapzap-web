@@ -1,12 +1,24 @@
-import { SquareArrowOutUpRight } from 'lucide-react';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { SquareArrowOutUpRight } from 'lucide-react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function TipSuccess({ resetProgress }) {
+import { resetToInitialState } from '../homePageSlice';
+
+function TipSuccess() {
   const state = useSelector((state) => state.homePage);
   const { tweetData = null } = state;
 
+  const dispatch = useDispatch();
+
   const onViewClick = () => window.open(tweetData?.url, '_blank');
+
+  const resetProgress = () => {
+    dispatch(resetToInitialState());
+    const container = document.getElementById('tweet-embed-container');
+    if (container) {
+      container.innerHTML = '';
+    }
+  };
 
   return (
     <div className="tipCard">
