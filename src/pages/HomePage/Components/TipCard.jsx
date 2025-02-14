@@ -101,15 +101,6 @@ function TipCard() {
     dispatch(setStep((prev) => prev - 1));
   };
 
-  const resetProgress = () => {
-    dispatch(setTweetData(null));
-    dispatch(setStep(1));
-    const container = document.getElementById('tweet-embed-container');
-    if (container) {
-      container.innerHTML = '';
-    }
-  };
-
   const renderCurrentStep = () => {
     switch (step) {
       case 1:
@@ -125,7 +116,7 @@ function TipCard() {
           <TipQR onBack={handleBack} onSuccess={() => dispatch(setStep(5))} />
         );
       case 5:
-        return <TipSuccess resetProgress={resetProgress} />;
+        return <TipSuccess />;
       default:
         return null;
     }

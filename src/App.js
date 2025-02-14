@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/layouts/Header/Header';
 import Footer from './components/layouts/Footer/Footer';
 import HomePage from './pages/HomePage';
-import SettingsPage from './pages/SettingsPage';
+import SettingsPage from './pages/Settings/SettingsPage';
 import Profile from './pages/Profile';
 import FAQPage from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';

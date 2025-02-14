@@ -1,3 +1,5 @@
+@import "bootstrap/scss/bootstrap.scss";
+
 $primary-color: #f7cf52;
 .settingsPageContainer {
   max-width: 480px;
@@ -228,4 +230,22 @@ $primary-color: #f7cf52;
   .settingsContainer {
     padding: 24px;
   }
+}
+
+.zz-right-alined-item {
+  margin-left: auto;
+}
+
+.zz-button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.zz-input-label {
+  height: 38px;
+}
+
+.zz-text-wrapper {
+  padding: 12px 0;
 }

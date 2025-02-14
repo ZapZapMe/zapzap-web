@@ -14,7 +14,7 @@ const initialState = {
 
   // Step 2:
   isNextDisabled: true,
-  isChecked: false,
+  isChecked: true,
 
   // Step 3:
   satValue: '',
@@ -63,6 +63,9 @@ const homePageSlice = createSlice({
     setCopied: (state, action) => {
       state.copied = action.payload;
     },
+    resetToInitialState: () => {
+      return initialState;
+    },
   },
 });
 
@@ -79,6 +82,7 @@ export const {
   setIsChecked,
   setSatValue,
   setCopied,
+  resetToInitialState,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

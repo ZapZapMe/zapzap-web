@@ -26,7 +26,7 @@ const Footer = () => {
           </svg>
         </a>
         <a
-          href="https://twitter.com/zapzap_me"
+          href="https://x.com/zapzapbot"
           target="_blank"
           rel="noopener noreferrer"
         >
