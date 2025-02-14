@@ -66,7 +66,7 @@ const Suggestions = () => {
         id="wallet_address"
         autoComplete="off"
         required
-        type="text"
+        type="email"
         name="wallet_address"
         value={walletAddress}
         onChange={(e) => handleChange(e.target.value)}
