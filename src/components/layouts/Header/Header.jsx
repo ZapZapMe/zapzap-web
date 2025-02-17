@@ -41,7 +41,10 @@ const NavLinks = ({ username, closeMenu }) => {
         const href =
           typeof link.href === 'function' ? link.href(username) : link.href;
 
-        if (link.shouldProtect && !token) return <></>;
+        if (link.shouldProtect && !token) {
+          return <div key={index} className="hidden"></div>;
+        }
+
         return (
           <Link
             key={index}
@@ -54,7 +57,7 @@ const NavLinks = ({ username, closeMenu }) => {
         );
       })}
       {token ? (
-        <>
+        <div className="block md:hidden">
           <hr className="zz-divider" />
           <Link
             to="/"
@@ -66,7 +69,7 @@ const NavLinks = ({ username, closeMenu }) => {
               Log Out
             </div>
           </Link>
-        </>
+        </div>
       ) : null}
     </div>
   );

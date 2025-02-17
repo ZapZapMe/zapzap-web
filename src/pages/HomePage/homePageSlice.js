@@ -11,6 +11,7 @@ const initialState = {
   // Step 1:
   tweetURL: '',
   isInvalid: false,
+  isSelfTipping: false,
 
   // Step 2:
   isNextDisabled: true,
@@ -66,6 +67,9 @@ const homePageSlice = createSlice({
     resetToInitialState: () => {
       return initialState;
     },
+    setSelfTipping: (state, action) => {
+      state.isSelfTipping = action.payload;
+    },
   },
 });
 
@@ -83,6 +87,7 @@ export const {
   setSatValue,
   setCopied,
   resetToInitialState,
+  setSelfTipping,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;
