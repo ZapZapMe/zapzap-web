@@ -119,14 +119,6 @@ function TipTweetCard() {
         {isSelfTipping ? (
           <span className="tipTweetURLErrorMsg">{selfTipMessage}</span>
         ) : null}
-
-        <div
-          id="tweet-embed-container"
-          className={`tweet-embed-container ${isTweetLoaded ? 'loaded' : ''}`}
-        ></div>
-        {isLoading ? (
-          <div className="tweet-loader">Loading tweet...</div>
-        ) : null}
       </div>
 
       <button

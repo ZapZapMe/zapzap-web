@@ -114,9 +114,8 @@ function TipCard() {
       <div
         id="tweet-embed-container"
         className={`tweet-embed-container ${isTweetLoaded ? 'loaded' : ''}`}
-      >
-        {isLoading && <div className="tweet-loader">Loading tweet...</div>}
-      </div>
+      ></div>
+      {isLoading ? <div className="tweet-loader">Loading tweet...</div> : null}
     </div>
   );
 }
