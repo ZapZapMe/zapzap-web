@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../lib/contexts/AuthContext';
 import { API_ENDPOINT } from '../../../config';
 import { HeaderZapLogo } from '../../../lib/utils/icons';
-import { XIcon } from 'lucide-react';
+import LogoutButton from './components/LogoutButton';
+import useLogout from './hooks';
+import './navbar.scss';
 import { LogOut } from 'lucide-react';
-import { Button } from '../../../components/ui/button';
-import '../../../styles/navbar.scss';
-import useClickOutside from '../../../lib/hooks/useClickOutside';
 
 const mobile_menu_id = 'mobile-menu';
 
@@ -34,6 +33,7 @@ const navLinks = [
 
 const NavLinks = ({ username, closeMenu }) => {
   const { token } = useAuth();
+  const handleLogout = useLogout();
   return (
     <div className="desktop-links-container ">
       {navLinks.map((link, index) => {
@@ -41,7 +41,10 @@ const NavLinks = ({ username, closeMenu }) => {
         const href =
           typeof link.href === 'function' ? link.href(username) : link.href;
 
-        if (link.shouldProtect && !token) return <></>;
+        if (link.shouldProtect && !token) {
+          return <div key={index} className="hidden"></div>;
+        }
+
         return (
           <Link
             key={index}
@@ -53,6 +56,21 @@ const NavLinks = ({ username, closeMenu }) => {
           </Link>
         );
       })}
+      {token ? (
+        <div className="block md:hidden">
+          <hr className="zz-divider" />
+          <Link
+            to="/"
+            className="nav-link"
+            onClick={handleLogout} // Close the mobile menu when a link is clicked
+          >
+            <div className="flex items-center gap-2">
+              <LogOut className="h-4 w-4" />
+              Log Out
+            </div>
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -68,7 +86,9 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
           alt="ProfilePicture"
         />
       </Link>
-      {/* <LogoutButton /> */}
+      <div className="hidden md:block">
+        <LogoutButton />
+      </div>
     </div>
   ) : (
     <button onClick={handleTwitterLogin} className="login-button">
@@ -205,39 +225,4 @@ const Header = () => {
   );
 };
 
-export function LogoutButton() {
-  const handleLogout = () => {
-    // Clear localStorage, sessionStorage, and cookies
-    localStorage.clear();
-    sessionStorage.clear();
-    clearCookies();
-
-    // Optionally, you can clear the cache (e.g., by reloading or forcing a cache reset)
-    // If you are using service workers or caching mechanisms, you'd need to handle them accordingly.
-
-    // Redirect to the homepage
-    window.location.href = '/'; // Or use useHistory if using React Router
-    console.log('Logout clicked');
-  };
-
-  // Function to clear all cookies
-  const clearCookies = () => {
-    const cookies = document.cookie.split(';');
-
-    cookies.forEach((cookie) => {
-      const cookieName = cookie.split('=')[0].trim();
-      document.cookie = `${cookieName}=; Max-Age=0; path=/;`;
-    });
-  };
-  return (
-    <Button
-      onClick={handleLogout}
-      variant="ghost"
-      className="text-sm text-white font-bold bg-inherit"
-    >
-      <LogOut className="h-4 w-4" />
-      Logout
-    </Button>
-  );
-}
 export default Header;

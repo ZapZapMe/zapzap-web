@@ -43,21 +43,6 @@ function TipCard() {
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
 
-  function extractTwitterHandle(url) {
-    const match = url.match(/(?:twitter.com|x.com)\/([^/?]+)/i);
-    return match ? `@${match[1]}` : null;
-  }
-
-  const handleTweetSubmit = async (tweetUrl) => {
-    dispatch(
-      setTweetData({
-        url: tweetUrl,
-        accountTitle: extractTwitterHandle(tweetUrl),
-      })
-    );
-    dispatch(setStep(2));
-  };
-
   const handleCommentSubmit = (comment, shouldSkip = false) => {
     dispatch(setStep(3));
     if (!shouldSkip) {
@@ -98,13 +83,13 @@ function TipCard() {
   };
 
   const handleBack = () => {
-    dispatch(setStep((prev) => prev - 1));
+    dispatch(setStep(step - 1));
   };
 
   const renderCurrentStep = () => {
     switch (step) {
       case 1:
-        return <TipTweetCard onSubmit={handleTweetSubmit} />;
+        return <TipTweetCard />;
       case 2:
         return (
           <TipCommentForm onSubmit={handleCommentSubmit} onBack={handleBack} />
@@ -129,9 +114,8 @@ function TipCard() {
       <div
         id="tweet-embed-container"
         className={`tweet-embed-container ${isTweetLoaded ? 'loaded' : ''}`}
-      >
-        {isLoading && <div className="tweet-loader">Loading tweet...</div>}
-      </div>
+      ></div>
+      {isLoading ? <div className="tweet-loader">Loading tweet...</div> : null}
     </div>
   );
 }

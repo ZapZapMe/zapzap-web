@@ -4,7 +4,7 @@ import './BootstrapIconButton.scss';
 
 const BootstrapIconButton = ({ icon, onClick, children, ...props }) => {
   return (
-    <Button onClick={onClick} {...props}>
+    <Button className="zz-custom" onClick={onClick} {...props}>
       {icon}
       {children}
     </Button>
