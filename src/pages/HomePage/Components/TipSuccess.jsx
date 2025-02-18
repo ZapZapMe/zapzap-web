@@ -2,11 +2,15 @@ import React from 'react';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { useAuth } from '../../../lib/contexts/AuthContext';
 import { resetToInitialState } from '../homePageSlice';
+import ZZButton from '../../../components/ui/ZZButton';
 
 function TipSuccess() {
   const state = useSelector((state) => state.homePage);
   const { tweetData = null } = state;
+
+  const { user } = useAuth();
 
   const dispatch = useDispatch();
 
@@ -17,6 +21,23 @@ function TipSuccess() {
     const container = document.getElementById('tweet-embed-container');
     if (container) {
       container.innerHTML = '';
+    }
+  };
+
+  const handlePostTipOnX = () => {
+    const tweet = tweetData?.comment?.text;
+    const comment = tweet ? `⚡ ${tweet} ⚡\n` : '';
+    const tweetText = encodeURIComponent(
+      `${comment}I just zapped you ${tweetData?.satAmount} sats zap-zap.me/${user?.twitter_username} - via @ZapZapBot!`
+    );
+
+    const tweetWindow = window.open(
+      `https://twitter.com/intent/tweet?text=${tweetText}&in_reply_to=${tweetData?.tweetId}`,
+      '_blank'
+    );
+
+    if (tweetWindow) {
+      tweetWindow.focus();
     }
   };
 
@@ -33,22 +54,21 @@ function TipSuccess() {
         >
           {tweetData?.accountTitle}
         </a>
-        a tip of <a className="tipTweetSat">{tweetData.satAmount}sat</a> with
+        a tip of <a className="tipTweetSat">{tweetData?.satAmount}sat</a> with
         ZapZap
       </h3>
       <div className="tipSuccessButtonGroup">
-        <button
-          onClick={onViewClick}
-          className="tipQRViewTweetButton blue stroke"
-        >
-          View Tip Tweet <SquareArrowOutUpRight />
-        </button>
-        <button
-          onClick={resetProgress}
-          className="tipQRSendAnotherButton primary filled"
-        >
+        {tweetData?.comment?.postOnX ? (
+          <ZZButton onClick={onViewClick} className="blue stroke">
+            View Tip Tweet <SquareArrowOutUpRight />
+          </ZZButton>
+        ) : null}
+        <ZZButton onClick={handlePostTipOnX} className="primary filled">
+          Tweet it!
+        </ZZButton>
+        <ZZButton onClick={resetProgress} className="primary filled">
           Send Another Tip
-        </button>
+        </ZZButton>
       </div>
     </div>
   );

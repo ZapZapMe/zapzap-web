@@ -1,0 +1,52 @@
+// Bootstrap Button Styles with ZapZap overrides:
+.btn.btn-zapzap {
+  padding: 12px 20px;
+  border-radius: 40px;
+  font-family: "Poppins", serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn.primary.btn-zapzap {
+  color: var(--black);
+  background: var(--lightYellow);
+  border: 1px solid var(--lightYellow);
+
+  &:hover,
+  &:active {
+    background: var(--darkYellow);
+    border: 1px solid var(--darkYellow);
+    color: var(--white)
+  }
+
+  &:disabled {
+    background: var(--grey);
+    border: 1px solid var(--grey);
+    color: var(--black);
+  }
+}
+
+.btn.btn-sm.btn-zapzap {
+  font-size: 12px;
+  font-weight: 600;
+  gap: 6px;
+  padding: 6px 12px;
+}
+
+.btn.blue.btn-zapzap {
+  color: var(--white);
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  stroke: var(--blue);
+}
+
+.btn.blue.stroke.btn-zapzap {
+  color: var(--blue);
+  background: none;
+}

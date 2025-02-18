@@ -160,10 +160,6 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
   };
 
   const enterHandler = () => {
-    console.log(
-      '🚀 ~ enterHandler ~ filteredElements.length:',
-      filteredElements.length
-    );
     if (filteredElements.length === 0) return;
     onClick(filteredElements[currIdx]);
   };

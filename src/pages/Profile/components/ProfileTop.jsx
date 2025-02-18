@@ -19,9 +19,6 @@ function ProfileTop() {
 
   const { user } = useAuth();
 
-  console.log('🚀 ~ ProfileTop ~ user:', user);
-  console.log('🚀 ~ ProfileTop ~ userData:', userData);
-
   const getUser = useCallback(async () => {
     dispatch(setIsLoading(true));
 

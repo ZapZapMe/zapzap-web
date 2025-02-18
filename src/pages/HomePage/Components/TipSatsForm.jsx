@@ -1,16 +1,25 @@
-// TipSatsForm.jsx
-import { ChevronLeft } from 'lucide-react';
 import React from 'react';
-import CommentBox from './CommentBox';
-import { useAuth } from '../../../lib/contexts/AuthContext';
+import { ChevronLeft } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSatValue } from '../homePageSlice';
+import toast from 'react-hot-toast';
 
-function TipSatForm({ onSubmit, onBack }) {
+import CommentBox from './CommentBox';
+import { createInvoice } from '../../../lib/utils/apiHandlers';
+import { useAuth } from '../../../lib/contexts/AuthContext';
+import {
+  setSatValue,
+  setTweetData,
+  setComment,
+  setInvoiceData,
+  setStep,
+} from '../homePageSlice';
+import ZZButton from '../../../components/ui/ZZButton';
+
+function TipSatForm() {
   const state = useSelector((state) => state.homePage);
   const dispatch = useDispatch();
 
-  const { satValue, tweetData } = state;
+  const { satValue, tweetData = null, comment = '' } = state;
 
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
@@ -30,9 +39,44 @@ function TipSatForm({ onSubmit, onBack }) {
     return new Intl.NumberFormat().format(value);
   };
 
+  const handleSatSubmit = async () => {
+    const amount = parseInt(satValue, 10);
+
+    dispatch(setTweetData({ satAmount: amount }));
+    dispatch(setComment(tweetData?.comment?.text));
+    const body = {
+      amount_sats: amount,
+      comment: comment || '',
+      tip_sender: twitter_username ?? 'anonymous',
+      shouldPostOnX: tweetData?.comment?.postOnX,
+      tweet_url: tweetData?.url,
+    };
+
+    toast.promise(
+      createInvoice(body), // This must be a Promise!
+      {
+        loading: 'Creating tip...',
+        success: (response) => {
+          dispatch(setInvoiceData(response.data));
+          dispatch(setStep(4));
+          return 'Tip created successfully!';
+        },
+        error: (error) => {
+          if (error.detail) {
+            return 'Unauthorized! Please log in again.';
+          }
+          return 'Something went wrong!';
+        },
+      }
+    );
+  };
+
+  const handleGoBack = () => {
+    dispatch(setStep(2));
+  };
+
   return (
     <>
-      {/* <h3>Enter Amount</h3> */}
       <div className=" w-full flex items-center gap-4 flex-col text-[#333333]">
         <span className="tip-comment-form__header">
           I want to tip{' '}
@@ -76,18 +120,18 @@ function TipSatForm({ onSubmit, onBack }) {
             </svg>
           </button> */}
           <button
-            onClick={() => onBack()}
+            onClick={handleGoBack}
             className="rounded-full border border-black"
           >
             <ChevronLeft size={24} />
           </button>
-          <button
-            className="tipSatButton primary filled stretch"
+          <ZZButton
+            className="flex-grow-1 primary filled"
             disabled={!satValue}
-            onClick={() => onSubmit(parseInt(satValue, 10))}
+            onClick={handleSatSubmit}
           >
             Next
-          </button>
+          </ZZButton>
         </div>
       </div>
     </>

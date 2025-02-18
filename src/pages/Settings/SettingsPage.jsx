@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-import { API_ENDPOINT } from '../../config';
+import React, { useState } from 'react';
 import { useAuth } from '../../lib/contexts/AuthContext'; // if you have an AuthContext
 import './settings.scss';
 import WalletIcon from '../../assets/wallet.png';
@@ -9,26 +8,18 @@ import EditIcon from '../../components/ui/SvgIcons/EditIcon';
 import { toast } from 'react-hot-toast';
 import { Info } from 'lucide-react';
 
-import BootstrapIconButton from '../../components/ui/BootstrapIconButton';
-import Button from 'react-bootstrap/esm/Button';
+import ZZButton from '../../components/ui/ZZButton';
 // implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
 
 const SettingsPage = () => {
-  const [showInfo, setShowInfo] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { user, updateUser } = useAuth();
-  console.log('🚀 ~ SettingsPage ~ user:', user);
   // Pressing Enter in the input to push the address
 
   const handleEditWalletAddress = (value) => () => {
     setIsEditing(value);
   };
 
-  const handleClose = () => {
-    setShowInfo(false);
-  };
-  //  {name:"shaw", wallet_address:4123}
-  //  { name:'shaw',  wallet_address:4123}
   const handleSave = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -39,8 +30,7 @@ const SettingsPage = () => {
       updateWalletAddress(wallet_address), // This must be a Promise!
       {
         loading: 'Updating wallet address...',
-        success: (response) => {
-          console.log(response.data);
+        success: () => {
           setIsEditing(false);
           return 'Wallet updated successfully!';
         },
@@ -67,7 +57,6 @@ const SettingsPage = () => {
                 Supported wallets FAQ.
               </a> */}
             </div>
-            <button className={'closeButton'} onClick={handleClose}></button>
           </div>
 
           <form onSubmit={handleSave}>
@@ -81,14 +70,15 @@ const SettingsPage = () => {
                 />
                 Wallet address
                 {!isEditing && user?.wallet_address ? (
-                  <BootstrapIconButton
+                  <ZZButton
                     onClick={handleEditWalletAddress(true)}
                     className="zz-right-alined-item"
                     variant="outline-secondary"
+                    size="sm"
                   >
                     <EditIcon />
                     Edit
-                  </BootstrapIconButton>
+                  </ZZButton>
                 ) : null}
               </label>
 
@@ -100,16 +90,17 @@ const SettingsPage = () => {
             </div>
             {isEditing || !user?.wallet_address ? (
               <div className="zz-button-group">
-                <button type="submit" className={'saveButton'}>
+                <ZZButton size="sm" className="primary filled" type="submit">
                   Save
-                </button>
+                </ZZButton>
                 {isEditing ? (
-                  <Button
+                  <ZZButton
                     onClick={handleEditWalletAddress(false)}
                     variant="outline-secondary"
+                    size="sm"
                   >
                     Cancel
-                  </Button>
+                  </ZZButton>
                 ) : null}
               </div>
             ) : null}

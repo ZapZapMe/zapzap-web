@@ -11,6 +11,7 @@ import {
   setSelfTipping,
 } from '../homePageSlice';
 import { useAuth } from '../../../lib/contexts/AuthContext';
+import ZZButton from '../../../components/ui/ZZButton';
 
 const selfTipMessage = "You can't Tip yourself!";
 
@@ -21,7 +22,6 @@ function TipTweetCard() {
   const { user } = useAuth();
 
   const {
-    isLoading = false,
     isInvalid = false,
     isTweetLoaded = false,
     isSelfTipping = false,
@@ -33,11 +33,19 @@ function TipTweetCard() {
     return match ? `@${match[1]}` : null;
   }
 
+  function extractTweetID(url) {
+    const tweetRegex =
+      /^https:\/\/(?:www\.)?(?:twitter|x)\.com\/(?:#!\/)?(\w+)\/status\/(\d+)$/;
+    const match = url.match(tweetRegex);
+    return match ? match[2] : null;
+  }
+
   const handleTweetSubmit = async () => {
     dispatch(
       setTweetData({
         url: tweetURL,
         accountTitle: extractTwitterHandle(tweetURL),
+        tweetId: extractTweetID(tweetURL),
       })
     );
     dispatch(setStep(2));
@@ -121,13 +129,13 @@ function TipTweetCard() {
         ) : null}
       </div>
 
-      <button
-        className="tipTweetURLButton primary filled"
+      <ZZButton
+        className="primary filled"
         disabled={isInvalid || isSelfTipping || !tweetURL || !isTweetLoaded}
         onClick={handleTweetSubmit}
       >
         Tip This Tweet
-      </button>
+      </ZZButton>
     </>
   );
 }

@@ -4,24 +4,24 @@ import { ChevronLeft } from 'lucide-react';
 
 import { useAuth } from '../../../lib/contexts/AuthContext';
 import '../../../styles/faq.scss';
-import { setComment, setIsNextDisabled, setIsChecked } from '../homePageSlice';
+import {
+  setComment,
+  setIsNextDisabled,
+  setIsChecked,
+  setStep,
+  setTweetData,
+} from '../homePageSlice';
+import ZZButton from '../../../components/ui/ZZButton';
 
-interface ITipCommentForm {
-  onSubmit: (
-    p: { text: string; postOnX: boolean },
-    shouldSkip?: boolean
-  ) => void;
-  onBack: () => void;
-}
-const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, onBack }) => {
-  const state = useSelector((state: any) => state.homePage);
+const TipCommentForm = () => {
+  const state = useSelector((state) => state.homePage);
   const dispatch = useDispatch();
 
   const { isNextDisabled, isChecked, tweetData, comment } = state;
 
   const { token } = useAuth();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const inputVal = e.target.value;
     dispatch(setComment(inputVal));
     dispatch(setIsNextDisabled(inputVal.length === 0 ? true : false));
@@ -31,8 +31,19 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, onBack }) => {
     dispatch(setIsChecked(!isChecked));
   };
 
-  const handleSubmit = (shouldSkip = false) => {
-    onSubmit({ text: comment, postOnX: isChecked }, shouldSkip);
+  const handleSubmit =
+    (shouldSkip = false) =>
+    () => {
+      dispatch(setStep(3));
+      if (!shouldSkip) {
+        dispatch(
+          setTweetData({ comment: { text: comment, postOnX: isChecked } })
+        );
+      }
+    };
+
+  const handleGoBack = () => {
+    dispatch(setStep(1));
   };
 
   return (
@@ -81,17 +92,17 @@ const TipCommentForm: React.FC<ITipCommentForm> = ({ onSubmit, onBack }) => {
         ) : null}
       </div>
       <div className="tip-comment-form__footer">
-        <button onClick={onBack} className="back-button">
+        <button onClick={handleGoBack} className="back-button">
           <ChevronLeft />
         </button>
-        <button
-          onClick={() => handleSubmit()}
+        <ZZButton
+          onClick={handleSubmit()}
           disabled={isNextDisabled}
-          className="next-button"
+          className="flex-grow-1 primary filled"
         >
           Next
-        </button>
-        <button onClick={() => handleSubmit(true)} className="skip-button">
+        </ZZButton>
+        <button onClick={handleSubmit(true)} className="skip-button">
           Skip
         </button>
       </div>

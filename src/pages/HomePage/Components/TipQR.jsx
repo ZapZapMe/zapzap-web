@@ -5,38 +5,33 @@ import { Pencil } from 'lucide-react';
 import CommentBox from './CommentBox';
 import { useAuth } from '../../../lib/contexts/AuthContext';
 import PaymentStatus from './PaymentStatus';
-import { setCopied } from '../homePageSlice';
+import CopyButton from './CopyButton';
+import { setStep } from '../homePageSlice';
+import toast from 'react-hot-toast';
+import ZZButton from '../../../components/ui/ZZButton';
 
-function TipQR({ onSuccess }) {
+function TipQR() {
   const state = useSelector((state) => state.homePage);
   const { invoiceData, tweetData } = state;
+  const dispatch = useDispatch();
 
   const { user } = useAuth();
   const twitter_username = user?.twitter_username;
   const payment_hash = invoiceData?.payment_hash;
   const invoice = invoiceData?.bolt11_invoice || '';
-  //   'lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk';
-  // console.log('🚀 ~ TipQR ~ invoice:', invoice);
-  // 'lnbc5140n1pncj87ldqgf389v5zwnp4qtyjfy99jhnpj8u9en49meskq8x08czk5axrh4cju64fvpcfenrfupp58ava342wms8mr2dw6f9ewwcnwppvvfuvh2uaq3j6ll8hj5l72g0qsp5wzfumejdcll86dtn9tvznhkkeaqt7yfnqut0kd7h5x70acl8gsms9qyysgqcqpcxqyz5vq434vvr5nxyyvumg0ee6469mq0ly3ldjvp72k20rd4q08s25zs233gg34u7gjtuzssypteezmvr0px2hg5ej6n8x60sq63ylyvsf267qqaph8vk';
 
-  // const handleCopy = () => {
-  //   navigator.clipboard.writeText(invoice).then(() => {
-  //     console.log('Copied to clipboard!');
-  //   });
-  // };
-
-  // ('lighting:lnbc12313123123');
   const handleOpenWallet = () => {
-    // link or scheme to open wallet
-    console.log('Opening wallet...');
-
     if (!invoice) {
-      console.error('No invoice to open wallet');
+      toast.error('No invoice to open wallet');
       return;
     }
 
     const walletUrl = `lightning:${invoice}`;
     window.open(walletUrl, '_blank');
+  };
+
+  const handleMoveForward = () => {
+    dispatch(setStep(5));
   };
 
   return (
@@ -67,38 +62,16 @@ function TipQR({ onSuccess }) {
         </div>
       </div>
 
-      <button className="tipQRButton primary filled" onClick={handleOpenWallet}>
+      <ZZButton
+        className="tipQRButton primary filled"
+        onClick={handleOpenWallet}
+      >
         Open in Wallet
-      </button>
+      </ZZButton>
 
-      <PaymentStatus onSuccess={onSuccess} paymentHash={payment_hash} />
+      <PaymentStatus onSuccess={handleMoveForward} paymentHash={payment_hash} />
     </div>
   );
 }
 
 export default TipQR;
-
-function CopyButton({ value }) {
-  const state = useSelector((state) => state.homePage);
-  const dispatch = useDispatch();
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(value);
-    dispatch(setCopied(true));
-    setTimeout(() => dispatch(setCopied(false)), 2000);
-  };
-
-  return (
-    <>
-      <div className="flex-1 truncate px-4 py-2 text-sm text-gray-500">
-        {value}
-      </div>
-      <button
-        onClick={handleCopy}
-        className="shrink-0 px-4 py-2 text-ellipsis text-sm font-medium text-white bg-black rounded-r-md hover:bg-gray-800"
-      >
-        {state.copied ? 'Copied' : 'Copy'}
-      </button>
-    </>
-  );
-}
