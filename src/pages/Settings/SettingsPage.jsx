@@ -11,6 +11,8 @@ import { Info } from 'lucide-react';
 import ZZButton from '../../components/ui/ZZButton';
 // implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
 
+const nostrLink = 'https://nostr.how/en/guides/setup-zapping-wallet';
+
 const SettingsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { user, updateUser } = useAuth();
@@ -50,6 +52,19 @@ const SettingsPage = () => {
         )}
         <div className="settingsContainer">
           <h1 className={'settingsHeader'}>Settings</h1>
+          <div className={'infoBanner'}>
+            <div className={'infoText'}>
+              Find more information on supported wallets here:{' '}
+              <a
+                href={nostrLink}
+                target="_blank"
+                className={'infoLink'}
+                rel="noreferrer"
+              >
+                Nostr.
+              </a>
+            </div>
+          </div>
           <div className={'infoBanner'}>
             <div className={'infoText'}>
               Your tips will be instantly paid out to this wallet address.{' '}
