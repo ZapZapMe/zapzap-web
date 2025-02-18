@@ -1,3 +1,18 @@
+## [1.1.1](https://github.com/ZapZapMe/zapzap-web/compare/v1.1.0...v1.1.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **button:** styles propagation ([a558e54](https://github.com/ZapZapMe/zapzap-web/commit/a558e54f47a43f28271588c8bd5bac3208851b63))
+* h1.tagline font weight ([f4df9a6](https://github.com/ZapZapMe/zapzap-web/commit/f4df9a6eb2804c1d718a5385ef312716f6f9a166))
+* **tip:** basic validation of username to prevent tipping own tweets ([53a0700](https://github.com/ZapZapMe/zapzap-web/commit/53a0700a4f254aa87178722de206c35b8c6cb8b5))
+* **tip:** fixed layout of tweed container ([a69a32c](https://github.com/ZapZapMe/zapzap-web/commit/a69a32c1b6ffc580fa263fe5265d6d2d8869d464))
+
+
+### Chores
+
+* returned logout button ([389d89b](https://github.com/ZapZapMe/zapzap-web/commit/389d89b85d3bbb75c2a8f893a35eb7ff65013dbe))
+
 ## [1.1.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.0.3...v1.1.0) (2025-02-14)
 
 
