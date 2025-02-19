@@ -99,7 +99,7 @@ function TipSatForm() {
             value={formatSatValue(satValue)}
             onChange={handleChange}
           />
-          <div>sat</div>
+          <div>sats</div>
         </div>
 
         <div className="tipQuickSat">

@@ -2,7 +2,7 @@ import React from 'react';
 
 const TwitterHandle = ({ handle }) => {
   const navigateToProfile = () => {
-    if (handle) window.open(`/${handle}`, '_blank');
+    if (handle) window.open(`/${handle}`, '_self');
   };
 
   return (

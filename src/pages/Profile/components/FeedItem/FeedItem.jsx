@@ -35,7 +35,7 @@ const FeedItem = (props) => {
           />
         </div>
         <div className="feedItemSatTime">
-          <b>{amount_sats} sat</b> -{' '}
+          <b>{amount_sats} sats</b> -{' '}
           <DateTippedAt
             handle={recipient}
             tweet_id={tweet_id}
