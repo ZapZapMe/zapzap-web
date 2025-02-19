@@ -46,7 +46,6 @@ const ProfileFeed = () => {
 
   return (
     <div className="profileBottom">
-      {/* Tabs */}
       <div className="flex mt-2 p-1 cursor-pointer text-sm font-bold rounded-full bg-[#333333]">
         <div
           onClick={handleTabChange(Tabs.RECEIVED)}

@@ -55,6 +55,10 @@ $primary-color: #f7cf52;
 .infoText {
   color: #3399ff;
   font-size: 14px;
+
+  p {
+    margin: 0;
+  }
 }
 
 .infoLink {

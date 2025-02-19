@@ -54,23 +54,20 @@ const SettingsPage = () => {
           <h1 className={'settingsHeader'}>Settings</h1>
           <div className={'infoBanner'}>
             <div className={'infoText'}>
-              Find more information on supported wallets here:{' '}
-              <a
-                href={nostrLink}
-                target="_blank"
-                className={'infoLink'}
-                rel="noreferrer"
-              >
-                Nostr.
-              </a>
-            </div>
-          </div>
-          <div className={'infoBanner'}>
-            <div className={'infoText'}>
-              Your tips will be instantly paid out to this wallet address.{' '}
-              {/* <a href="#" className={'infoLink'}>
-                Supported wallets FAQ.
-              </a> */}
+              <p>
+                Find more information on supported wallets here:{' '}
+                <a
+                  href={nostrLink}
+                  target="_blank"
+                  className={'infoLink'}
+                  rel="noreferrer"
+                >
+                  Nostr.
+                </a>
+              </p>
+              <p>
+                Your tips will be instantly paid out to this wallet address.
+              </p>
             </div>
           </div>
 
