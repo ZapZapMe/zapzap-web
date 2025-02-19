@@ -55,19 +55,17 @@ const SettingsPage = () => {
           <div className={'infoBanner'}>
             <div className={'infoText'}>
               <p>
-                Find more information on supported wallets here:{' '}
+                Here's a list of wallets that{' '}
                 <a
                   href={nostrLink}
                   target="_blank"
                   className={'infoLink'}
                   rel="noreferrer"
                 >
-                  Nostr.
+                  support lightning payments.
                 </a>
               </p>
-              <p>
-                Your tips will be instantly paid out to this wallet address.
-              </p>
+              <p>Your tips will be instantly paid out to the wallet address.</p>
             </div>
           </div>
 
