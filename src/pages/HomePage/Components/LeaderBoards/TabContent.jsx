@@ -39,7 +39,7 @@ const TabContent = ({ tabName }) => {
               <div className="ms-2 me-auto">
                 <div className="fw-bold">
                   <a
-                    href={`http://x.com/${
+                    href={`/${
                       tabName === Tabs.RECEIVED
                         ? item.tip_recipient
                         : item.tip_sender
