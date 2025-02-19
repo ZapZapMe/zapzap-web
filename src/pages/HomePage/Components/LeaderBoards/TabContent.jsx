@@ -25,36 +25,45 @@ const TabContent = ({ tabName }) => {
           className="d-flex p-3 justify-content-between align-items-center"
           key={index}
         >
-          <img
-            className="zz-avatar"
-            src={item.avatar_url ?? sampleAvatar}
-            alt={
-              tabName === Tabs.RECEIVED ? item.tip_recipient : item.tip_sender
-            }
-          />
-          <div className="ms-2 me-auto">
-            <div className="fw-bold">
-              <a
-                href={`http://x.com/${
+          <div className="d-flex gap-1 justify-content-between flex-column flex-sm-row flex-grow-1">
+            <div className="d-flex align-items-center">
+              <img
+                className="zz-avatar"
+                src={item.avatar_url ?? sampleAvatar}
+                alt={
                   tabName === Tabs.RECEIVED
                     ? item.tip_recipient
                     : item.tip_sender
-                }`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none"
-              >
-                @
-                {tabName === Tabs.RECEIVED
-                  ? item.tip_recipient
-                  : item.tip_sender}
-              </a>
+                }
+              />
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">
+                  <a
+                    href={`http://x.com/${
+                      tabName === Tabs.RECEIVED
+                        ? item.tip_recipient
+                        : item.tip_sender
+                    }`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-decoration-none"
+                  >
+                    @
+                    {tabName === Tabs.RECEIVED
+                      ? item.tip_recipient
+                      : item.tip_sender}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="d-flex align-items-center justify-content-end">
+              <Badge bg="primary" pill>
+                {item.total_amount_sats}
+              </Badge>
+              <span className="ms-2 fw-bold">sat</span>
             </div>
           </div>
-          <Badge bg="primary" pill>
-            {item.total_amount_sats}
-          </Badge>
-          <span className="ms-2 fw-bold">sat</span>
         </ListGroup.Item>
       ))}
     </ListGroup>
