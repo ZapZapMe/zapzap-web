@@ -1,8 +1,10 @@
 // HomePage.jsx
 import React from 'react';
 import TipCard from './Components/TipCard';
+import LeaderBoards from './Components/LeaderBoards';
 import '../../styles/homepage.scss';
 import ZapLogo from '../../assets/zapzap logo.png';
+
 function HomePage() {
   return (
     // <div></div>
@@ -20,6 +22,7 @@ function HomePage() {
         at a time.
       </h1>
       <TipCard />
+      <LeaderBoards />
     </div>
   );
 }

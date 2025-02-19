@@ -1,4 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+import { API_ENDPOINT } from '../../config';
 
 const initialState = {
   comment: '',
@@ -22,6 +25,13 @@ const initialState = {
 
   // Step 4:
   copied: false,
+
+  // Leaderboard
+  activeTab: 'received',
+  leaderboardReceived: [],
+  leaderboardSent: [],
+  leaderboardLoading: false,
+  leaderboardError: null,
 };
 
 const homePageSlice = createSlice({
@@ -70,8 +80,65 @@ const homePageSlice = createSlice({
     setSelfTipping: (state, action) => {
       state.isSelfTipping = action.payload;
     },
+    setActiveTab: (state, action) => {
+      state.activeTab = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchLeaderboardReceived.pending, (state) => {
+        state.leaderboardLoading = true;
+        state.leaderboardError = null;
+      })
+      .addCase(fetchLeaderboardReceived.fulfilled, (state, action) => {
+        state.leaderboardLoading = false;
+        state.leaderboardReceived = action.payload;
+      })
+      .addCase(fetchLeaderboardReceived.rejected, (state, action) => {
+        state.leaderboardLoading = false;
+        state.leaderboardError = action.payload;
+      })
+      .addCase(fetchLeaderboardSent.pending, (state) => {
+        state.leaderboardLoading = true;
+        state.leaderboardError = null;
+      })
+      .addCase(fetchLeaderboardSent.fulfilled, (state, action) => {
+        state.leaderboardLoading = false;
+        state.leaderboardSent = action.payload;
+      })
+      .addCase(fetchLeaderboardSent.rejected, (state, action) => {
+        state.leaderboardLoading = false;
+        state.leaderboardError = action.payload;
+      });
   },
 });
+
+// Create async thunk for fetching leaderboard data
+export const fetchLeaderboardReceived = createAsyncThunk(
+  'homePage/fetchLeaderboardReceived',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${API_ENDPOINT}/tips/leaderboard_received`
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchLeaderboardSent = createAsyncThunk(
+  'homePage/fetchLeaderboardSent',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API_ENDPOINT}/tips/leaderboard_sent`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const {
   setStep,
@@ -88,6 +155,7 @@ export const {
   setCopied,
   resetToInitialState,
   setSelfTipping,
+  setActiveTab,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;
