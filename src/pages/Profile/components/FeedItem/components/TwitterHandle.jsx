@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TwitterHandle = ({ handle }) => {
   const navigateToProfile = () => {
@@ -6,12 +7,9 @@ const TwitterHandle = ({ handle }) => {
   };
 
   return (
-    <span
-      onClick={navigateToProfile}
-      className="cursor-pointer text-blue-700 font-bold"
-    >
+    <Link to={`/${handle}`} className="cursor-pointer text-blue-700 font-bold">
       @{handle ?? 'anonymous'}
-    </span>
+    </Link>
   );
 };
 
