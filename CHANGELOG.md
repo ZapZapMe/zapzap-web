@@ -1,3 +1,28 @@
+## [1.2.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.1.1...v1.2.0) (2025-02-19)
+
+
+### Features
+
+* **settings:** added info link to zapping wallet ([d6ab894](https://github.com/ZapZapMe/zapzap-web/commit/d6ab8944d009abb778a97b9d400a87868cb3e5b6))
+* **tip:** added ability to tweet the tip intentionally from the app ([afff91c](https://github.com/ZapZapMe/zapzap-web/commit/afff91cd6a6a33c8d87b4fc4f7e1a4d0f032ff41))
+* **tips:** added leaderboards to the home page ([36d95eb](https://github.com/ZapZapMe/zapzap-web/commit/36d95eb8fba334d09a862be017b33f5a11bc7a4f))
+
+
+### Bug Fixes
+
+* **tip:** tweet intent address now includes receiver address ([ed32662](https://github.com/ZapZapMe/zapzap-web/commit/ed32662b1b403dc03755dc16572b94d8661becec))
+
+
+### Code Refactoring
+
+* added fonts files instead of google cdn ([f045a0f](https://github.com/ZapZapMe/zapzap-web/commit/f045a0f077211d894ec4cb95ddd42f453eb4cc7a))
+* minor wallet info text move around ([203b3ba](https://github.com/ZapZapMe/zapzap-web/commit/203b3ba6e967accec1042c1c60498bec32ae628c))
+
+
+### Chores
+
+* mobile layout fix ([8cf5ed5](https://github.com/ZapZapMe/zapzap-web/commit/8cf5ed536ecb7f7c992cfb18d74ffebb263bd7bf))
+
 ## [1.1.1](https://github.com/ZapZapMe/zapzap-web/compare/v1.1.0...v1.1.1) (2025-02-18)
 
 
