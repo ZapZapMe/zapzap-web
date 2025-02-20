@@ -1,13 +1,27 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { API_ENDPOINT } from '../../../config';
+import { fetchTip } from '../homePageSlice';
 
 function PaymentStatus({ paymentHash, onSuccess }) {
   const [status, setStatus] = useState('Waiting for payment...');
   const [isPaid, setIsPaid] = useState(false);
 
+  const state = useSelector((state) => state.homePage);
+  const { tipData, invoiceData } = state;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!paymentHash) return;
+
+    if (tipData?.paid_in) {
+      setIsPaid(true);
+      setStatus('Payment completed!');
+      onSuccess();
+      return;
+    }
 
     let eventSource;
 
@@ -45,6 +59,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && !isPaid) {
+        dispatch(fetchTip(invoiceData?.tip_id));
         subscribeToEvent();
       } else if (eventSource) {
         eventSource.close();
@@ -59,7 +74,15 @@ function PaymentStatus({ paymentHash, onSuccess }) {
       }
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [paymentHash, onSuccess, isPaid]);
+  }, [
+    paymentHash,
+    onSuccess,
+    isPaid,
+    tipData.id,
+    dispatch,
+    tipData?.paid_in,
+    invoiceData?.tip_id,
+  ]);
 
   return (
     <div>

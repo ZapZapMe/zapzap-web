@@ -11,6 +11,8 @@ const initialState = {
   isLoading: false,
   invoiceData: null,
 
+  tipData: null,
+
   // Step 1:
   tweetURL: '',
   isInvalid: false,
@@ -109,9 +111,33 @@ const homePageSlice = createSlice({
       .addCase(fetchLeaderboardSent.rejected, (state, action) => {
         state.leaderboardLoading = false;
         state.leaderboardError = action.payload;
+      })
+      .addCase(fetchTip.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchTip.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.tipData = action.payload;
+      })
+      .addCase(fetchTip.rejected, (state) => {
+        state.isLoading = false;
+        // state.isInvalid = true;
       });
   },
 });
+
+// Create async thunk for fetching leaderboard data
+export const fetchTip = createAsyncThunk(
+  'homePage/fetchTip',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API_ENDPOINT}/tips/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 // Create async thunk for fetching leaderboard data
 export const fetchLeaderboardReceived = createAsyncThunk(

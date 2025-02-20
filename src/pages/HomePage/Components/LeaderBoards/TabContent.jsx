@@ -12,8 +12,6 @@ const TabContent = ({ tabName }) => {
   const state = useSelector((state) => state.homePage);
   const { leaderboardReceived = [], leaderboardSent = [] } = state;
 
-  console.log(state);
-
   const list =
     tabName === Tabs.RECEIVED ? leaderboardReceived : leaderboardSent;
 
