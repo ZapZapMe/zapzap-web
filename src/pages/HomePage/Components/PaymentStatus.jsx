@@ -9,38 +9,57 @@ function PaymentStatus({ paymentHash, onSuccess }) {
   useEffect(() => {
     if (!paymentHash) return;
 
-    const eventSource = new EventSource(
-      `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
-    );
+    let eventSource;
 
-    eventSource.onmessage = (event) => {
-      const message = JSON.parse(event.data)?.status;
+    const subscribeToEvent = () => {
+      eventSource = new EventSource(
+        `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
+      );
 
-      // Handle special "end" message from server
-      if (message === 'paid') {
+      eventSource.onmessage = (event) => {
+        const message = JSON.parse(event.data)?.status;
+
+        // Handle special "end" message from server
+        if (message === 'paid') {
+          eventSource.close();
+          toast.success('Payment completed!');
+          setStatus('Payment completed!');
+          setIsPaid(true);
+          onSuccess();
+          return;
+        }
+
+        // Update status with server message
+        setStatus(message);
+      };
+
+      eventSource.onerror = (err) => {
+        console.error('EventSource error:', err);
+        toast.error('Something went Wrong');
         eventSource.close();
-        toast.success('Payment completed!');
-        setStatus('Payment completed!');
-        setIsPaid(true);
-        onSuccess();
-        return;
+        setStatus('Connection error - please refresh');
+      };
+    };
+
+    subscribeToEvent();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && !isPaid) {
+        subscribeToEvent();
+      } else if (eventSource) {
+        eventSource.close();
       }
-
-      // Update status with server message
-      setStatus(message);
     };
 
-    eventSource.onerror = (err) => {
-      console.error('EventSource error:', err);
-      toast.error('Something went Wrong');
-      eventSource.close();
-      setStatus('Connection error - please refresh');
-    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      eventSource.close();
+      if (eventSource) {
+        eventSource.close();
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [paymentHash, onSuccess]);
+  }, [paymentHash, onSuccess, isPaid]);
 
   return (
     <div>
