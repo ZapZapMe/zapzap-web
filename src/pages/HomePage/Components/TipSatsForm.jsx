@@ -22,6 +22,9 @@ function TipSatForm() {
   const { satValue, tweetData = null, comment = '' } = state;
 
   const { user } = useAuth();
+
+  console.log({ user });
+
   const twitter_username = user?.twitter_username;
 
   const handleChange = (e) => {

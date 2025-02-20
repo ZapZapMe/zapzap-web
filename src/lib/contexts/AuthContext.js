@@ -5,10 +5,9 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('userData');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('userData'))
+  );
 
   // Fetch user data whenever the token changes
   useEffect(() => {
@@ -27,7 +26,9 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch user data. Status: ${response.status}`);
+          throw new Error(
+            `Failed to fetch user data. Status: ${response.status}`
+          );
         }
 
         const userData = await response.json();

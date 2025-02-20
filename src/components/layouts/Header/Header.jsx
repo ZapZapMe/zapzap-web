@@ -102,36 +102,18 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
 
 const Header = () => {
   const [userAvatar, setUserAvatar] = useState(null);
-  const { token, user } = useAuth();
+  const { user } = useAuth();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (!token) {
+    if (!user) {
       setUserAvatar(null);
       return;
     }
 
-    fetch(`${API_ENDPOINT}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(
-            `Failed to fetch /users/me. Status code ${res.status}`
-          );
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setUserAvatar(data.avatar_url || null);
-      })
-      .catch((err) => {
-        console.log(`Error fetching user data: ${err.message}`);
-      });
-  }, [token]);
+    setUserAvatar(user?.avatar_url);
+  }, [user]);
 
   const handleTwitterLogin = async () => {
     try {

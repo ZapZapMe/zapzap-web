@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import ProfileTop from './components/ProfileTop';
 import ProfileFeed from './components/ProfileFeed';
@@ -13,4 +13,4 @@ function UserProfilePage() {
   );
 }
 
-export default UserProfilePage;
+export default memo(UserProfilePage);
