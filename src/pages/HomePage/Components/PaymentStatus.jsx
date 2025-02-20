@@ -78,7 +78,6 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     paymentHash,
     onSuccess,
     isPaid,
-    tipData.id,
     dispatch,
     tipData?.paid_in,
     invoiceData?.tip_id,
