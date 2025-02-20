@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { QRCodeSVG } from 'qrcode.react';
 import { Pencil } from 'lucide-react';
@@ -30,9 +30,9 @@ function TipQR() {
     window.open(walletUrl, '_blank');
   };
 
-  const handleMoveForward = () => {
+  const handleMoveForward = useCallback(() => {
     dispatch(setStep(5));
-  };
+  }, [dispatch]);
 
   return (
     <div className="tipQR">
