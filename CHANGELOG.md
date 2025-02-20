@@ -1,3 +1,25 @@
+## [1.2.1](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.0...v1.2.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* hyperlinking the wallet help ([42052ce](https://github.com/ZapZapMe/zapzap-web/commit/42052ce77cc318d3b51e27ebb14d964e4a4c1b7b))
+* **profile:** removed duplicate requests on user profile ([5971cf6](https://github.com/ZapZapMe/zapzap-web/commit/5971cf63bd3ba689891ec76860bbf07c8469c78a))
+* **tip:** fixed payment status update on browser tab visibility change ([7674bfb](https://github.com/ZapZapMe/zapzap-web/commit/7674bfbc89c778d5f5931799861bcafe80c0fc60))
+* typo (sat -> sats) and not opening multiple tabs for profile page ([d8d5b06](https://github.com/ZapZapMe/zapzap-web/commit/d8d5b06abb8c0cc5ddb7e7e5f3dfb5e0a9895945))
+* typo (sat -> sats) and not opening multiple tabs for profile page ([9303443](https://github.com/ZapZapMe/zapzap-web/commit/93034430da80275dd9f125da96a0b12ce10bbaab))
+
+
+### Chores
+
+* add new wallet domain ([68c7a74](https://github.com/ZapZapMe/zapzap-web/commit/68c7a74f6c9ea790e0bcea749e198c29012b1765))
+* **deployment:** testing different target for prod ([c8e132a](https://github.com/ZapZapMe/zapzap-web/commit/c8e132aa951573478152c6274698dcde9ef6f370))
+* fixed deps ([a07549d](https://github.com/ZapZapMe/zapzap-web/commit/a07549de9ce45925fa9b7b2c2454e07dd7375b7c))
+* **leaderboards:** name opens zapzap profile ([884f96f](https://github.com/ZapZapMe/zapzap-web/commit/884f96ff2e193e4e2cf41173a2eef587ba1bc6d6))
+* revert back deps ([94d25ec](https://github.com/ZapZapMe/zapzap-web/commit/94d25ec011f944e6a8ef26dc2102762ee00d378e))
+* testing sse ([7d088ab](https://github.com/ZapZapMe/zapzap-web/commit/7d088ab040c815948c05ff08be43c0dd270f40c6))
+* testing sse ([8e5d6a6](https://github.com/ZapZapMe/zapzap-web/commit/8e5d6a61f66ae8a1a242860d8a1b46f6c54bc14a))
+
 ## [1.2.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.1.1...v1.2.0) (2025-02-19)
 
 
