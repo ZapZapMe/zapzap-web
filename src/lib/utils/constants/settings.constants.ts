@@ -8,4 +8,5 @@ export const domains = [
     'ln.tips',
     'coincorner.io',
     'sparkwallet.me',
+    'blink.sv',
   ];
