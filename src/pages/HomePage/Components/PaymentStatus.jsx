@@ -40,7 +40,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     return () => {
       eventSource.close();
     };
-  }, []);
+  }, [paymentHash, onSuccess]);
 
   return (
     <div>
