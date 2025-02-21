@@ -1,3 +1,19 @@
+## [1.2.2](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.1...v1.2.2) (2025-02-21)
+
+
+### Code Refactoring
+
+* **app:** cleanup console logs ([6b36d46](https://github.com/ZapZapMe/zapzap-web/commit/6b36d46ea217c1cfe8eb16574b74cd5af56c022a))
+* **app:** file structure cleanup ([114e72d](https://github.com/ZapZapMe/zapzap-web/commit/114e72dc160c081ce164a01d8390f7a03fbe801d))
+* **app:** removed auth context flow in favor of redux; ([dbbc01f](https://github.com/ZapZapMe/zapzap-web/commit/dbbc01ff565f51acaf42c66a7b3b177b98266aa6))
+* **tips:** switched default tab for leaderboards ([060f80a](https://github.com/ZapZapMe/zapzap-web/commit/060f80af9867bd7beed7bba3e180c48ccffe961d))
+
+
+### Chores
+
+* **app:** added release preview command ([f7c588d](https://github.com/ZapZapMe/zapzap-web/commit/f7c588dbf0ab012d1a960708a8c124630f16cbc9))
+* **tip:** disabled post on x checkbox for now ([1e5899c](https://github.com/ZapZapMe/zapzap-web/commit/1e5899c76b0fa1e4156be62fad0eb7f9fa5d6c26))
+
 ## [1.2.1](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.0...v1.2.1) (2025-02-20)
 
 
