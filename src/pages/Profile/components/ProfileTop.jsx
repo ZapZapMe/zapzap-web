@@ -14,10 +14,6 @@ const ProfileTop = () => {
   const { userData, isLoading } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
-  console.log('user', user);
-  console.log('userData', userData);
-  console.log('');
-
   const getUser = useCallback(async () => {
     dispatch(setIsLoading(true));
     const response = await getUserByUsername(username);
@@ -31,7 +27,6 @@ const ProfileTop = () => {
     if (username && username !== user?.twitter_username) {
       getUser();
     } else {
-      console.log('setting user data', user);
       dispatch(setUserData(user));
     }
   }, [dispatch, getUser, user, username]);

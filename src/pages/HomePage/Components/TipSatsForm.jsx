@@ -22,8 +22,6 @@ function TipSatForm() {
 
   const { user } = useSelector((state) => state.auth);
 
-  console.log({ user });
-
   const twitter_username = user?.twitter_username;
 
   const handleChange = (e) => {

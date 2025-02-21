@@ -19,8 +19,6 @@ const FeedItem = (props) => {
     tip_type,
   } = props;
 
-  console.log('FeedItem', props);
-
   return (
     <div className="feedItem">
       <img

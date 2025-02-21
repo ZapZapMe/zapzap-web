@@ -123,10 +123,10 @@ const Header = () => {
       if (data.authorization_url) {
         window.location.href = data.authorization_url;
       } else {
-        console.log(`Error logging in with Twitter ${data}`);
+        console.error(`Error logging in with Twitter ${data}`);
       }
     } catch (error) {
-      console.log(`Error logging in with Twitter: ${error}`);
+      console.error(`Error logging in with Twitter: ${error}`);
     }
   };
 
