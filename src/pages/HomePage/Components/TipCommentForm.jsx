@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChevronLeft } from 'lucide-react';
 
-import '../../../styles/faq.scss';
 import {
   setComment,
   setIsNextDisabled,

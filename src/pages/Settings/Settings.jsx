@@ -6,16 +6,16 @@ import { Info } from 'lucide-react';
 import WalletIcon from '../../assets/wallet.png';
 import { updateWalletAddress } from '../../lib/utils/apiHandlers';
 
-import Suggestions from '../../PageComponents/SettingsPage/SuggestionsDropdown';
+import Suggestions from './components/SuggestionsDropdown';
 import EditIcon from '../../components/ui/SvgIcons/EditIcon';
 import ZZButton from '../../components/ui/ZZButton';
 import { updateUser } from '../../lib/auth/authSlice';
 
-import './settings.scss';
+import './Settings.scss';
 
 const nostrLink = 'https://nostr.how/en/guides/setup-zapping-wallet';
 
-const SettingsPage = () => {
+const Settings = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
@@ -125,4 +125,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default Settings;

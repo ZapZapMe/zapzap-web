@@ -1,9 +1,9 @@
-// HomePage.jsx
 import React from 'react';
+
+import ZapLogo from '../../assets/zapzap logo.png';
 import TipCard from './Components/TipCard';
 import LeaderBoards from './Components/LeaderBoards';
-import '../../styles/homepage.scss';
-import ZapLogo from '../../assets/zapzap logo.png';
+import './HomePage.scss';
 
 function HomePage() {
   return (

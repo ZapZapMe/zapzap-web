@@ -1,5 +1,5 @@
-import useClickOutside from '../../lib/hooks/useClickOutside';
-import { domains } from '../../lib/utils/constants/settings.constants';
+import useClickOutside from '../../../lib/hooks/useClickOutside';
+import { domains } from '../../../lib/utils/constants/settings.constants';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -8,13 +8,13 @@ import { useSelector } from 'react-redux';
 // }
 
 const Suggestions = () => {
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef(null);
   const [walletAddress, setWalletAddress] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState([]);
   // const [showError, setShowError] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const { user } = useSelector((state: any) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user?.wallet_address) {
@@ -22,7 +22,7 @@ const Suggestions = () => {
     }
   }, [user?.wallet_address]);
 
-  const handleChange = (input: string) => {
+  const handleChange = (input) => {
     setWalletAddress(input);
     const shouldShowSuggestions = input.includes('@');
     const atIndex = input.lastIndexOf('@');
@@ -45,7 +45,7 @@ const Suggestions = () => {
     // }
   };
 
-  const handleSuggestionClick = async (domain: string) => {
+  const handleSuggestionClick = async (domain) => {
     // const baseAddress = walletAddress.split('@')[0];
     inputRef.current?.focus();
     const atIndex = walletAddress.lastIndexOf('@');
@@ -105,13 +105,13 @@ const Suggestions = () => {
 //   );
 // };
 
-interface ISuggestionsDropdown {
-  shouldShow: boolean;
-  filteredElements: any[];
-  onClick: (param: string) => void;
-  prefIx: string;
-}
-const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
+// interface ISuggestionsDropdown {
+//   shouldShow: boolean;
+//   filteredElements: any[];
+//   onClick: (param: string) => void;
+//   prefIx: string;
+// }
+const SuggestionsDropdown = ({
   shouldShow,
   filteredElements,
   onClick,
@@ -148,7 +148,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
   }, [currIdx, filteredElements, onClick]);
 
   const handleKeydown = useCallback(
-    (event: KeyboardEvent) => {
+    (event) => {
       if (event.key === 'ArrowUp') {
         return upHandler();
       }

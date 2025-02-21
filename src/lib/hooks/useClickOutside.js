@@ -1,11 +1,11 @@
-import { useEffect, MutableRefObject } from 'react';
+import { useEffect } from 'react';
 
-const useClickOutside = (ref: MutableRefObject<HTMLElement | null> | null, callback: () => void, id?: string) => {
+const useClickOutside = (ref, callback, id) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event) => {
       const element = ref?.current || (id ? document.getElementById(id) : null);
 
-      if (element && !element.contains(event.target as Node)) {
+      if (element && !element.contains(event.target)) {
         callback();
       }
     };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../styles/faq.scss';
+import './faq.scss';
 
 const faqData = [
   {
@@ -72,16 +72,16 @@ const faqData = [
   },
 ];
 
-function FAQPage() {
-  const [openIndices, setOpenIndices] = useState<number[]>([]);
+function FAQ() {
+  const [openIndices, setOpenIndices] = useState([]);
 
-  const toggleAccordion = (index: number) => {
+  const toggleAccordion = (index) => {
     setOpenIndices((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
-  const onQuestionClickHandler = (index: number) => {
+  const onQuestionClickHandler = (index) => {
     toggleAccordion(index);
     document
       .getElementById(`faq-${index}`)
@@ -123,4 +123,4 @@ function FAQPage() {
   );
 }
 
-export default FAQPage;
+export default FAQ;

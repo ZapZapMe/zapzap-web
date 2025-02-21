@@ -8,9 +8,9 @@ import { fetchUserData, setToken, updateUser } from './lib/auth/authSlice';
 import Header from './components/layouts/Header/Header';
 import Footer from './components/layouts/Footer/Footer';
 import HomePage from './pages/HomePage';
-import SettingsPage from './pages/Settings/SettingsPage';
+import SettingsPage from './pages/Settings';
 import Profile from './pages/Profile';
-import FAQPage from './pages/FAQ';
+import FAQ from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
@@ -75,7 +75,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/faqs" element={<FAQPage />} />
+          <Route path="/faqs" element={<FAQ />} />
           <Route path="/:username" element={<Profile />} />
         </Routes>
       </main>
