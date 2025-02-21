@@ -10,7 +10,6 @@ import {
   setStep,
   setSelfTipping,
 } from '../homePageSlice';
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import ZZButton from '../../../components/ui/ZZButton';
 
 const selfTipMessage = "You can't Tip yourself!";
@@ -19,7 +18,7 @@ function TipTweetCard() {
   const state = useSelector((state) => state.homePage);
   const dispatch = useDispatch();
 
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
 
   const {
     isInvalid = false,

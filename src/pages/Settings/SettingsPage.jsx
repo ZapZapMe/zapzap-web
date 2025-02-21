@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../lib/contexts/AuthContext'; // if you have an AuthContext
-import './settings.scss';
-import WalletIcon from '../../assets/wallet.png';
-import { updateWalletAddress } from '../../lib/utils/apiHandlers';
-import Suggestions from '../../PageComponents/SettingsPage/SuggestionsDropdown';
-import EditIcon from '../../components/ui/SvgIcons/EditIcon';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { Info } from 'lucide-react';
 
+import WalletIcon from '../../assets/wallet.png';
+import { updateWalletAddress } from '../../lib/utils/apiHandlers';
+
+import Suggestions from '../../PageComponents/SettingsPage/SuggestionsDropdown';
+import EditIcon from '../../components/ui/SvgIcons/EditIcon';
 import ZZButton from '../../components/ui/ZZButton';
-// implement the SettingsPage component from https://www.figma.com/design/PzKNr8l3FXJsgvgeZGtWNz/ZapZap?node-id=68-3642&t=N2Pzyoa9tuSmVmun-0
+import { updateUser } from '../../lib/auth/authSlice';
+
+import './settings.scss';
 
 const nostrLink = 'https://nostr.how/en/guides/setup-zapping-wallet';
 
 const SettingsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const { user, updateUser } = useAuth();
-  // Pressing Enter in the input to push the address
+  const { user } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
+
+  // Pressing Enter in the input to push the address
   const handleEditWalletAddress = (value) => () => {
     setIsEditing(value);
   };
@@ -26,7 +30,7 @@ const SettingsPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const wallet_address = formData.get('wallet_address');
-    updateUser({ ...user, wallet_address });
+    dispatch(updateUser({ ...user, wallet_address }));
 
     toast.promise(
       updateWalletAddress(wallet_address), // This must be a Promise!

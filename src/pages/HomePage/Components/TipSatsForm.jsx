@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 
 import CommentBox from './CommentBox';
 import { createInvoice } from '../../../lib/utils/apiHandlers';
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import {
   setSatValue,
   setTweetData,
@@ -21,7 +20,7 @@ function TipSatForm() {
 
   const { satValue, tweetData = null, comment = '' } = state;
 
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
 
   console.log({ user });
 
@@ -50,7 +49,7 @@ function TipSatForm() {
     const body = {
       amount_sats: amount,
       comment: comment || '',
-      tip_sender: twitter_username ?? 'anonymous',
+      tip_sender: twitter_username || 'anonymous',
       shouldPostOnX: tweetData?.comment?.postOnX,
       tweet_url: tweetData?.url,
     };

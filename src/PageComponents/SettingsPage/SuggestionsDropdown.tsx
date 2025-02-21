@@ -1,8 +1,7 @@
 import useClickOutside from '../../lib/hooks/useClickOutside';
-import { updateWalletAddress } from '../../lib/utils/apiHandlers';
 import { domains } from '../../lib/utils/constants/settings.constants';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
-import { useAuth } from '../../lib/contexts/AuthContext';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 // interface ISuggestionsDropdown {
 //     children?: ReactNode;
@@ -12,10 +11,10 @@ const Suggestions = () => {
   const inputRef = useRef<any>(null);
   const [walletAddress, setWalletAddress] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [showError, setShowError] = useState(false);
+  // const [showError, setShowError] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const { user } = useAuth();
+  const { user } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     if (user?.wallet_address) {
@@ -47,7 +46,7 @@ const Suggestions = () => {
   };
 
   const handleSuggestionClick = async (domain: string) => {
-    const baseAddress = walletAddress.split('@')[0];
+    // const baseAddress = walletAddress.split('@')[0];
     inputRef.current?.focus();
     const atIndex = walletAddress.lastIndexOf('@');
     const newAddress = walletAddress.slice(0, atIndex + 1) + domain;
@@ -73,7 +72,7 @@ const Suggestions = () => {
         placeholder="satoshi@example.org"
         className={'walletInput w-full'}
       />
-      {showError && <ErrorMessage />}
+      {/* {showError && <ErrorMessage />} */}
 
       {/* ========= CLOSE BUTTON ========= */}
       {walletAddress && (
@@ -97,14 +96,14 @@ const Suggestions = () => {
   );
 };
 
-const ErrorMessage = () => {
-  return (
-    <div className={'warningMessage'}>
-      <span className={'warningIcon'}>⚠</span>
-      Please add a wallet address
-    </div>
-  );
-};
+// const ErrorMessage = () => {
+//   return (
+//     <div className={'warningMessage'}>
+//       <span className={'warningIcon'}>⚠</span>
+//       Please add a wallet address
+//     </div>
+//   );
+// };
 
 interface ISuggestionsDropdown {
   shouldShow: boolean;
@@ -120,23 +119,7 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
 }) => {
   const [currIdx, setCurrIdx] = useState(0);
 
-  const handleKeydown = (event: any) => {
-    if (event.key === 'ArrowUp') {
-      return upHandler();
-    }
-
-    if (event.key === 'ArrowDown') {
-      return downHandler();
-    }
-
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      enterHandler();
-      return;
-    }
-  };
-
-  const upHandler = () => {
+  const upHandler = useCallback(() => {
     if (currIdx === 0) return;
     const selectedIdx =
       (currIdx + filteredElements.length - 1) % filteredElements.length;
@@ -146,9 +129,9 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
       block: 'nearest',
       inline: 'center',
     });
-  };
+  }, [currIdx, filteredElements.length]);
 
-  const downHandler = () => {
+  const downHandler = useCallback(() => {
     if (currIdx === filteredElements.length - 1) return;
     const selectedIdx = (currIdx + 1) % filteredElements.length;
     setCurrIdx(selectedIdx);
@@ -157,12 +140,31 @@ const SuggestionsDropdown: React.FC<ISuggestionsDropdown> = ({
       block: 'nearest',
       inline: 'center',
     });
-  };
+  }, [currIdx, filteredElements.length]);
 
-  const enterHandler = () => {
+  const enterHandler = useCallback(() => {
     if (filteredElements.length === 0) return;
     onClick(filteredElements[currIdx]);
-  };
+  }, [currIdx, filteredElements, onClick]);
+
+  const handleKeydown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'ArrowUp') {
+        return upHandler();
+      }
+
+      if (event.key === 'ArrowDown') {
+        return downHandler();
+      }
+
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        enterHandler();
+        return;
+      }
+    },
+    [downHandler, enterHandler, upHandler]
+  );
 
   useEffect(() => {
     setCurrIdx(0);

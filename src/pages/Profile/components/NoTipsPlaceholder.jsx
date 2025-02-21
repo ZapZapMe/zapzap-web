@@ -2,14 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import { Links, Tabs } from '../constants';
 
 const NoTipsPlaceholder = () => {
   const state = useSelector((state) => state.profile);
   const { activeTab } = state;
 
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const { username } = useParams();
 
   const xLink = username ? `${Links.X}/${username}` : Links.X;

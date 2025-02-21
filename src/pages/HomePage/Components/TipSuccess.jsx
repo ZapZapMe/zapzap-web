@@ -2,7 +2,6 @@ import React from 'react';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import { resetToInitialState } from '../homePageSlice';
 import ZZButton from '../../../components/ui/ZZButton';
 import toast from 'react-hot-toast';
@@ -10,9 +9,6 @@ import toast from 'react-hot-toast';
 function TipSuccess() {
   const state = useSelector((state) => state.homePage);
   const { tweetData = null } = state;
-
-  const { user } = useAuth();
-
   const dispatch = useDispatch();
 
   const onViewClick = () => window.open(tweetData?.url, '_blank');

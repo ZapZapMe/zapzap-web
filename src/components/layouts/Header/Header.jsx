@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import { API_ENDPOINT } from '../../../config';
 import { HeaderZapLogo } from '../../../lib/utils/icons';
 import LogoutButton from './components/LogoutButton';
 import useLogout from './hooks';
 import './navbar.scss';
 import { LogOut } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 const mobile_menu_id = 'mobile-menu';
 
@@ -32,7 +32,7 @@ const navLinks = [
 ];
 
 const NavLinks = ({ username, closeMenu }) => {
-  const { token } = useAuth();
+  const { token } = useSelector((state) => state.auth);
   const handleLogout = useLogout();
   return (
     <div className="desktop-links-container ">
@@ -76,7 +76,7 @@ const NavLinks = ({ username, closeMenu }) => {
 };
 
 const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
-  const { token } = useAuth();
+  const { token } = useSelector((state) => state.auth);
   return token ? (
     <div className="flex gap-3 items-center">
       <Link to={`/${username}`}>
@@ -102,7 +102,7 @@ const UserSection = ({ userAvatar, handleTwitterLogin, username }) => {
 
 const Header = () => {
   const [userAvatar, setUserAvatar] = useState(null);
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -137,15 +137,6 @@ const Header = () => {
     <nav className="zz-navbar">
       <div className="zz-navbar-container">
         <div className="zz-navbar-content">
-          {/* Logo */}
-          {/* <div className="logo">
-            <div className="logo-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="logo-text">ZapZap</span>
-          </div> */}
           <Link to="/" className="navDesktopLogoLink">
             <HeaderZapLogo />
           </Link>

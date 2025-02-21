@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { QRCodeSVG } from 'qrcode.react';
 import { Pencil } from 'lucide-react';
 import CommentBox from './CommentBox';
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import PaymentStatus from './PaymentStatus';
 import CopyButton from './CopyButton';
 import { setStep } from '../homePageSlice';
@@ -15,7 +14,7 @@ function TipQR() {
   const { invoiceData, tweetData } = state;
   const dispatch = useDispatch();
 
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const twitter_username = user?.twitter_username;
   const payment_hash = invoiceData?.payment_hash;
   const invoice = invoiceData?.bolt11_invoice || '';

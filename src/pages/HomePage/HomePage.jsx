@@ -7,7 +7,6 @@ import ZapLogo from '../../assets/zapzap logo.png';
 
 function HomePage() {
   return (
-    // <div></div>
     <div className="content_container flex">
       <h1 className="tagline">
         Reward awesome people, one{' '}

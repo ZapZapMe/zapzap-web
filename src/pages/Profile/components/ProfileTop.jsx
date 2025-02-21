@@ -2,7 +2,6 @@ import React, { useEffect, useCallback, useMemo, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import { getUserByUsername } from '../../../lib/utils/apiHandlers';
 import ProfileSkeleton from '../../../components/ui/LoadingSkeleton/ProfileSkeleton';
 import DefaultProfileAvatar from '../../../components/ui/SvgIcons/DefaultProfileAvatar';
@@ -11,9 +10,13 @@ import { setUserData, setIsLoading } from '../profileSlice';
 
 const ProfileTop = () => {
   const { username } = useParams();
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const { userData, isLoading } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
+  console.log('user', user);
+  console.log('userData', userData);
+  console.log('');
 
   const getUser = useCallback(async () => {
     dispatch(setIsLoading(true));
@@ -25,10 +28,13 @@ const ProfileTop = () => {
   }, [dispatch, username]);
 
   useEffect(() => {
-    if (username) {
+    if (username && username !== user?.twitter_username) {
       getUser();
+    } else {
+      console.log('setting user data', user);
+      dispatch(setUserData(user));
     }
-  }, [getUser, username]);
+  }, [dispatch, getUser, user, username]);
 
   const isCurrentUser = useMemo(
     () =>

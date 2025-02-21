@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAuth } from '../../../../../lib/contexts/AuthContext';
 
 import TwitterHandle from './TwitterHandle';
+import { useSelector } from 'react-redux';
 
 const TipTitle = ({ tip_sender, recipient, type }) => {
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
 
   // =========== SENT
   if (type === 'sent') {
@@ -32,7 +32,7 @@ const TipTitle = ({ tip_sender, recipient, type }) => {
     return (
       <>
         Received a tip from {` `}
-        <TwitterHandle handle={tip_sender ?? 'anonymous'} />
+        <TwitterHandle handle={tip_sender || 'anonymous'} />
       </>
     );
   }

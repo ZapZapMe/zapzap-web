@@ -19,11 +19,13 @@ const FeedItem = (props) => {
     tip_type,
   } = props;
 
+  console.log('FeedItem', props);
+
   return (
     <div className="feedItem">
       <img
         className="feedItemProfilePic"
-        src={avatar_url ?? sampleAvatar}
+        src={avatar_url || sampleAvatar}
         alt={tip_sender}
       />
       <div className="feedItemDetails">

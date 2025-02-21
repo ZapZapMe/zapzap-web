@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChevronLeft } from 'lucide-react';
 
-import { useAuth } from '../../../lib/contexts/AuthContext';
 import '../../../styles/faq.scss';
 import {
   setComment,
@@ -19,7 +18,7 @@ const TipCommentForm = () => {
 
   const { isNextDisabled, isChecked, tweetData, comment } = state;
 
-  const { token } = useAuth();
+  const { token } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     const inputVal = e.target.value;

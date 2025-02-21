@@ -27,7 +27,7 @@ const TabContent = ({ tabName }) => {
             <div className="d-flex align-items-center">
               <img
                 className="zz-avatar"
-                src={item.avatar_url ?? sampleAvatar}
+                src={item.avatar_url || sampleAvatar}
                 alt={
                   tabName === Tabs.RECEIVED
                     ? item.tip_recipient
