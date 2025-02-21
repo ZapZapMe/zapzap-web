@@ -2,10 +2,13 @@ import React from 'react';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { formatDateDifference } from '../../../../../lib/utils/helperFunctions';
 
-const DateTippedAt = ({ created_at, handle, tweet_id }) => {
+const DateTippedAt = ({ created_at, handle, tweet_id, reply_tweet_id }) => {
   const navigateToProfile = () => {
     if (handle)
-      window.open(`https://x.com/${handle}/status/${tweet_id}`, '_blank');
+      window.open(
+        `https://x.com/${handle}/status/${reply_tweet_id || tweet_id || ''}`,
+        '_blank'
+      );
   };
 
   return (

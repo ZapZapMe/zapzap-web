@@ -20,7 +20,7 @@ const initialState = {
 
   // Step 2:
   isNextDisabled: true,
-  isChecked: true,
+  isChecked: false,
 
   // Step 3:
   satValue: '',

@@ -6,7 +6,7 @@ import '../../../styles/faq.scss';
 import {
   setComment,
   setIsNextDisabled,
-  setIsChecked,
+  // setIsChecked,
   setStep,
   setTweetData,
 } from '../homePageSlice';
@@ -26,9 +26,9 @@ const TipCommentForm = () => {
     dispatch(setIsNextDisabled(inputVal.length === 0 ? true : false));
   };
 
-  const handleToggle = () => {
-    dispatch(setIsChecked(!isChecked));
-  };
+  // const handleToggle = () => {
+  //   dispatch(setIsChecked(!isChecked));
+  // };
 
   const handleSubmit =
     (shouldSkip = false) =>
@@ -65,7 +65,7 @@ const TipCommentForm = () => {
           }
           className="tip-comment-form__input"
         />
-        {!isNextDisabled ? (
+        {/* {!isNextDisabled ? (
           <div className="flex items-center self-start gap-2">
             <button
               onClick={handleToggle}
@@ -88,7 +88,7 @@ const TipCommentForm = () => {
             </button>
             <span className="text-sm text-gray-700">Post tip on X</span>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
       <div className="tip-comment-form__footer">
         <button onClick={handleGoBack} className="back-button">

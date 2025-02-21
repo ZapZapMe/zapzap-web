@@ -15,6 +15,7 @@ const FeedItem = (props) => {
     recipient,
     amount_sats,
     avatar_url,
+    reply_tweet_id,
     comment,
     tip_type,
   } = props;
@@ -40,6 +41,7 @@ const FeedItem = (props) => {
             handle={recipient}
             tweet_id={tweet_id}
             created_at={created_at}
+            reply_tweet_id={reply_tweet_id}
           />
         </div>
         {comment ? <div className="feedItemComment">{comment}</div> : null}
