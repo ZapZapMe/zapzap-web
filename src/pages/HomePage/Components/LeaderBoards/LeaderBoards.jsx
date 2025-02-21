@@ -41,16 +41,6 @@ const LeaderBoards = () => {
             <>
               <div className="flex w-100 mt-2 p-1 cursor-pointer text-sm font-bold rounded-full bg-[#333333]">
                 <div
-                  onClick={handleTabChange(Tabs.RECEIVED)}
-                  className={`flex-1 py-3  rounded-full text-center  ${
-                    activeTab === Tabs.RECEIVED
-                      ? 'bg-amber-500 text-black'
-                      : ' text-white '
-                  }`}
-                >
-                  Tips Received
-                </div>
-                <div
                   onClick={handleTabChange(Tabs.SENT)}
                   className={`flex-1 py-3 rounded-full text-center  ${
                     activeTab === Tabs.SENT
@@ -59,6 +49,16 @@ const LeaderBoards = () => {
                   }`}
                 >
                   Tips Sent
+                </div>
+                <div
+                  onClick={handleTabChange(Tabs.RECEIVED)}
+                  className={`flex-1 py-3  rounded-full text-center  ${
+                    activeTab === Tabs.RECEIVED
+                      ? 'bg-amber-500 text-black'
+                      : ' text-white '
+                  }`}
+                >
+                  Tips Received
                 </div>
               </div>
 

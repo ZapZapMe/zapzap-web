@@ -29,7 +29,7 @@ const initialState = {
   copied: false,
 
   // Leaderboard
-  activeTab: 'received',
+  activeTab: 'sent',
   leaderboardReceived: [],
   leaderboardSent: [],
   leaderboardLoading: false,
