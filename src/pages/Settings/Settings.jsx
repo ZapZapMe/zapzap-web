@@ -10,7 +10,8 @@ import Suggestions from './components/SuggestionsDropdown';
 import EditIcon from '../../components/ui/SvgIcons/EditIcon';
 import ZZButton from '../../components/ui/ZZButton';
 import { updateUser } from '../../lib/auth/authSlice';
-import './Settings.scss';
+
+import './styles.scss';
 
 const nostrLink = 'https://nostr.how/en/guides/setup-zapping-wallet';
 
