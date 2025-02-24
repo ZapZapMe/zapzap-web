@@ -26,7 +26,7 @@ function TipQR() {
     }
 
     const walletUrl = `lightning:${invoice}`;
-    window.open(walletUrl, '_blank');
+    window.open(walletUrl);
   };
 
   const handleMoveForward = useCallback(() => {
