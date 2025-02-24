@@ -105,7 +105,7 @@ const ProfileTop = () => {
       </div>
       {userData?.twitter_username && (
         <a
-          href={`${userData.twitter_link}`}
+          href={`http://x.com/${userData.twitter_username}`}
           target="_blank"
           rel="noopener noreferrer"
         >
