@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import { fetchUserData, setToken, updateUser } from './lib/auth/authSlice';
 
 import Header from './components/layouts/Header/Header';

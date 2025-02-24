@@ -1,13 +1,18 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import GifPicker from 'gif-picker-react';
+
 import { ChevronLeft } from 'lucide-react';
 
+import { TENOR_API_KEY } from '../../../config';
 import {
   setComment,
   setIsNextDisabled,
   // setIsChecked,
   setStep,
   setTweetData,
+  setTenorContainerVisible,
+  setTenorGifObject,
 } from '../homePageSlice';
 import ZZButton from '../../../components/ui/ZZButton';
 
@@ -15,7 +20,14 @@ const TipCommentForm = () => {
   const state = useSelector((state) => state.homePage);
   const dispatch = useDispatch();
 
-  const { isNextDisabled, isChecked, tweetData, comment } = state;
+  const {
+    isNextDisabled,
+    isChecked,
+    tweetData,
+    comment,
+    isTenorContainerVisible,
+    tenorGifObject,
+  } = state;
 
   const { token } = useSelector((state) => state.auth);
 
@@ -44,6 +56,15 @@ const TipCommentForm = () => {
     dispatch(setStep(1));
   };
 
+  const handleTenorContainerVisibility = () => {
+    dispatch(setTenorContainerVisible(!isTenorContainerVisible));
+  };
+
+  const handleGifClick = (gif) => {
+    dispatch(setTenorGifObject(gif));
+    return handleTenorContainerVisibility();
+  };
+
   return (
     <div className="tip-comment-form">
       <span className="tip-comment-form__header">
@@ -52,18 +73,30 @@ const TipCommentForm = () => {
       </span>
 
       {/* --------- input --------- */}
-      <div className="input_container">
-        <input
-          disabled={!token} // if no user, dont allow them to input
-          onChange={handleChange}
-          value={comment}
-          placeholder={
-            !token
-              ? 'Log in with X to send a custom message'
-              : 'Write your tip message here'
-          }
-          className="tip-comment-form__input"
-        />
+      <div className="w-100 d-flex flex-column gap-2">
+        <div>
+          <textarea
+            rows="3"
+            disabled={!token} // if no user, dont allow them to input
+            onChange={handleChange}
+            value={comment}
+            placeholder={
+              !token
+                ? 'Log in with X to send a custom message'
+                : `Tell ${tweetData?.accountTitle} something nice`
+            }
+            className="form-control resize-none"
+          />
+          {tenorGifObject ? (
+            <img
+              width={500}
+              height={500}
+              src={tenorGifObject?.url}
+              alt={tenorGifObject?.description}
+            />
+          ) : null}
+        </div>
+
         {/* {!isNextDisabled ? (
           <div className="flex items-center self-start gap-2">
             <button
@@ -88,6 +121,25 @@ const TipCommentForm = () => {
             <span className="text-sm text-gray-700">Post tip on X</span>
           </div>
         ) : null} */}
+
+        <div className="d-flex justify-content-end">
+          <span
+            onClick={handleTenorContainerVisibility}
+            className="badge text-bg-dark text-end"
+          >
+            {isTenorContainerVisible ? <i class="bi bi-x"></i> : 'GIF'}
+          </span>
+        </div>
+
+        {isTenorContainerVisible ? (
+          <div className="w-100 ">
+            <GifPicker
+              width="100%"
+              tenorApiKey={TENOR_API_KEY}
+              onGifClick={handleGifClick}
+            />
+          </div>
+        ) : null}
       </div>
       <div className="tip-comment-form__footer">
         <button onClick={handleGoBack} className="back-button">

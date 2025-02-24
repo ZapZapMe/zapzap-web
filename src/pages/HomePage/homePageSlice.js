@@ -34,6 +34,9 @@ const initialState = {
   leaderboardSent: [],
   leaderboardLoading: false,
   leaderboardError: null,
+
+  isTenorContainerVisible: false,
+  tenorGifObject: null,
 };
 
 const homePageSlice = createSlice({
@@ -84,6 +87,12 @@ const homePageSlice = createSlice({
     },
     setActiveTab: (state, action) => {
       state.activeTab = action.payload;
+    },
+    setTenorContainerVisible: (state, action) => {
+      state.isTenorContainerVisible = action.payload;
+    },
+    setTenorGifObject: (state, action) => {
+      state.tenorGifObject = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -182,6 +191,8 @@ export const {
   resetToInitialState,
   setSelfTipping,
   setActiveTab,
+  setTenorContainerVisible,
+  setTenorGifObject,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

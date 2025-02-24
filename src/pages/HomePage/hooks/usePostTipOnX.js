@@ -32,7 +32,7 @@ const receivePhrases = [
 
 const usePostTipOnX = () => {
   const state = useSelector((state) => state.homePage);
-  const { tweetData = null, invoiceData = null } = state;
+  const { tweetData = null, invoiceData = null, tenorGifObject = null } = state;
 
   const handlePostTipOnX = useCallback(() => {
     const tweetId = tweetData?.tweetId || '';
@@ -51,8 +51,10 @@ const usePostTipOnX = () => {
 
     const targetGroupText = `${!invoiceData.has_wallet_address ? '- via @ZapZapBot!' : randomReceivePhrase}`;
 
+    const gif = tenorGifObject?.tenorUrl || '';
+
     const tweetText = encodeURIComponent(
-      `${comment}${randomEncouragePhrase}${targetGroupText}`
+      `${comment}${randomEncouragePhrase}${targetGroupText}\n${gif}`
     );
 
     if (!tweetId) {
@@ -68,7 +70,7 @@ const usePostTipOnX = () => {
     if (tweetWindow) {
       tweetWindow.focus();
     }
-  }, [tweetData, invoiceData]);
+  }, [tweetData, invoiceData, tenorGifObject]);
 
   return handlePostTipOnX;
 };
