@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { resetToInitialState } from '../homePageSlice';
 import ZZButton from '../../../components/ui/ZZButton';
-import toast from 'react-hot-toast';
+import usePostTipOnX from '../hooks/usePostTipOnX';
 
 function TipSuccess() {
   const state = useSelector((state) => state.homePage);
@@ -21,30 +21,7 @@ function TipSuccess() {
     }
   };
 
-  const handlePostTipOnX = () => {
-    const tweet = tweetData?.comment?.text;
-    const comment = tweet ? `⚡ ${tweet} ⚡\n` : '';
-    const satAmount = tweetData?.satAmount || 0;
-    const accountTitle = tweetData?.accountTitle?.replace('@', '') || '';
-    const tweetId = tweetData?.tweetId || '';
-    const tweetText = encodeURIComponent(
-      `${comment}I just zapped you ${satAmount} sats zap-zap.me/${accountTitle} - via @ZapZapBot!`
-    );
-
-    if (!tweetId) {
-      toast.error('Invalid tweet ID');
-      return;
-    }
-
-    const tweetWindow = window.open(
-      `https://twitter.com/intent/tweet?text=${tweetText}&in_reply_to=${tweetId}`,
-      '_blank'
-    );
-
-    if (tweetWindow) {
-      tweetWindow.focus();
-    }
-  };
+  const handlePostTipOnX = usePostTipOnX();
 
   return (
     <div className="tipCard">

@@ -3,4 +3,14 @@ const Tabs = {
   RECEIVED: 'received',
 };
 
-export { Tabs };
+const Phrases = {
+  RECEIVER: '/receiver',
+  AMOUNT: '/amount',
+};
+
+const Site = {
+  ZAPZAP: 'https://zap-zap.me',
+  TWITTER: 'https://x.com',
+};
+
+export { Tabs, Phrases, Site };
