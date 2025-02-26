@@ -14,6 +14,10 @@ import FAQ from './pages/FAQ';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './styles/index.scss';
+
 function App() {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);

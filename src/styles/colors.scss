@@ -1,0 +1,115 @@
+// Root color variables
+:root {
+  --yellow-50: #F7CF52;
+  --yellow-70: #CCA119;
+  --yellow-100: #242119;
+
+  --blue-50: #1DA1F2;
+  --green-50: #4DBC1A;
+  --red-50: #EF2525;
+
+  --neutral-100: #111111;
+  --neutral-95: #222222;
+  --neutral-90: #333333;
+  --neutral-30: #AAAAAA;
+  --neutral-10: #DDDDDD;
+  --neutral-0: #F7F7F7;
+}
+
+// Background color classes
+.bg-yellow-50 {
+  background-color: var(--yellow-50) !important;
+}
+
+.bg-yellow-70 {
+  background-color: var(--yellow-70) !important;
+}
+
+.bg-yellow-100 {
+  background-color: var(--yellow-100) !important;
+}
+
+.bg-blue-50 {
+  background-color: var(--blue-50) !important;
+}
+
+.bg-green-50 {
+  background-color: var(--green-50) !important;
+}
+
+.bg-red-50 {
+  background-color: var(--red-50) !important;
+}
+
+.bg-neutral-100 {
+  background-color: var(--neutral-100) !important;
+}
+
+.bg-neutral-95 {
+  background-color: var(--neutral-95) !important;
+}
+
+.bg-neutral-90 {
+  background-color: var(--neutral-90) !important;
+}
+
+.bg-neutral-30 {
+  background-color: var(--neutral-30) !important;
+}
+
+.bg-neutral-10 {
+  background-color: var(--neutral-10) !important;
+}
+
+.bg-neutral-0 {
+  background-color: var(--neutral-0) !important;
+}
+
+// Text color classes
+.text-yellow-50 {
+  color: var(--yellow-50) !important;
+}
+
+.text-yellow-70 {
+  color: var(--yellow-70) !important;
+}
+
+.text-yellow-100 {
+  color: var(--yellow-100) !important;
+}
+
+.text-blue-50 {
+  color: var(--blue-50) !important;
+}
+
+.text-green-50 {
+  color: var(--green-50) !important;
+}
+
+.text-red-50 {
+  color: var(--red-50) !important;
+}
+
+.text-neutral-100 {
+  color: var(--neutral-100) !important;
+}
+
+.text-neutral-95 {
+  color: var(--neutral-95) !important;
+}
+
+.text-neutral-90 {
+  color: var(--neutral-90) !important;
+}
+
+.text-neutral-30 {
+  color: var(--neutral-30) !important;
+}
+
+.text-neutral-10 {
+  color: var(--neutral-10) !important;
+}
+
+.text-neutral-0 {
+  color: var(--neutral-0) !important;
+}

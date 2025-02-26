@@ -1,0 +1,142 @@
+// Typography Styles
+
+.typography-display {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 57.6px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+    line-height: 38.4px;
+  }
+}
+
+.typography-headline {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38.4px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+}
+
+.typography-title {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+}
+
+.typography-label-48 {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 72px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.typography-label-32 {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.typography-label-16 {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.typography-label-12 {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.typography-body-large {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28.8px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    line-height: 25.6px;
+  }
+}
+
+.typography-body {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 22.4px;
+  }
+}
+
+.typography-body-small {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22.4px;
+  letter-spacing: 0%;
+
+  @media (max-width: 576px) {
+    font-size: 12px;
+    line-height: 19.2px;
+  }
+}
+
+.typography-caption-large {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.36px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}
+
+.typography-caption {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16.94px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+
+  @media (max-width: 576px) {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
