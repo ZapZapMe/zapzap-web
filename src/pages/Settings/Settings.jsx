@@ -1,29 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { Info } from 'lucide-react';
 
 import WalletIcon from '../../assets/wallet.png';
-import { updateWalletAddress } from '../../lib/utils/apiHandlers';
+// import { updateWalletAddress } from '../../lib/utils/apiHandlers';
 
 import Suggestions from './components/SuggestionsDropdown';
 import EditIcon from '../../components/ui/SvgIcons/EditIcon';
 import ZZButton from '../../components/ui/ZZButton';
 import { updateUser } from '../../lib/auth/authSlice';
+import {
+  setIsEditing,
+  updateWalletAddress,
+  resetSettingsState,
+} from './settingsSlice';
 
 import './styles.scss';
 
 const nostrLink = 'https://nostr.how/en/guides/setup-zapping-wallet';
 
 const Settings = () => {
-  const [isEditing, setIsEditing] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const { isEditing, isLoading, error, success } = useSelector(
+    (state) => state.settings
+  );
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading('Updating wallet address...');
+    } else {
+      if (error) {
+        toast.error('Something went wrong!');
+      }
+      if (success) {
+        toast.success('Wallet updated successfully!');
+      }
+      setTimeout(() => {
+        toast.dismiss();
+      }, 2000);
+    }
+  }, [isLoading, error, success]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetSettingsState());
+    };
+  }, [dispatch]);
+
   // Pressing Enter in the input to push the address
   const handleEditWalletAddress = (value) => () => {
-    setIsEditing(value);
+    dispatch(setIsEditing(value));
   };
 
   const handleSave = (e) => {
@@ -32,17 +61,7 @@ const Settings = () => {
     const wallet_address = formData.get('wallet_address');
     dispatch(updateUser({ ...user, wallet_address }));
 
-    toast.promise(
-      updateWalletAddress(wallet_address), // This must be a Promise!
-      {
-        loading: 'Updating wallet address...',
-        success: () => {
-          setIsEditing(false);
-          return 'Wallet updated successfully!';
-        },
-        error: 'Something went wrong!',
-      }
-    );
+    dispatch(updateWalletAddress(wallet_address));
   };
 
   return (

@@ -1,48 +1,40 @@
 import useClickOutside from '../../../lib/hooks/useClickOutside';
 import { domains } from '../../../lib/utils/constants/settings.constants';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-
-// interface ISuggestionsDropdown {
-//     children?: ReactNode;
-// }
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setWalletAddress,
+  setSuggestions,
+  setShowSuggestions,
+} from '../settingsSlice';
 
 const Suggestions = () => {
   const inputRef = useRef(null);
-  const [walletAddress, setWalletAddress] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  // const [showError, setShowError] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
+  const { walletAddress, suggestions, showSuggestions } = useSelector(
+    (state) => state.settings
+  );
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (user?.wallet_address) {
-      setWalletAddress(user?.wallet_address);
+      dispatch(setWalletAddress(user?.wallet_address));
     }
-  }, [user?.wallet_address]);
+  }, [dispatch, user?.wallet_address]);
 
   const handleChange = (input) => {
-    setWalletAddress(input);
+    dispatch(setWalletAddress(input));
     const shouldShowSuggestions = input.includes('@');
     const atIndex = input.lastIndexOf('@');
     if (shouldShowSuggestions) {
       const query = input.slice(atIndex + 1).toLowerCase();
       const filtered = domains.filter((domain) => domain.startsWith(query));
-      setSuggestions(filtered);
-      setShowSuggestions(true);
+      dispatch(setSuggestions(filtered));
+      dispatch(setShowSuggestions(true));
     } else {
-      setSuggestions([]);
-      setShowSuggestions(false);
+      dispatch(setSuggestions([]));
+      dispatch(setShowSuggestions(false));
     }
-    // const atIndex = input.lastIndexOf('@');
-    // if (atIndex !== -1) {
-    //   const query = input.slice(atIndex + 1).toLowerCase();
-    //   const filtered = domains.filter((domain) => domain.startsWith(query));
-    //   setSuggestions(filtered);
-    // } else {
-    //   setSuggestions([]);
-    // }
   };
 
   const handleSuggestionClick = async (domain) => {
@@ -50,12 +42,13 @@ const Suggestions = () => {
     inputRef.current?.focus();
     const atIndex = walletAddress.lastIndexOf('@');
     const newAddress = walletAddress.slice(0, atIndex + 1) + domain;
-    setWalletAddress(newAddress);
-    setSuggestions([]);
-    setShowSuggestions(false);
+    dispatch(setWalletAddress(newAddress));
+    dispatch(setSuggestions([]));
+    dispatch(setShowSuggestions(false));
   };
 
-  const toggleShowSuggestions = () => setShowSuggestions((prev) => !prev);
+  const toggleShowSuggestions = () =>
+    dispatch(setShowSuggestions(!showSuggestions));
   useClickOutside(null, toggleShowSuggestions, 'suggestions-container');
 
   return (
@@ -79,7 +72,7 @@ const Suggestions = () => {
         <button
           type="button"
           className={'clearButton'}
-          onClick={() => setWalletAddress('')}
+          onClick={() => dispatch(setWalletAddress(''))}
         >
           ×
         </button>

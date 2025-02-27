@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleAccordion } from './faqSlice';
 import './faq.scss';
 
 const faqData = [
@@ -73,16 +74,11 @@ const faqData = [
 ];
 
 function FAQ() {
-  const [openIndices, setOpenIndices] = useState([]);
-
-  const toggleAccordion = (index) => {
-    setOpenIndices((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
-  };
+  const { openIndices } = useSelector((state) => state.faq);
+  const dispatch = useDispatch();
 
   const onQuestionClickHandler = (index) => {
-    toggleAccordion(index);
+    dispatch(toggleAccordion(index));
     document
       .getElementById(`faq-${index}`)
       ?.scrollIntoView({ behavior: 'smooth', block: 'center' });

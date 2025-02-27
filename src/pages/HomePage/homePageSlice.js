@@ -28,6 +28,9 @@ const initialState = {
   // Step 4:
   copied: false,
 
+  paymentStatus: 'Waiting for payment...',
+  isPaid: false,
+
   // Leaderboard
   activeTab: 'sent',
   leaderboardReceived: [],
@@ -84,6 +87,12 @@ const homePageSlice = createSlice({
     },
     setActiveTab: (state, action) => {
       state.activeTab = action.payload;
+    },
+    setPaymentStatus: (state, action) => {
+      state.paymentStatus = action.payload;
+    },
+    setIsPaid: (state, action) => {
+      state.isPaid = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -182,6 +191,8 @@ export const {
   resetToInitialState,
   setSelfTipping,
   setActiveTab,
+  setPaymentStatus,
+  setIsPaid,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

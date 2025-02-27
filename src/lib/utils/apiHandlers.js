@@ -1,18 +1,5 @@
 import axiosClient, { API_BASE_URL } from './axiosClient';
 
-// Example API handler
-// PUT /users/me
-export const updateWalletAddress = async (newAddress) => {
-  try {
-    const response = await axiosClient.put(`${API_BASE_URL}/users/me`, {
-      wallet_address: newAddress,
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
 // type TCreateInvoice = {
 //   amount_sats: number;
 //   comment: string;

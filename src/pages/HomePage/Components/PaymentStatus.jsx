@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { API_ENDPOINT } from '../../../config';
-import { fetchTip } from '../homePageSlice';
+import { fetchTip, setPaymentStatus, setIsPaid } from '../homePageSlice';
 
 function PaymentStatus({ paymentHash, onSuccess }) {
-  const [status, setStatus] = useState('Waiting for payment...');
-  const [isPaid, setIsPaid] = useState(false);
-
   const state = useSelector((state) => state.homePage);
-  const { tipData, invoiceData } = state;
+  const { tipData, invoiceData, paymentStatus, isPaid } = state;
 
   const dispatch = useDispatch();
 
@@ -17,8 +14,8 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     if (!paymentHash) return;
 
     if (tipData?.paid_in) {
-      setIsPaid(true);
-      setStatus('Payment completed!');
+      dispatch(setIsPaid(true));
+      dispatch(setPaymentStatus('Payment completed!'));
       onSuccess();
       return;
     }
@@ -37,21 +34,21 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         if (message === 'paid') {
           eventSource.close();
           toast.success('Payment completed!');
-          setStatus('Payment completed!');
-          setIsPaid(true);
+          dispatch(setPaymentStatus('Payment completed!'));
+          dispatch(setIsPaid(true));
           onSuccess();
           return;
         }
 
         // Update status with server message
-        setStatus(message);
+        dispatch(setPaymentStatus(message));
       };
 
       eventSource.onerror = (err) => {
         console.error('EventSource error:', err);
         toast.error('Something went Wrong');
         eventSource.close();
-        setStatus('Connection error - please refresh');
+        dispatch(setPaymentStatus('Connection error - please refresh'));
       };
     };
 
@@ -94,7 +91,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
           margin: '1rem',
         }}
       >
-        {status}
+        {paymentStatus}
       </div>
 
       {isPaid && (
