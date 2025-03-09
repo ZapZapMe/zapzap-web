@@ -18,7 +18,7 @@ function TipSatForm() {
   const state = useSelector((state) => state.homePage);
   const dispatch = useDispatch();
 
-  const { satValue, tweetData = null, comment = '' } = state;
+  const { satValue, tweetData = null, comment, tenorGifObject = null } = state;
 
   const { user } = useSelector((state) => state.auth);
 
@@ -50,6 +50,7 @@ function TipSatForm() {
       tip_sender: twitter_username || 'anonymous',
       shouldPostOnX: tweetData?.comment?.postOnX,
       tweet_url: tweetData?.url,
+      gif_url: tenorGifObject.url,
     };
 
     toast.promise(
