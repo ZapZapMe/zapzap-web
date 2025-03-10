@@ -1,26 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { API_ENDPOINT } from '../../../config';
-import { fetchTip, setTweetData } from '../homePageSlice';
+import {
+  fetchTip,
+  setPaymentStatus,
+  setIsPaid,
+  setTweetData,
+  setProcessingGif,
+} from '../homePageSlice';
 
 function PaymentStatus({ paymentHash, onSuccess }) {
-  const [status, setStatus] = useState('Waiting for payment...');
-  const [isPaid, setIsPaid] = useState(false);
-  const [processingGif, setProcessingGif] = useState(false);
-
   const state = useSelector((state) => state.homePage);
-  const { tipData, invoiceData, tenorGifObject } = state;
+  const {
+    tipData,
+    invoiceData,
+    paymentStatus,
+    isPaid,
+    tenorGifObject,
+    processingGif,
+  } = state;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!paymentHash) return;
 
-    // If we have a paid tip with no gif, proceed to success
     if (tipData?.paid_in && !tenorGifObject?.tenorUrl) {
-      setIsPaid(true);
-      setStatus('Payment completed!');
+      dispatch(setIsPaid(true));
+      dispatch(setPaymentStatus('Payment completed!'));
       onSuccess();
       return;
     }
@@ -31,8 +39,8 @@ function PaymentStatus({ paymentHash, onSuccess }) {
       tenorGifObject?.tenorUrl &&
       state.tweetData?.gifTweetUrl
     ) {
-      setIsPaid(true);
-      setStatus('Payment and GIF posting completed!');
+      dispatch(setIsPaid(true));
+      dispatch(setPaymentStatus('Payment and GIF posting completed!'));
       onSuccess();
       return;
     }
@@ -43,9 +51,11 @@ function PaymentStatus({ paymentHash, onSuccess }) {
       tenorGifObject?.tenorUrl &&
       !state.tweetData?.gifTweetUrl
     ) {
-      setIsPaid(true);
-      setProcessingGif(true);
-      setStatus('Payment completed! Processing GIF... Please wait');
+      dispatch(setIsPaid(true));
+      dispatch(setProcessingGif(true));
+      dispatch(
+        setPaymentStatus('Payment completed! Processing GIF... Please wait')
+      );
       // continue with SSE connection to wait for gif url
     }
 
@@ -64,19 +74,27 @@ function PaymentStatus({ paymentHash, onSuccess }) {
 
         // Handle paid status - payment received but GIF not yet posted
         if (data.status === 'paid') {
-          setStatus('Payment completed!');
-          setIsPaid(true);
+          dispatch(setPaymentStatus('Payment completed!'));
+          dispatch(setIsPaid(true));
 
           // If we have a gif to post, show processing state
           if (tenorGifObject?.tenorUrl) {
-            setProcessingGif(true);
-            setStatus('Payment completed! Processing GIF... Please wait');
+            dispatch(setProcessingGif(true));
+            dispatch(
+              setPaymentStatus(
+                'Payment completed! Processing GIF... Please wait'
+              )
+            );
 
             // set a timeout in case gif posting takes too long
             if (!timeoutId) {
               timeoutId = setTimeout(() => {
                 console.log('GIF posting timeout - moving to success anyway');
-                setStatus('Payment completed! GIF processing timed out.');
+                dispatch(
+                  setPaymentStatus(
+                    'Payment completed! GIF processing timed out.'
+                  )
+                );
                 eventSource.close();
                 onSuccess();
               }, 30000); // timout
@@ -91,7 +109,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         // handle gif_readyy status
         if (data.status === 'gif_ready' && data.tweet_url) {
           console.log('GIF ready with URL:', data.tweet_url);
-          setProcessingGif(false);
+          dispatch(setProcessingGif(false));
 
           // clear any timeout
           if (timeoutId) {
@@ -103,7 +121,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
           dispatch(setTweetData({ gifTweetUrl: data.tweet_url }));
 
           // Update status and proceed to success screen
-          setStatus('Payment and GIF posting completed!');
+          dispatch(setPaymentStatus('Payment and GIF posting completed!'));
           toast.success('GIF posted successfully!');
 
           // close the connection and proceed to success
@@ -118,7 +136,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         // only show error if we are not already paid
         if (!isPaid) {
           toast.error('Connection error occurred');
-          setStatus('Connection error - please refresh');
+          dispatch(setPaymentStatus('Connection error - please refresh'));
         }
 
         eventSource.close();
@@ -127,6 +145,8 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         if (processingGif) {
           setTimeout(subscribeToEvent, 1000);
         }
+
+        // dispatch(setPaymentStatus('Connection error - please refresh'));
       };
     };
 
@@ -191,8 +211,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
           textAlign: 'center',
         }}
       >
-        {status}
-        {processingGif && (
+        {processingGif ? (
           <div style={{ marginTop: '0.5rem' }}>
             <div
               className="spinner"
@@ -223,10 +242,11 @@ function PaymentStatus({ paymentHash, onSuccess }) {
               This may take up to 30 seconds...
             </span>
           </div>
-        )}
+        ) : null}
+        {paymentStatus}
       </div>
 
-      {isPaid && !processingGif && (
+      {isPaid && !processingGif ? (
         <div
           style={{
             padding: '1rem',
@@ -239,7 +259,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         >
           Success! Thank you for your payment.
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

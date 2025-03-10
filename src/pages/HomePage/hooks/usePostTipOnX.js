@@ -23,13 +23,13 @@ const receivePhrases = [
   ` - check ${Site.ZAPZAP}/${Phrases.RECEIVER} to claim!`,
   `!\nGrab them at ${Site.ZAPZAP}/${Phrases.RECEIVER}.`,
   ` - see ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
-  `!\nClaim your sats at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
+  // `!\nClaim your sats at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
   `!\nGet your sats at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
-  `!\nRedeem at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
+  // `!\nRedeem at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
   `!\nCollect your sats at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
   `!\nYour sats await at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
   `!\nFind your sats at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
-  `!\nClaim now at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
+  // `!\nClaim now at ${Site.ZAPZAP}/${Phrases.RECEIVER}!`,
 ];
 
 const usePostTipOnX = () => {

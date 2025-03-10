@@ -28,6 +28,9 @@ const initialState = {
   // Step 4:
   copied: false,
 
+  paymentStatus: 'Waiting for payment...',
+  isPaid: false,
+
   // Leaderboard
   activeTab: 'sent',
   leaderboardReceived: [],
@@ -93,6 +96,12 @@ const homePageSlice = createSlice({
     },
     setTenorGifObject: (state, action) => {
       state.tenorGifObject = action.payload;
+    },
+    setPaymentStatus: (state, action) => {
+      state.paymentStatus = action.payload;
+    },
+    setIsPaid: (state, action) => {
+      state.isPaid = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -193,6 +202,8 @@ export const {
   setActiveTab,
   setTenorContainerVisible,
   setTenorGifObject,
+  setPaymentStatus,
+  setIsPaid,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

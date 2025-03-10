@@ -130,7 +130,7 @@ function TipTweetCard() {
 
       <ZZButton
         className="primary filled"
-        disabled={isInvalid || isSelfTipping || !tweetURL || !isTweetLoaded}
+        disabled={isInvalid || isSelfTipping || !tweetURL}
         onClick={handleTweetSubmit}
       >
         Tip This Tweet

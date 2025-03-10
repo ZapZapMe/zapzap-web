@@ -1,3 +1,29 @@
+## [1.3.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.2...v1.3.0) (2025-02-27)
+
+
+### Features
+
+* **tips:** randomised tweet intent message ([bd0640b](https://github.com/ZapZapMe/zapzap-web/commit/bd0640b628212005352f3449db1c22c0e4ecec4e))
+
+
+### Bug Fixes
+
+* **profile:** fixed own x link ([5369f95](https://github.com/ZapZapMe/zapzap-web/commit/5369f95aa51d396353f98024a0693a8b134c243a))
+
+
+### Code Refactoring
+
+* redux transfer and code cleanup ([83b69f2](https://github.com/ZapZapMe/zapzap-web/commit/83b69f2518f992a538476cf983c0c2e472c83ace))
+
+
+### Chores
+
+* cleanup ([a522e7a](https://github.com/ZapZapMe/zapzap-web/commit/a522e7ae766ae506f42f70e12a08ffc94efa1244))
+* cleanup ([4206abf](https://github.com/ZapZapMe/zapzap-web/commit/4206abf1e516d5a92d873215bf33199a32d60a15))
+* cleanup ([937953c](https://github.com/ZapZapMe/zapzap-web/commit/937953cbfbfa0f7870932df84a15e578283ddd7e))
+* disabled redeem and claim statements for intent ([eb07d7a](https://github.com/ZapZapMe/zapzap-web/commit/eb07d7ab944b3192a366552980bacc6a757f3464))
+* removed unnecessary parameter on wallet link ([d88ba9f](https://github.com/ZapZapMe/zapzap-web/commit/d88ba9f0a19a8f8e6a5e706ea85d7e509c4631b9))
+
 ## [1.2.2](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.1...v1.2.2) (2025-02-21)
 
 
