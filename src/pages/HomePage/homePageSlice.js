@@ -40,6 +40,7 @@ const initialState = {
 
   isTenorContainerVisible: false,
   tenorGifObject: null,
+  processingGif: false,
 };
 
 const homePageSlice = createSlice({
@@ -96,6 +97,9 @@ const homePageSlice = createSlice({
     },
     setTenorGifObject: (state, action) => {
       state.tenorGifObject = action.payload;
+    },
+    setProcessingGif: (state, action) => {
+      state.processingGif = action.payload;
     },
     setPaymentStatus: (state, action) => {
       state.paymentStatus = action.payload;
@@ -204,6 +208,7 @@ export const {
   setTenorGifObject,
   setPaymentStatus,
   setIsPaid,
+  setProcessingGif,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;
