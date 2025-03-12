@@ -1,9 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const CommentBox = ({ text, twitterHandler }) => {
+const CommentBox = ({ text }) => {
   const state = useSelector((state) => state.homePage);
-  const dispatch = useDispatch();
   const { tenorGifObject } = state;
   const { user } = useSelector((state) => state.auth);
 

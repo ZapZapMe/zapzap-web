@@ -13,4 +13,8 @@ export default configureStore({
     faq: faqReducer,
     settings: settingsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

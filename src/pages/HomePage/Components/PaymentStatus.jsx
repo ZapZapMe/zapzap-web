@@ -97,7 +97,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
                 );
                 eventSource.close();
                 onSuccess();
-              }, 30000); // timout
+              }, 30000); // timeout
             }
           } else {
             // no gif to post, proceed to success
@@ -106,7 +106,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
           }
         }
 
-        // handle gif_readyy status
+        // handle gif_ready status
         if (data.status === 'gif_ready' && data.tweet_url) {
           console.log('GIF ready with URL:', data.tweet_url);
           dispatch(setProcessingGif(false));
