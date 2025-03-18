@@ -37,7 +37,7 @@ function TipSuccess() {
   return (
     <div className="tipCard">
       <h1 className="tipSuccess">Tip Success!</h1>
-      <h3 style={{ maxWidth: '85%' }}>
+      <h3>
         You successfully sent{' '}
         <a
           href={`https://x.com/${tweetData?.accountTitle}`}
@@ -102,21 +102,21 @@ function TipSuccess() {
           </ZZButton>
         ) : null}
 
-        {tweetData?.gifTweetUrl ? (
+        {/* {tweetData?.gifTweetUrl ? (
           <ZZButton onClick={onViewGifClick} className="blue stroke">
             View GIF Tweet <SquareArrowOutUpRight />
           </ZZButton>
-        ) : null}
+        ) : null} */}
 
         <ZZButton
           onClick={handlePostTipOnX}
-          className="primary filled"
+          className="blue filled"
           disabled={isProcessingGif}
           style={{ opacity: isProcessingGif ? 0.7 : 1 }}
         >
           Tweet it!
         </ZZButton>
-        <ZZButton onClick={resetProgress} className="primary filled">
+        <ZZButton onClick={resetProgress} className="primary stroke">
           Send Another Tip
         </ZZButton>
       </div>

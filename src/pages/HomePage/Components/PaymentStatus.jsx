@@ -40,7 +40,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
       state.tweetData?.gifTweetUrl
     ) {
       dispatch(setIsPaid(true));
-      dispatch(setPaymentStatus('Payment and GIF posting completed!'));
+      dispatch(setPaymentStatus('Payment completed!'));
       onSuccess();
       return;
     }
@@ -53,9 +53,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     ) {
       dispatch(setIsPaid(true));
       dispatch(setProcessingGif(true));
-      dispatch(
-        setPaymentStatus('Payment completed! Processing GIF... Please wait')
-      );
+      dispatch(setPaymentStatus('Processing the payment... Please wait!'));
       // continue with SSE connection to wait for gif url
     }
 
@@ -63,13 +61,11 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     let timeoutId;
 
     const subscribeToEvent = () => {
-      console.log('Subscribing to SSE events for payment_hash:', paymentHash);
       eventSource = new EventSource(
         `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
       );
 
       eventSource.onmessage = (event) => {
-        console.log('SSE message received:', event.data);
         const data = JSON.parse(event.data);
 
         // Handle paid status - payment received but GIF not yet posted
@@ -81,15 +77,12 @@ function PaymentStatus({ paymentHash, onSuccess }) {
           if (tenorGifObject?.tenorUrl) {
             dispatch(setProcessingGif(true));
             dispatch(
-              setPaymentStatus(
-                'Payment completed! Processing GIF... Please wait'
-              )
+              setPaymentStatus('Processing the payment... Please wait!')
             );
 
             // set a timeout in case gif posting takes too long
             if (!timeoutId) {
               timeoutId = setTimeout(() => {
-                console.log('GIF posting timeout - moving to success anyway');
                 dispatch(
                   setPaymentStatus(
                     'Payment completed! GIF processing timed out.'
@@ -108,7 +101,6 @@ function PaymentStatus({ paymentHash, onSuccess }) {
 
         // handle gif_ready status
         if (data.status === 'gif_ready' && data.tweet_url) {
-          console.log('GIF ready with URL:', data.tweet_url);
           dispatch(setProcessingGif(false));
 
           // clear any timeout
@@ -179,7 +171,6 @@ function PaymentStatus({ paymentHash, onSuccess }) {
 
     return () => {
       if (eventSource) {
-        console.log('Closing SSE connection on component unmount');
         eventSource.close();
       }
       if (timeoutId) {

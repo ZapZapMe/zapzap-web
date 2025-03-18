@@ -16,7 +16,7 @@
 .btn.primary.btn-zapzap {
   color: var(--black);
   background: var(--lightYellow);
-  border: 1px solid var(--lightYellow);
+  border: 2px solid var(--lightYellow);
 
   &:hover,
   &:active {
@@ -42,11 +42,30 @@
 .btn.blue.btn-zapzap {
   color: var(--white);
   background: var(--blue);
-  border: 1px solid var(--blue);
+  border: 2px solid var(--blue);
   stroke: var(--blue);
+
+  &:hover,
+  &:active {
+    background: none;
+    border: 2px solid var(--blue);
+    color: var(--blue)
+  }
 }
 
 .btn.blue.stroke.btn-zapzap {
   color: var(--blue);
   background: none;
+}
+
+.btn.primary.stroke.btn-zapzap {
+  color: var(--darkYellow);
+  background: none;
+
+  &:hover,
+  &:active {
+    background: var(--darkYellow);
+    border: 2px solid var(--darkYellow);
+    color: var(--white)
+  }
 }

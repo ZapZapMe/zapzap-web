@@ -55,16 +55,10 @@ const usePostTipOnX = () => {
       );
 
       es.onmessage = (event) => {
-        console.log('Success page SSE message received:', event.data);
         const data = JSON.parse(event.data);
 
         // Handle "gif_ready" status
         if (data.status === 'gif_ready' && data.tweet_url) {
-          console.log(
-            'GIF tweet URL received on success page:',
-            data.tweet_url
-          );
-
           // Store the tweet URL in Redux
           dispatch(setTweetData({ gifTweetUrl: data.tweet_url }));
 
@@ -143,9 +137,7 @@ const usePostTipOnX = () => {
     const gif = includeGifUrl ? tenorGifObject?.tenorUrl : '';
 
     // Include the GIF tweet URL if available
-    const gifMessage = gifTweetUrl
-      ? `\n\nCheck out the GIF I sent: ${gifTweetUrl}`
-      : '';
+    const gifMessage = gifTweetUrl ? `\n\n${gifTweetUrl}` : '';
 
     const tweetText = encodeURIComponent(
       `${comment}${randomEncouragePhrase}${targetGroupText}${gifMessage}${gif ? '\n' + gif : ''}`

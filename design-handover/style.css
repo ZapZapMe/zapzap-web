@@ -91,11 +91,11 @@ button.blue.stroke {
 }
 
 button.filled {
-	border: none !important;
+	border: none;
 }
 
 button.stroke {
-	background: none !important;
+	background: none;
 }
 
 button.stretch {

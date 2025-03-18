@@ -20,12 +20,7 @@ function TipTweetCard() {
 
   const { user } = useSelector((state) => state.auth);
 
-  const {
-    isInvalid = false,
-    isTweetLoaded = false,
-    isSelfTipping = false,
-    tweetURL,
-  } = state;
+  const { isInvalid = false, isSelfTipping = false, tweetURL } = state;
 
   function extractTwitterHandle(url) {
     const match = url.match(/(?:twitter.com|x.com)\/([^/?]+)/i);

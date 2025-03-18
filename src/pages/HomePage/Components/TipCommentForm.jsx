@@ -8,7 +8,6 @@ import { TENOR_API_KEY } from '../../../config';
 import {
   setComment,
   setIsNextDisabled,
-  // setIsChecked,
   setStep,
   setTweetData,
   setTenorContainerVisible,
@@ -36,10 +35,6 @@ const TipCommentForm = () => {
     dispatch(setComment(inputVal));
     dispatch(setIsNextDisabled(inputVal.length === 0 ? true : false));
   };
-
-  // const handleToggle = () => {
-  //   dispatch(setIsChecked(!isChecked));
-  // };
 
   const handleSubmit =
     (shouldSkip = false) =>
@@ -76,7 +71,7 @@ const TipCommentForm = () => {
       <div className="w-100 d-flex flex-column gap-2">
         {!isTenorContainerVisible ? (
           // Only show the text area and related elements when GIF picker is not visible
-          <div className="flex form-control flex-col gap-2 p-3">
+          <div className="flex rounded-lg form-control flex-col gap-2 p-3 ">
             <textarea
               rows="3"
               disabled={!token} // if no user, dont allow them to input
@@ -92,7 +87,7 @@ const TipCommentForm = () => {
             {tenorGifObject ? (
               <div className="relative">
                 <img
-                  className="rounded-2xl"
+                  className="rounded-lg"
                   width={500}
                   height={500}
                   src={tenorGifObject?.url}

@@ -7,7 +7,7 @@ const CommentBox = ({ text }) => {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <div className="flex  items-start w-fit gap-3 p-2 border">
+    <div className="flex rounded-lg items-start w-full gap-3 p-3 border">
       <img
         height={32}
         width={32}
@@ -16,12 +16,12 @@ const CommentBox = ({ text }) => {
         alt="ProfilePicture"
       />
 
-      <div className="flex-col gap-4">
-        <div className="rounded-lg ">&quot;{text}&quot;</div>
+      <div className="w-full flex-col gap-4">
+        <div className=" ">&quot;{text}&quot;</div>
 
         {tenorGifObject ? (
           <img
-            className="rounded-2xl sm:max-h-[300px] max-h-[231px]"
+            className="rounded-lg w-full"
             src={tenorGifObject?.url}
             alt={tenorGifObject?.description}
           />
