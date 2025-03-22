@@ -1,3 +1,25 @@
+## [1.4.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.3.0...v1.4.0) (2025-03-22)
+
+
+### Features
+
+* **tip:** gifs with tip messages ([c20bba4](https://github.com/ZapZapMe/zapzap-web/commit/c20bba457aadfb0a8ff66ee392e7c5496ffe2ed3))
+
+
+### Bug Fixes
+
+* ensure GIF tweet URL is included in tweet intent ([e35f8aa](https://github.com/ZapZapMe/zapzap-web/commit/e35f8aade51a9e7d3d0d3c8eb777faf0bcc902db))
+* fixed logic for tweet reply target group ([a41486e](https://github.com/ZapZapMe/zapzap-web/commit/a41486e443a2af0271ee647b540c7fe697bcde34))
+* tip if the embed doesn't load (sensitive topics don't load) ([cccbeea](https://github.com/ZapZapMe/zapzap-web/commit/cccbeeab2b8b745f94f358c8be7678cb0320b045))
+* **tips:** cleanup ([5f0e730](https://github.com/ZapZapMe/zapzap-web/commit/5f0e73090a1d51060bfdb8e4b167b2799332479f))
+
+
+### Chores
+
+* added missing bool on main branch merge ([405f890](https://github.com/ZapZapMe/zapzap-web/commit/405f890d8873460b7e2bec49dbb93e9be92fa9b0))
+* added tenor key to prod env ([dd2280c](https://github.com/ZapZapMe/zapzap-web/commit/dd2280c57f4ad70b89dc5473274ce035de2a3a15))
+* redux error fixes ([f1c84b6](https://github.com/ZapZapMe/zapzap-web/commit/f1c84b6718573097615f2e67b61d622a3acc13ea))
+
 ## [1.3.0](https://github.com/ZapZapMe/zapzap-web/compare/v1.2.2...v1.3.0) (2025-02-27)
 
 
