@@ -130,7 +130,7 @@ const usePostTipOnX = () => {
       Math.floor(Math.random() * receivePhrases.length)
     ].replace(Phrases.RECEIVER, accountTitle);
 
-    const targetGroupText = `${!invoiceData?.has_wallet_address ? '- via @ZapZapBot!' : randomReceivePhrase}`;
+    const targetGroupText = `${invoiceData?.has_wallet_address ? '- via @ZapZapBot!' : randomReceivePhrase}`;
 
     // Only include Tenor GIF URL if we don't have a GIF tweet URL
     const includeGifUrl = !gifTweetUrl && tenorGifObject?.tenorUrl;
