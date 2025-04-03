@@ -139,7 +139,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         eventSource.close();
 
         // If we're processing a gif and encounter an error, retry the connection
-        if (processingGif) {
+        if (processingGif || !isPaid) {
           setTimeout(subscribeToEvent, 1000);
         }
 
