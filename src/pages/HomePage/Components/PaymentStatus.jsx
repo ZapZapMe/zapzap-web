@@ -65,7 +65,7 @@ function PaymentStatus({ paymentHash, onSuccess }) {
         eventSource.close();
       }
 
-      eventSource = new eventSource(
+      eventSource = new EventSource(
         `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
       );
       console.log(`SSE connection established for ${paymentHash}`);
