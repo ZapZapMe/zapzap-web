@@ -61,9 +61,14 @@ function PaymentStatus({ paymentHash, onSuccess }) {
     let timeoutId;
 
     const subscribeToEvent = () => {
-      eventSource = new EventSource(
+      if (eventSource) {
+        eventSource.close();
+      }
+
+      eventSource = new eventSource(
         `${API_ENDPOINT}/sse/subscribe?payment_hash=${paymentHash}`
       );
+      console.log(`SSE connection established for ${paymentHash}`);
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
@@ -146,24 +151,22 @@ function PaymentStatus({ paymentHash, onSuccess }) {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        // if we're processing a gif, always reconnect
-        if (processingGif) {
-          if (eventSource) {
-            eventSource.close();
+        const needsReconnect =
+          !eventSource || eventSource.readyState === EventSource.CLOSED;
+
+        if (needsReconnect) {
+          console.log('Reconnecting to SSE...');
+
+          if (processingGif || !isPaid) {
+            if (invoiceData?.tip_id) {
+              dispatch(fetchTip(invoiceData.tip_id));
+            }
+
+            subscribeToEvent();
           }
-          subscribeToEvent();
+        } else {
+          console.log('SSE connection is still active.');
         }
-        // if not paid yet, fetch tip and reconnect
-        else if (!isPaid) {
-          dispatch(fetchTip(invoiceData?.tip_id));
-          if (eventSource) {
-            eventSource.close();
-          }
-          subscribeToEvent();
-        }
-      } else if (eventSource && !processingGif) {
-        // only close the connection if we're not processing a gif
-        eventSource.close();
       }
     };
 
